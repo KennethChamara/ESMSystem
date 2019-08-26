@@ -12,8 +12,11 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	 
+	<div class="row" style = "margin-top:100px">
+	<div class = "col-sm-4"></div>
+	<div class = "col-sm-4">
 	<div class="container">
+	
   <h2>Login</h2>
   <form action="/action_page.php">
     <div class="form-group">
@@ -32,7 +35,8 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   </div>
-
-
+  </div>
+	</div>
+	<div class = "col-sm-4"></div>
 </body>
 </html>
