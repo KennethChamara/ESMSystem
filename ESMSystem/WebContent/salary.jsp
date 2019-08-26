@@ -23,17 +23,17 @@
     
     <div class="form-group">
       <label for="usr">Date:</label>
-      <input type="text" class="form-control" id="usr" placeholder="Enter date" name="usr">
+      <input type="text" class="form-control" id="date" placeholder="Enter date" name="date">
     </div>
     
     <div class="form-group">
       <label for="usr">Month:</label>
-      <input type="text" class="form-control" id="usr" placeholder="Enter Month" name="usr">
+      <input type="text" class="form-control" id="month" placeholder="Enter Month" name="month">
     </div>
     
     <div class="form-group">
       <label for="usr">Amount:</label>
-      <input type="text" class="form-control" id="usr" placeholder="Enter amount" name="usr">
+      <input type="text" class="form-control" id="amount" placeholder="Enter amount" name="amount">
     </div>
     
     
