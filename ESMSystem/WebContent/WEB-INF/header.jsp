@@ -13,7 +13,7 @@
                         <ul class="main-nav">
                         
                             <li><a href="/pages/about">Profiles</a></li>
-                            <li><a href="/portfolio">Payments</a></li>
+                            <li><a href="salaryTab.jsp">Payments</a></li>
                             <li><a href="/posts">Vacancies</a></li>
                             <li><a href="/contact">Benefits</a></li>				
                         </ul>

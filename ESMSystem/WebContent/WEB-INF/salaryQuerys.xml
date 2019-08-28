@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SQL queries -->
+<Querys>
+
+	<!-- Create table salary Query -->
+	<query id="create_salary_table">
+        <![CDATA[
+            CREATE TABLE salary(
+				salaryID varchar(10) not null,
+				employeeID varchar(10) not null,
+				employeeName varchar(20),
+				month varchar(10),
+				date  date,
+				amount real,
+				primary key (salaryID)
+			)
+        ]]>
+	</query>
+
+	<!-- DROP TABLE salary Query -->
+	<query id="drop_table">
+         <![CDATA[        
+            DROP TABLE IF EXISTS salary 
+        ]]>
+	</query>
+
+	<!-- Insert into salary  Query -->
+	<query id="insert_salary">
+        <![CDATA[
+          	insert into salary (salaryID, employeeID, employeeName, month,date,amount) 
+          	values (?, ?, ?, ?, ?,?)
+        ]]>
+	</query>
+
+	<!-- Select a particular salary by id Query -->
+	<query id="salary_by_id">
+         <![CDATA[        
+            select * from salary where salary.salaryID = ?
+        ]]>
+	</query>
+
+	<!-- Select all salary -->
+	<query id="all_salarys">
+         <![CDATA[        
+            select * from salary
+        ]]>
+	</query>
+
+	<!-- Delete a particular salary by id Query -->
+	<query id="remove_salary">
+         <![CDATA[        
+            delete from salary where salary.salaryID = ?
+        ]]>
+	</query>
+	
+	<!-- Update a particular salary by id Query -->
+	<query id="update_salary">
+         <![CDATA[        
+            update salary as e 
+            set e.employeeName = ?, e.date = ?, e.amount = ?
+            where e.salaryID = ?
+        ]]>
+	</query>
+	
+		<!-- Get salary IDs Query -->
+	<query id="salary_ids">
+         <![CDATA[        
+            select e.salaryID from salary as e
+        ]]>
+	</query>
+
+</Querys>

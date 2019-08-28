@@ -12,28 +12,33 @@
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	 
+
+	 <div class="row" style="margin-top:40px">
+	 <div class="col-sm-2"></div>
+	  <div class="col-sm-8">
 	<div class="container">
+	
   <h2>Add Salary</h2>
-  <form action="">
+  <form action="AddSalaryServlet" method="post">
     <div class="form-group">
       <label for="usr">Employee:</label>
       <input type="text" class="form-control" id="usr" placeholder="Enter name" name="usr">
     </div>
     
-    <div class="form-group">
-      <label for="usr">Date:</label>
-      <input type="text" class="form-control" id="date" placeholder="Enter date" name="date">
-    </div>
-    
-    <div class="form-group">
-      <label for="usr">Month:</label>
+     <div class="form-group">
+      <label for="month">Month:</label>
       <input type="text" class="form-control" id="month" placeholder="Enter Month" name="month">
     </div>
     
     <div class="form-group">
-      <label for="usr">Amount:</label>
+      <label for="date">Date:</label>
+      <input type="text" class="form-control" id="date" placeholder="Enter date" name="date">
+    </div>
+    
+   
+    
+    <div class="form-group">
+      <label for="amount">Amount:</label>
       <input type="text" class="form-control" id="amount" placeholder="Enter amount" name="amount">
     </div>
     
@@ -42,6 +47,9 @@
     <button type="reset" class="btn btn-primary">Reset</button>
   </form>
   </div>
-
+  
+ </div>	
+	</div>
+	
 </body>
 </html>
