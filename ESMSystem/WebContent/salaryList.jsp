@@ -1,5 +1,14 @@
 <!DOCTYPE html>
+<%@page import="model.Salary"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="service.IsalaryService"%>
+<%@page import="service.SalaryServiceImpl"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html lang="en">
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -18,32 +27,28 @@
     <thead>
       <tr>
         <th></th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th>Name</th>
+        <th>Month</th>
         <th>Amount</th>
         <th>Edit</th>
       </tr>
     </thead>
     <tbody>
+      <%
+            	IsalaryService isalaryeService = new SalaryServiceImpl();
+                        	ArrayList<Salary> arrayList = isalaryeService.getSalarys();
+                        	
+                        	for(Salary salary : arrayList){
+            %>
       <tr>
       <td><input type="checkbox" name="delete" value="delete"> </td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td><%= salary.getEmpName() %></td>
+        <td><%= salary.getMonth() %></td>
+        <td><%= salary.getAmount() %></td>
+        <td> <button class="btn btn-primary" type="submit" value="<%= salary.getSalaryID() %>">Edit</button></td>
+        
       </tr>
-      <tr>
-       <td><input type="checkbox" name="delete" value="delete"> </td>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-       <td><input type="checkbox" name="delete" value="delete"> </td>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
+      <%} %>
     </tbody>
   </table>
   		<div class="row">
@@ -55,7 +60,7 @@
   	    <div class="col-sm-4">
     </div>
 	</div>
-	
+	</div>
 
 </body>
 </html>
