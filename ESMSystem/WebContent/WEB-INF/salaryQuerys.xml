@@ -57,7 +57,7 @@
 	<query id="update_salary">
          <![CDATA[        
             update salary as e 
-            set e.employeeName = ?, e.date = ?, e.amount = ?
+            set e.employeeName = ?,e.month=?, e.date = ?, e.amount = ?
             where e.salaryID = ?
         ]]>
 	</query>

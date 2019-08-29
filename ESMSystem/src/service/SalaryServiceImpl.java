@@ -5,6 +5,7 @@ package service;
 import java.io.IOException;
 
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -161,7 +162,58 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 	@Override
 	public Salary updateSalary(String salaryID, Salary salary) {
 		// TODO Auto-generated method stub
-		return null;
+		/*
+		 * Before fetching Salary it checks whether salary ID is available
+		 */
+		System.out.println(salaryID);
+		if (salaryID != null && !salaryID.isEmpty()) {
+			/*
+			 * Update employee query will be retrieved from EmployeeQuery.xml
+			 */
+			
+			
+			try {
+				SimpleDateFormat sdf= new SimpleDateFormat("dd-mm-y");
+				
+				Date date = sdf.parse(salary.getDate());
+				
+				java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+				connection = DBConnectionUtil.getDBConnection();
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_UPDATE_EMPLOYEE));
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, salary.getEmpName());
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, salary.getMonth());
+				preparedStatement.setDate(CommonConstants.COLUMN_INDEX_THREE, sqlDate);
+				preparedStatement.setDouble(CommonConstants.COLUMN_INDEX_FOUR, salary.getAmount());
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, salary.getSalaryID());
+				
+				preparedStatement.executeUpdate();
+
+			} catch (SQLException | SAXException | IOException | ParserConfigurationException
+					| ClassNotFoundException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				/*
+				 * Close prepared statement and database connectivity at the end
+				 * of transaction
+				 */
+				try {
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if (connection != null) {
+						connection.close();
+					}
+				} catch (SQLException e) {
+					log.log(Level.SEVERE, e.getMessage());
+				}
+			}
+		}
+		// Get the updated employee
+		return getSalaryByID(salaryID);
 	}
 
 	@Override
@@ -238,7 +290,6 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 				salary.setMonth(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
 				salary.setDate(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
 				salary.setAmount(resultSet.getDouble(CommonConstants.COLUMN_INDEX_SIX));
-
 				salaryList.add(salary);
 			}
 

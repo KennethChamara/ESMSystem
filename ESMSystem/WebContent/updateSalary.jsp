@@ -1,6 +1,9 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+    <%@page import="model.Salary"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +15,11 @@
 <title>Add Salary</title>
 </head>
 <body>
+		<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
+	<%
+		Salary salary = (Salary) request.getAttribute("salary");
+	%>
 
 	 <div class="row" style="margin-top:40px">
 	 <div class="col-sm-2"></div>
@@ -20,31 +27,31 @@
 	<div class="container">
 	
   <h2>Add Salary</h2>
-  <form action="AddSalaryServlet" method="post">
+  <form action="UpdateSalaryServlet" method="post">
     <div class="form-group">
       <label for="usr">Employee:</label>
-      <input type="text" class="form-control" id="usr" placeholder="Enter name" name="usr">
+      <input type="text" class="form-control" id="usr" value="<%=salary.getEmpName() %>" name="usr">
     </div>
     
      <div class="form-group">
       <label for="month">Month:</label>
-      <input type="text" class="form-control" id="month" placeholder="Enter Month" name="month">
+      <input type="text" class="form-control" id="month" value="<%=salary.getMonth() %>" name="month">
     </div>
     
     <div class="form-group">
       <label for="date">Date:</label>
-      <input type="text" class="form-control" id="date" placeholder="Enter date" name="date">
+      <input type="text" class="form-control" id="date" value="<%=salary.getDate() %>" name="date">
     </div>
     
    
     
     <div class="form-group">
       <label for="amount">Amount:</label>
-      <input type="text" class="form-control" id="amount" placeholder="Enter amount" name="amount">
+      <input type="text" class="form-control" id="amount" value="<%=salary.getAmount() %>" name="amount">
     </div>
     
     
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" value="<%=salary.getSalaryID() %>" name="btn">Submit</button>
     <button type="reset" class="btn btn-primary">Reset</button>
   </form>
   </div>

@@ -125,6 +125,13 @@
   padding: 20px;
 }
 
+.btnFlex{
+	
+	 display: flex;
+     justify-content: center; 
+	
+}
+
 
 
 
