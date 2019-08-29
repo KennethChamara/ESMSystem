@@ -11,7 +11,7 @@ import org.xml.sax.SAXException;
 public class QueryUtil extends CommonUtil {
 	
 	/**
-	 * This method read the EmployeeQuery.xml file and retrieve the query by
+	 * This method read the salaryQuery.xml file and retrieve the query by
 	 * query id.
 	 * 
 	 * @param id
@@ -27,10 +27,10 @@ public class QueryUtil extends CommonUtil {
 	 * @throws SAXException
 	 *             - Encapsulate a general SAX error or warning.
 	 * 
-	 * @see EmployeeServiceImpl#addSalarys()
-	 * @see EmployeeServiceImpl#createSAlaryTable()
-	 * @see EmployeeServiceImpl#displayAllSalarys()
-	 * @see EmployeeServiceImpl#removeSalarys(String)
+	 * @see EsalaryServiceImpl#addSalarys()
+	 * @see EsalaryServiceImpl#createSAlaryTable()
+	 * @see EsalaryServiceImpl#displayAllSalarys()
+	 * @see EsalaryServiceImpl#removeSalarys(String)
 	 * 
 	 */
 	public static String queryByID(String id) throws SAXException, IOException, ParserConfigurationException {
@@ -38,7 +38,7 @@ public class QueryUtil extends CommonUtil {
 		NodeList nodeList;
 		Element element = null;
 		/*
-		 * Read the EmployeeQuery.xml file and read each query node into node
+		 * Read the salaryQuery.xml file and read each query node into node
 		 * list. It refers tag name query
 		 */
 		nodeList = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(System.getProperty("catalina.base") + "\\wtpwebapps\\ESMSystem\\WEB-INF\\salaryQuerys.xml"))
