@@ -58,6 +58,24 @@ public class CommonConstants {
 	/** Constant for query id of get all salary ids in salaryQuery.xml */
 	public static final String QUERY_ID_GET_SALARY_IDS = "salary_ids";
 	
+	public static final String LEAVE_ID_PREFIX = "LV00";
+	
+	public static final String QUERY_ID_GET_LEAVES_IDS = "leave_ids";
+	
+	public static final String QUERY_ID_DROP_TABLE_LEAVES = "drop_leaves";
+	
+	public static final String QUERY_ID_CREATE_TABLE_LEAVES = "create_leaves";
+	
+	public static final String QUERY_ID_ADD_LEAVES = "add_leaves";
+	
+	public static final String QUERY_ID_GET_LEAVES = "get_leaves";
+	
+	public static final String QUERY_ID_APPROV_LEAVE = "approve_leave";
+	
+	public static final String QUERY_ID_DELETE_LEAVE = "delete_leave";
+	
+	public static final String QUERY_ID_SELECT_LEAVE = "select_leave";
+	
 	/** Constant for Column index one */
 	public static final int COLUMN_INDEX_ONE = 1;
 	
@@ -75,6 +93,18 @@ public class CommonConstants {
 	
 	/** Constant for Column index six */
 	public static final int COLUMN_INDEX_SIX = 6;
+	
+	/** Constant for Column index seven */
+	public static final int COLUMN_INDEX_SEVEN = 7;
+	
+	/** Constant for Column index eight */
+	public static final int COLUMN_INDEX_EIGHT = 8;
+	
+	/** Constant for Column index nine */
+	public static final int COLUMN_INDEX_NINE = 9;
+	
+	/** Constant for Column index ten */
+	public static final int COLUMN_INDEX_TEN = 10;
 	
 
 

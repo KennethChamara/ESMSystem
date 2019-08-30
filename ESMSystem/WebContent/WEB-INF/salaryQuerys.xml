@@ -68,5 +68,65 @@
             select e.salaryID from salary as e
         ]]>
 	</query>
+	
+	<query id="create_leaves">
+         <![CDATA[        
+           	create table leaves(
+           	 leavesID varchar(10),
+           	 employeeID varchar(10),
+           	 noOfDate int,
+           	 startDate date,
+           	 endDate date,
+           	 type varchar(20),
+           	 reason varchar(300),
+           	 sate varchar(8) default 'pendding',
+           	 constraint primary key (leavesID),
+           	 constraint foreign key(employeeID) references employee(Eid)
+           	);
+           	
+        ]]>
+    </query>
+    
+    <query id="drop_leaves">
+         <![CDATA[        
+           	DROP TABLE IF EXISTS leaves;
+        ]]>
+    </query>
+	
+	<query id="add_leaves">
+         <![CDATA[        
+            INSERT INTO leaves(leavesID,employeeID,noOfDate,startDate,endDate,type,reason) values(?,?,?,?,?,?,?);
+        ]]>
+    </query>
+       
+    <query id="get_leaves">
+         <![CDATA[        
+            select * from employee e, leaves l where sate='pendding' and e.Eid=l.employeeID;
+        ]]>
+    </query>
+    
+    <query id="approve_leave">
+         <![CDATA[        
+            update leaves set sate ='approved' where employeeID=?;
+        ]]>
+    </query> 
+    
+    <query id="leave_ids">
+         <![CDATA[        
+            select leavesID from leaves;
+        ]]>
+    </query> 
+    
+    <query id="delete_leave">
+         <![CDATA[        
+            delete from leaves where employeeID=?;
+        ]]>
+	</query> 
+	        
+    <query id="select_leave">
+         <![CDATA[        
+            select * from employee e, leaves l where e.Eid=l.employeeID and employeeID=?;
+        ]]>
+	</query>
 
 </Querys>
