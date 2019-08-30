@@ -15,6 +15,7 @@
                             <li><a href="/pages/about">Profiles</a></li>
                             <li><a href="salaryTab.jsp">Payments</a></li>
                             <li><a href="/posts">Vacancies</a></li>
+                             <li><a href="NewFile.jsp">Income</a></li>
                             <li><a href="/contact">Benefits</a></li>
                             <li><a href="supplier.jsp">Supplers</a></li>				
                         </ul>
