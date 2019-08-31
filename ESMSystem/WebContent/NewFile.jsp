@@ -1,6 +1,6 @@
 <%@page import="java.sql.Connection" %>
 <%@page import="model.Income" %>
-<%@page import="model.IncomeService" %>
+<%@page import="service.IncomeService" %>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.DriverManager" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -17,10 +17,10 @@
   <link rel="stylesheet" href="front.css">
   <link rel="stylesheet" href="/ITP_Final_Project/income.css" type="text/css">
   
-  <style>
-  	.vl {
- 		 border-left: 6px solid green;
-  		height: 500px;
+<style>
+.vl {
+ 	border-left: 6px solid green;
+  	height: 500px;
 }
 table {
   border-collapse: collapse;
@@ -54,6 +54,26 @@ th {
   max-width: 120px;
 }
   </style>
+  
+  <script type="text/javascript">
+  	function validate(){
+  		var num=document.myform.amount.value;
+  		
+  		if(num==""||num==null){
+  			document.getElementById("numloc").innerHTML="Plese enter the income amount";
+  			return false;
+  		}
+  		else{
+  			if(isNaN(num)){
+  	  			document.getElementById("numloc").innerHTML="Enter numeric value only";
+  	  			return false;
+  	  		}else{
+  	  			return true;
+  	  		}
+  		}
+  		
+  	}
+  </script>
 
 
 <title>Insert title here</title>
@@ -65,11 +85,12 @@ th {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
-				<h2 align="center">Add Incomes</h2>
-				<form action="IncomeSaveServlet" method="post">
+				<h2 align="center">Add Incomes</h2><hr/>
+				<form action="IncomeSaveServlet" method="post" name="myform" onsubmit="return validate()">
 					<div class="form-group">
 						<label>Name :</label>
       					<input type="text" class="form-control" name="incName" placeholder="Enter Income Name" >
+      					
 					</div>
 					
 					<div class="form-group">
@@ -85,6 +106,7 @@ th {
 					<div class="form-group">
 						<label>Amount :</label>
       					<input type="text" class="form-control" name="amount" placeholder="Enter amount" >
+						<span id="numloc" style="color:red"></span>
 					</div><br/>
 			
 						<button type="submit" class="btn btn-primary">Submit</button>
@@ -123,7 +145,9 @@ th {
 					</tbody>
 					</table>
 					</div>
-				
+					<form action="incomeCalc.jsp" align="right">
+					<button type="submit" class="btn btn-primary">Calculate Total Income</button>
+					</form>
 			</div>
 		</div>
 	</div>
