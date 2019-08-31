@@ -49,7 +49,8 @@ public class AddProductServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		String CompanyName= request.getParameter("CompanyName");
+		
+		String CompanyName=request.getParameter("CompanyName");
 		String ProductName= request.getParameter("ProductName");
 		double unitprice= Double.parseDouble(request.getParameter("unitprice"));
 		int quantity=Integer.parseInt(request.getParameter("quantity"));

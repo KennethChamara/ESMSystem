@@ -1,7 +1,7 @@
 <%@page import="service.SupplierAnalyseServiceIMPL"%>
 <%@page import="service.SupplierAnalyseService"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.SupplierDetails"%>
+<%@page import="model.ProductDetails"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,33 +31,32 @@
 				<table class="table" style="background-color:#ffffff;">
 		<thead class="thead-dark">
 			<tr>
-				<th scope="col">Company Name</th>
-				<th scope="col">Supplier Name</th>
-				<th scope="col">Address</th>
-				<th scope="col">Phone Number</th>
-				<th scope="col">Email Address</th>
-				
+				<th scope="col">ProductName</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Discount</th>
+				<th scope="col">unitPrice</th>
+			
 				
 			</tr>			
 	</thead>
 		<%
 		SupplierAnalyseService service = new SupplierAnalyseServiceIMPL();  //create marksAnalyserviceImpl object
-		 	ArrayList<SupplierDetails> suppList = service.getSupplierdetailsList();    //ca
+		 	ArrayList<ProductDetails> productList = service.getProductdetailsList();    //ca
 			
-		 	for(SupplierDetails m: suppList ){
+		 	for(ProductDetails m: productList ){
 	 			 
 		%>
 	<tbody>	
 		<tr>
-				<th scope="row"><%=m.getCompanyName() %></th>
-				<td><%=m.getFullName() %></td>
-				<td><%=m.getAddress()%></td>
-				<td><%=m.getPhonenumber()%></td>
-				<td><%=m.getEmailaddress()%></td>
+				<th scope="row"><%=m.getProductName()%></th>
+				<td><%=m.getQuantity()%></td>
+				<td><%=m.getDiscount()%></td>
+				<td><%=m.getUnitprice()%></td>
+				
 			
 				<td>
-				<form method="POST" action="selectsupplierdetails">
-				<input type="hidden" name="supplierid" value="<%=m.getSupplierId() %>">
+				<form method="POST" action="selectproductdetails">
+				<input type="hidden" name="productid" value="<%=m.getProductId() %>">
 				<button type="submit" class="btn btn-primary badge-pill" >Update/Delete</button>
 				</form> </td>
 				

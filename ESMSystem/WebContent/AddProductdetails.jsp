@@ -55,7 +55,7 @@
          		
          </div>
          
-         
+          <div class="form-group">
          	<label>Product Name</label><br>
          		<input type="text" class="form-control" name="ProductName" placeholder="productname">
          </div>
@@ -110,8 +110,8 @@
     </div>
 
 </div>
-
-
+</body>
+</html>
          
          
          

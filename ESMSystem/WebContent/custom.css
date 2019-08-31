@@ -46,8 +46,12 @@
    	-webkit-appearance: button;
    	outline:none;
    }
-  
-   	 
-   	
-   
- 
+  .addsupplier{
+margin-bottom: 40px;
+
+}
+.fulladdsup{
+    margin-top: 180px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
