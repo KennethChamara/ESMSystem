@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <% //In case, if User session is not set, redirect to Login page.
-if((request.getSession(false).getAttribute("admin")== null) )
+if((request.getSession(false).getAttribute("Admin")== null) )
 {
 %>
 <jsp:forward page="index.jsp"></jsp:forward>

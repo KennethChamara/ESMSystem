@@ -10,6 +10,13 @@
     <body>
             <header>
                     <nav>
+                    	<div class="dropdown">
+ 						<a href="LogoutServlet"> <button class="dropbtn">
+							logout
+ 						 </button>
+  						</a>
+						</div>
+                    
                         <div class="dropdown">
  						 <button class="dropbtn">Payments</button>
   								<div class="dropdown-content">
