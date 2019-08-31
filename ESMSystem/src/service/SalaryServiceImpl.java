@@ -104,7 +104,7 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_INSERT_SALARY));
 			connection.setAutoCommit(false);
 			
-			SimpleDateFormat sdf= new SimpleDateFormat("dd-mm-y");
+			SimpleDateFormat sdf= new SimpleDateFormat("dd/mm/y");
 			
 			Date date = sdf.parse(salary.getDate());
 			

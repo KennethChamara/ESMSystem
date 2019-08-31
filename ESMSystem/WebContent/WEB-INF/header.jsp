@@ -9,15 +9,37 @@
     <body>
             <header>
                     <nav>
-                    
-                        <ul class="main-nav">
+                        <div class="dropdown">
+ 						 <button class="dropbtn">Payments</button>
+  								<div class="dropdown-content">
+						         <a href="salary.jsp">Salary</a>
+						    <a href="#">Income</a>
+						  </div>
+						</div>
                         
-                            <li><a href="/pages/about">Profiles</a></li>
-                            <li><a href="salaryTab.jsp">Payments</a></li>
-                            <li><a href="/posts">Vacancies</a></li>
-                            <li><a href="/contact">Benefits</a></li>
-                            <li><a href="supplier.jsp">Supplers</a></li>				
-                        </ul>
+                       <div class="dropdown">
+ 						<a href=""></a> <button class="dropbtn">Vacancies
+ 						 </button>
+  						<a></a>
+						</div>
+						
+						 <div class="dropdown">
+ 						 <button class="dropbtn">Benefits</button>
+  						
+						</div>
+						 <div class="dropdown">
+ 						<a href="addsupplier.jsp"> <button class="dropbtn">Suppliers</button> </a>
+  						
+						</div>
+						
+						 <div class="dropdown">
+ 						 <button class="dropbtn">Profiles</button>
+  						
+						</div>
+						
+							
+
+
 
                         <div class="menu-button">
                             <a href="#"><span class="text">&nbsp;Menu</span></a>
