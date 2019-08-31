@@ -25,7 +25,7 @@ public class SupplierAnalyseServiceIMPL implements SupplierAnalyseService {
 
 	private static Connection connection;	//create connection attribute
 
-	
+	private static Connection connection2;
 	
 
 	private static PreparedStatement preparedStatement;	
@@ -223,7 +223,7 @@ public ArrayList<ProductDetails> getProductdetailsList()
 			product.setProductName(resultSet.getString(2));
 			product.setQuantity(resultSet.getInt(3));
 			product.setDiscount(resultSet.getDouble(4));
-		
+			product.setUnitprice(resultSet.getDouble(5));
 			
 			
 			ProductList.add(product);
@@ -248,9 +248,10 @@ public ArrayList<ProductDetails> getProductdetailsList()
 
 public void addCommonTableDetails(CommonSupplProduct comeen)
 {
-	//connection3 = conect3.getConection();
+	
 
 	try {
+		connection = DBConnectionUtil.getDBConnection();
 		preparedStatement = connection.prepareStatement("insert into Supplierproduct values(?,?);");
 		
 		preparedStatement.setString(1, comeen.getSupplierId());
@@ -263,6 +264,9 @@ public void addCommonTableDetails(CommonSupplProduct comeen)
 
 	} catch (SQLException e) {
 
+		e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 
@@ -406,16 +410,92 @@ public void deletesupplierById(String ID) {
 }
 	public void deletecommontablesupplierById(String ID) {
 		try {
-					//create connection
+		
+			connection2 = DBConnectionUtil.getDBConnection();
+			preparedStatement2 = connection2.prepareStatement("delete from supplierproduct where CommonSupplierId=?;");
 			
-			preparedStatement2 = connection.prepareStatement("delete from supplierproduct where CommonSupplierId=?;");
+			//preparedStatement= connection.prepareStatement("select SupplierId from Supplierdetails where companyName='"+supId.trim()+"'");
 			
 			preparedStatement2.setString(1, ID);	//set studentId
 			
 			preparedStatement2.execute();	//execute query
 			
 			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connection2.close();
 			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+}
+	
+	
+	public ProductDetails getproductById(String ID) {
+		
+		ProductDetails mks = new ProductDetails();		//create Marks object
+		
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+		
+		preparedStatement = connection.prepareStatement("select * from purchasedproduct where  productId=?;");    //select query that takes all values from marks tables 
+		
+		preparedStatement.setString(1, ID);
+
+		resultSet = preparedStatement.executeQuery();	//execute the query
+		
+		resultSet.first();
+		
+		mks.setProductId(resultSet.getString(1));	
+	 												
+		mks.setProductName(resultSet.getString(2));
+		mks.setQuantity(resultSet.getInt(3));	
+		mks.setDiscount(resultSet.getDouble(4));
+		mks.setUnitprice(resultSet.getDouble(5));
+		
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return mks;			
+	}
+
+	public void updateproductsdetails(ProductDetails ID) {
+		try {
+			connection = DBConnectionUtil.getDBConnection();	//create connection
+			
+			preparedStatement = connection.prepareStatement("update purchasedproduct set  ProductName=?,purchasedquantity=?, discount=?,unitPrice=?  where productId=?;");
+			
+			preparedStatement.setString(1,ID.getProductName());
+			preparedStatement.setInt(2, ID.getQuantity());
+			preparedStatement.setDouble(3, ID.getDiscount());
+			preparedStatement.setDouble(4, ID.getUnitprice());
+			preparedStatement.setString(5, ID.getProductId());
+			
+			
+			preparedStatement.execute();		//execute query
+			
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
 				try {
@@ -424,11 +504,94 @@ public void deletesupplierById(String ID) {
 					e.printStackTrace();
 				}
 			}
+	}
+
+public void deleteallrelatedproductById (ProductDetails ID)
+{
+
+	
+	try {
+		connection = DBConnectionUtil.getDBConnection();
+		String prdId = ID.getProductId();
+		preparedStatement2= connection.prepareStatement("select COUNT(CommonProductId) from supplierproduct where  CommonProductId='"+prdId.trim()+"'");
 		
+		resultSet2 = preparedStatement2.executeQuery();
+		
+		//CommonSupplProduct common=new CommonSupplProduct();
+	
+		resultSet2.first();
+	
+		int count=resultSet2.getInt(1);
+		//common.setSupplierId(supId);
+		if(count==0)
+		{
+			deleteproductById(prdId);
+		}
+		else
+		{
+			deletecommontableproductById(prdId);
+			deletesupplierById(prdId);
+		}
+		
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
 	
+}
+public void deleteproductById(String ID) {
+	try {
+				//create connection
+		
+		preparedStatement = connection.prepareStatement("delete from purchasedproduct where productId =?;");
+		
+		preparedStatement.setString(1, ID);	//set studentId
+		
+		preparedStatement.execute();	//execute query
+		
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
+}
+public void deletecommontableproductById(String ID) {
+	try {
 	
+		connection2 = DBConnectionUtil.getDBConnection();
+		preparedStatement2 = connection2.prepareStatement("delete from supplierproduct where CommonProductId=?;");
+		
+		//preparedStatement= connection.prepareStatement("select SupplierId from Supplierdetails where companyName='"+supId.trim()+"'");
+		
+		preparedStatement2.setString(1, ID);	//set studentId
+		
+		preparedStatement2.execute();	//execute query
+		
+		
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		try {
+			connection2.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}
 	
 	
 	
@@ -448,7 +611,7 @@ public void deletesupplierById(String ID) {
 
 
 	
-}
+
 
 
 

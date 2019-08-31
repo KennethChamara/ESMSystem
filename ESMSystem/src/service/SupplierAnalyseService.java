@@ -31,5 +31,15 @@ public interface SupplierAnalyseService {
 	
 	public void deletecommontablesupplierById(String ID);
 	
+	public ProductDetails getproductById(String ID); 
+	
+	public void updateproductsdetails(ProductDetails ID);
+	
+	public void deleteallrelatedproductById (ProductDetails ID);
+	
+	public void deleteproductById(String ID);
+	
+	public void deletecommontableproductById(String ID);
+	
 
 }

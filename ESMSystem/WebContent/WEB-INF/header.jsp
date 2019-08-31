@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <title>HR Analog</title>
 
@@ -37,9 +38,7 @@
   						
 						</div>
 						
-							
-
-
+							            
 
                         <div class="menu-button">
                             <a href="#"><span class="text">&nbsp;Menu</span></a>
