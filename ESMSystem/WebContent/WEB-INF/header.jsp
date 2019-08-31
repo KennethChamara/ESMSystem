@@ -16,8 +16,8 @@
                             <li><a href="salaryTab.jsp">Payments</a></li>
                             <li><a href="/posts">Vacancies</a></li>
                              <li><a href="NewFile.jsp">Income</a></li>
-                            <li><a href="/contact">Benefits</a></li>
-                            <li><a href="supplier.jsp">Supplers</a></li>				
+                            <li><a href="benefits.jsp">Benefits</a></li>
+                            <li><a href="supplier.jsp">Suppliers</a></li>				
                         </ul>
 
                         <div class="menu-button">

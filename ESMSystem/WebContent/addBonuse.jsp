@@ -61,6 +61,8 @@
 				<label for="usr">Bonus Type :</label> <input type="text	"
 					class="form-control" id="bType" placeholder="Enter Bonuse Type"
 					name="bType">
+					
+					
 			</div>
 			
 
