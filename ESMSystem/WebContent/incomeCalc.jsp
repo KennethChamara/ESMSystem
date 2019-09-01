@@ -13,6 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="front.css">
+  
   <link rel="stylesheet" href="/ITP_Final_Project/income.css" type="text/css">
   
 <title>Calculate Income</title>
@@ -66,8 +67,8 @@
 							</tr>
 							<tr>
 								<th><h4><%= ptotal%></h4></th>
-								<th><h4><%= etotal%></h4></th>
 								<th><h4><%= stotal%></h4></th>
+								<th><h4><%= etotal%></h4></th>
 								<th><h4><%= total%></h4></th>
 							</tr>
 						</table>
