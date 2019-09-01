@@ -21,24 +21,32 @@
  						 <button class="dropbtn">Payments</button>
   								<div class="dropdown-content">
 						         <a href="salary.jsp">Salary</a>
-						    <a href="#">Income</a>
+						    <a href="NewFile.jsp">Income</a>
 						  </div>
 						</div>
                         
-                       <div class="dropdown">
- 						<a href=""></a> <button class="dropbtn">Vacancies
- 						 </button>
-  						<a></a>
+                        <div class="dropdown">
+ 						 <button class="dropbtn">Eshop</button>
+  								<div class="dropdown-content">
+						   <a href="addsupplier.jsp">Suppliers</a>
+						    <a href="NewFile.jsp">Products</a>
+						     <a href="NewFile.jsp">Income</a>
+						  </div>
 						</div>
 						
 						 <div class="dropdown">
- 						 <button class="dropbtn">Benefits</button>
-  						
+ 						 <button class="dropbtn">Employee</button>
+  								<div class="dropdown-content">
+						 <a href="salary.jsp">Add Salary</a>
+  						  <a href="salaryTab.jsp">Salary Details</a>
+  						 <a href="AttendenceTab.jsp">Attendance</a>
+  						 <a href="leave.jsp">Leave</a>
+  						 <a href="addBonuse.jsp">Benefits</a>
+						  </div>
 						</div>
-						 <div class="dropdown">
- 						<a href="addsupplier.jsp"> <button class="dropbtn">Suppliers</button> </a>
-  						
-						</div>
+                         
+						
+	
 						
 						 <div class="dropdown">
  						 <button class="dropbtn">Profiles</button>
