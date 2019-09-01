@@ -35,8 +35,9 @@
   		<button>Promotion</button>
   </div>
   
+	<br><br><br><br><br><br>
  
-
+  <p>Hint : Add benefits using click button.</p>
   
   
   

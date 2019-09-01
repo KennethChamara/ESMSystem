@@ -47,21 +47,25 @@
   
   <p>A bonus is extra money that an employee receives on top of his or her wages or salary. 
   The person may receive the extra payment for good performance. 
-  Sometimes, all employees in a company receive extra money at a certain time of the year.</p	>
+  Sometimes, all employees in a company receive extra money at a certain time of the year.</p>
   
   
-  
-  
-    
-    
+   
     
     <div class= "center">
     
     <a href="addBonuse.jsp">  <button type="button" class="btn btn-primary" style = "padding:20px 50px ;">Add Bonus</button> </a>
     <a href="bonuseTable.jsp">  <button type="button" class="btn btn-primary" style = "padding:20px 75px;">Change</button> </a>
+   
+   
+   
     
-  
-  </div></div>
+    </div>
+      <br> <br>
+    <p>Hint : Click the Add Bonus buttons and Enter the bonus.</p>
+  	<p>Hint : Click the Change button and change bonus.</p>
+    </div>
 
+	
 </body>
 </html>

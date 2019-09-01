@@ -14,6 +14,27 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+  	function validate(){
+  		var num=document.myform.brate.value;
+  		
+  		if(num==""||num==null){
+  			document.getElementById("numloc").innerHTML="Plese enter the bonus rate";
+  			return false;
+  		}
+  		else{
+  			if(isNaN(num)){
+  	  			document.getElementById("numloc").innerHTML="Enter numeric value only";
+  	  			return false;
+  	  		}else{
+  	  			return true;
+  	  		}
+  		}
+  		
+  	}
+  </script>
+
 <title>Add Bonuse</title>
 </head>
 <body>
@@ -35,7 +56,7 @@
 				%>
 				<br> <br>
 
-				<form method="POST" action="UpdateBonusServelet">
+				<form method="POST" action="UpdateBonusServelet" onsubmit="return validate()" name = "myform">
 
 					<div class="form-group">
 
@@ -49,6 +70,7 @@
 						<label for="usr">Bonus Rate :</label> <input type="text"
 							class="form-control" id="bRate" placeholder="Enter Bonuse Rate"
 							name="brate" value="<%=bounce.getRate()%>">
+							<span id="numloc" style="color:red"></span>
 					</div>
 
 					<div class="form-group">

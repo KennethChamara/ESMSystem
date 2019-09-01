@@ -25,7 +25,7 @@
 						</div>
 						
 						 <div class="dropdown">
- 						 <button class="dropbtn">Benefits</button>
+ 						 <a href="benefits.jsp"><button class="dropbtn">Benefits</button></a>
   						
 						</div>
 						 <div class="dropdown">
