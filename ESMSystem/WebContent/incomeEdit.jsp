@@ -5,6 +5,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -39,7 +40,7 @@
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/header.jsp"></jsp:include><br/>
 	<% 
 		Income income = (Income) request.getAttribute("i");
 	%>
@@ -47,7 +48,7 @@
         <div class="container">
         	<div class="row">
         	
-        		<form action='IncomeEditServlet2' method='get' class="form-horizontal col-lg-8 col-md-8 col-sm-8 col-xs-12" name="myform"onsubmit="return validate()">
+        		<form action='IncomeEditServlet2' method='get' class="form-horizontal col-lg-8 col-md-8 col-sm-8 col-xs-12" name="myform"onsubmit="return validate()" align="center">
         			<h2 align="center">Edit Income</h2><hr/>
 					
         	<table>
