@@ -15,14 +15,16 @@
   <link rel="stylesheet" href="front.css">
   <link rel="stylesheet" href="/ITP_Final_Project/income.css" type="text/css">
   
-<title>Insert title here</title>
+<title>Calculate Income</title>
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	
+	<br/>
 	<div class="container">
 		<div class="row">
+			<form action="NewFile.jsp" align="center">
+				<h2 align="center">Total Incomes</h2><br/>
 						<%
 							double total=0;
 							double ptotal=0;
@@ -38,31 +40,40 @@
 										}
 										for(Income i:list){
 											String type = i.getItype();
-											if(type.equals(p)){
+											if(type.equalsIgnoreCase(p)){
 												double val=i.getIamount();
 												ptotal=ptotal+val;
 											}
-											else if(type.equals(e)){
+											else if(type.equalsIgnoreCase(e)){
 												double val=i.getIamount();
 												etotal=etotal+val;
-											}else if(type.equals(s)){
+											}else if(type.equalsIgnoreCase(s)){
 												double val=i.getIamount();
 												stotal=stotal+val;
+											}else{
+												return;
 											}
 										}
 						%> 
 						
-						<h3>Total Income : </h3><hr/>
-						<h4><%= total%></h4><hr/>
-						
-						<h3>Project Income : </h3><hr/>
-						<h4><%= ptotal%></h4><hr/>
-						
-						<h3>Social Media Income : </h3><hr/>
-						<h4><%= etotal%></h4><hr/>
-						
-						<h3>e-Shop Income : </h3><hr/>
-						<h4><%= stotal%></h4><hr/>
+					<div>
+						<table class="table">
+							<tr>
+								<th><h3>Project Income</h3></th>
+								<th><h3>Social Media Income</h3></th>
+								<th><h3>e-Shop Income</h3></th>
+								<th><h3>Total Income</h3></th>
+							</tr>
+							<tr>
+								<th><h4><%= ptotal%></h4></th>
+								<th><h4><%= etotal%></h4></th>
+								<th><h4><%= stotal%></h4></th>
+								<th><h4><%= total%></h4></th>
+							</tr>
+						</table>
+					</div>
+					<button type="submit" class="btn btn-primary">View Income Summary</button>
+			</form>
 		</div>
 	</div>
 
