@@ -1,0 +1,57 @@
+@charset "ISO-8859-1";
+
+.customDiv {
+	margin: 3px;
+	min-height: 300px;
+	background-color: silver;
+	text-align: center;
+	font-size: large
+}
+
+.supplier{
+	margin-top: 45px;
+    margin-left: 85px;
+	top-padding: 3px;
+	background-color: silver;
+}
+
+
+
+.contact-form{
+			background:rgba(0,0,0, .6);
+			color:white;
+			margin-top: 100px;
+			padding: 20px;
+			box-shadow: 0px 0px 10px 3px grey;
+		}
+ .hrcolor{
+	    	background: white;	
+   }
+   .box
+   {
+   		
+   		transform;translate(-50%,-50%); 
+   
+   }
+   .box select
+   {
+   	background:#0563af;
+   	color:#fff;
+   	padding:10px;
+   	width:250px;
+   	height:50px;
+   	border:none;
+   	font-size:20px;
+   	box-shadow:0 5px 25px rgba(0,0,0,5);
+   	-webkit-appearance: button;
+   	outline:none;
+   }
+  .addsupplier{
+margin-bottom: 40px;
+
+}
+.fulladdsup{
+    margin-top: 180px;
+    margin-left: 300px;
+    margin-right: 300px;
+}

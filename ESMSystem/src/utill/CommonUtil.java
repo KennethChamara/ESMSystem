@@ -38,4 +38,30 @@ public class CommonUtil {
 		}
 		return id;
 	}
+	
+	public static String generateLeaveIDs(ArrayList<String> arrayList) {
+
+		String id;
+		int next = arrayList.size();
+		next++;
+		id = CommonConstants.LEAVE_ID_PREFIX + next;
+		while (arrayList.contains(id)) {
+			next++;
+			id = CommonConstants.LEAVE_ID_PREFIX + next;
+		}
+		return id;
+	}
+	
+	public static String generateBounceIDs(ArrayList<String> arrayList) {
+
+		String id;
+		int next = arrayList.size();
+		next++;
+		id = "B00"+ next;
+		while (arrayList.contains(id)) {
+			next++;
+			id = "B00"+ next;
+		}
+		return id;
+	}
 }

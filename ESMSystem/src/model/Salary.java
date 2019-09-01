@@ -5,6 +5,12 @@ public class Salary {
 	private String empName;
 	private String salaryID;
 	private String empId;
+	@Override
+	public String toString() {
+		return "Salary [empName=" + empName + ", salaryID=" + salaryID + ", empId=" + empId + ", month=" + month
+				+ ", date=" + date + ", amount=" + amount + "]";
+	}
+
 	private String month;
 	private String date;
 	

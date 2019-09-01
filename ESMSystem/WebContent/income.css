@@ -1,0 +1,37 @@
+@charset "ISO-8859-1";
+
+.vl {
+ 	border-left: 6px solid green;
+  	height: 500px;
+}
+table {
+  border-collapse: collapse;
+  width: 200px;
+  overflow-x: scroll;
+  display: block;
+}
+
+thead {
+  background-color: #EFEFEF;
+}
+
+thead,
+tbody {
+  display: block;
+}
+
+tbody {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 350px;
+}
+
+td,
+th {
+  min-width: 120px;
+  height: 25px;
+  border: dashed 1px lightblue;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <title>HR Analog</title>
 
@@ -9,14 +10,50 @@
     <body>
             <header>
                     <nav>
+                    	<div class="dropdown">
+ 						<a href="LogoutServlet"> <button class="dropbtn">
+							logout
+ 						 </button>
+  						</a>
+						</div>
                     
-                        <ul class="main-nav">
+                        <div class="dropdown">
+ 						 <button class="dropbtn">Payments</button>
+  								<div class="dropdown-content">
+						         <a href="salary.jsp">Salary</a>
+						    <a href="NewFile.jsp">Income</a>
+						  </div>
+						</div>
                         
-                            <li><a href="/pages/about">Profiles</a></li>
-                            <li><a href="salaryTab.jsp">Payments</a></li>
-                            <li><a href="/posts">Vacancies</a></li>
-                            <li><a href="/contact">Benefits</a></li>				
-                        </ul>
+                        <div class="dropdown">
+ 						 <button class="dropbtn">Eshop</button>
+  								<div class="dropdown-content">
+						   <a href="addsupplier.jsp">Suppliers</a>
+						    <a href="NewFile.jsp">Products</a>
+						     <a href="NewFile.jsp">Income</a>
+						  </div>
+						</div>
+						
+						 <div class="dropdown">
+ 						 <button class="dropbtn">Employee</button>
+  								<div class="dropdown-content">
+						 <a href="salary.jsp">Add Salary</a>
+  						  <a href="salaryTab.jsp">Salary Details</a>
+  						 <a href="AttendenceTab.jsp">Attendance</a>
+  						 <a href="leave.jsp">Leave</a>
+  						 <a href="addBonuse.jsp">Benefits</a>
+						  </div>
+						</div>
+                         
+						
+	
+						
+						 <div class="dropdown">
+ 						 <button class="dropbtn">Profiles</button>
+  						
+						</div>
+						
+							            
 
                         <div class="menu-button">
                             <a href="#"><span class="text">&nbsp;Menu</span></a>
