@@ -16,44 +16,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="front.css">
   <link rel="stylesheet" href="/ITP_Final_Project/income.css" type="text/css">
-  
+  <link rel="stylesheet" href="income.css">
 <style>
-.vl {
- 	border-left: 6px solid green;
-  	height: 500px;
-}
-table {
-  border-collapse: collapse;
-  width: 200px;
-  overflow-x: scroll;
-  display: block;
-}
-
-thead {
-  background-color: #EFEFEF;
-}
-
-thead,
-tbody {
-  display: block;
-}
-
-tbody {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 350px;
-}
-
-td,
-th {
-  min-width: 120px;
-  height: 25px;
-  border: dashed 1px lightblue;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 120px;
-}
-  </style>
+</style>
   
   <script type="text/javascript">
   	function validate(){
@@ -89,7 +54,7 @@ th {
 				<form action="IncomeSaveServlet" method="post" name="myform" onsubmit="return validate()">
 					<div class="form-group">
 						<label>Name :</label>
-      					<input type="text" class="form-control" name="incName" placeholder="Enter Income Name" >
+      					<input type="text" class="form-control" name="incName" placeholder="Enter Income Name" required>
       					
 					</div>
 					
@@ -151,6 +116,7 @@ th {
 			</div>
 		</div>
 	</div>
+	
 	
 </body>
 </html>

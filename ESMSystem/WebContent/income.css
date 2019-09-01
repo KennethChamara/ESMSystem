@@ -1,8 +1,8 @@
 @charset "ISO-8859-1";
 
 .vl {
- 		 border-left: 6px solid green;
-  		height: 500px;
+ 	border-left: 6px solid green;
+  	height: 500px;
 }
 table {
   border-collapse: collapse;
