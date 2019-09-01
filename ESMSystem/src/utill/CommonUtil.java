@@ -51,4 +51,17 @@ public class CommonUtil {
 		}
 		return id;
 	}
+	
+	public static String generateBounceIDs(ArrayList<String> arrayList) {
+
+		String id;
+		int next = arrayList.size();
+		next++;
+		id = "B00"+ next;
+		while (arrayList.contains(id)) {
+			next++;
+			id = "B00"+ next;
+		}
+		return id;
+	}
 }

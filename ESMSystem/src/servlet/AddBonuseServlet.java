@@ -2,30 +2,31 @@ package servlet;
 
 import java.io.IOException;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.RequestDispatcher;
-
+import model.Bonuse;
 import model.Salary;
 import service.IsalaryService;
 import service.SalaryServiceImpl;
+import service.bonuseServiceIMPL;
+import service.bonuseService;
 
 /**
- * Servlet implementation class AddSalaryServlet
+ * Servlet implementation class AddBonuseServlet
  */
-@WebServlet("/AddSalaryServlet")
-public class AddSalaryServlet extends HttpServlet {
+@WebServlet("/AddBonuseServlet")
+public class AddBonuseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddSalaryServlet() {
+    public AddBonuseServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,27 +43,23 @@ public class AddSalaryServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/html");
+		int rate;
+		rate = Integer.parseInt(request.getParameter("brate"));
 
-		Salary salary = new Salary();
+		Bonuse bonus = new Bonuse();
 		
-		salary.setEmpName(request.getParameter("usr"));
-		salary.setMonth(request.getParameter("month"));
-		salary.setDate(request.getParameter("date"));
-		salary.setAmount(Double.parseDouble(request.getParameter("amount")));
-		salary.setEmpId("EID222");
+		bonus.setEid(request.getParameter("eId"));
+		bonus.setRate(rate);
+		bonus.setType(request.getParameter("bType"));
+	
+		bonuseService service = new bonuseServiceIMPL();
+		service.addBounce(bonus);
 		
-
-		IsalaryService isalaryService = new SalaryServiceImpl();
-		isalaryService.addSalary(salary);
-
-		request.setAttribute("salary", salary);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/salaryTab.jsp");
+		
+		//request.setAttribute("salary", salary);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/bonuseTable.jsp");
 		dispatcher.forward(request, response);
-		
-		
-		
 	}
 
 }

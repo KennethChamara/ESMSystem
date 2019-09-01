@@ -2,30 +2,28 @@ package servlet;
 
 import java.io.IOException;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.RequestDispatcher;
-
-import model.Salary;
-import service.IsalaryService;
-import service.SalaryServiceImpl;
+import model.Bonuse;
+import service.bonuseService;
+import service.bonuseServiceIMPL;
 
 /**
- * Servlet implementation class AddSalaryServlet
+ * Servlet implementation class UpdateBonusServelet
  */
-@WebServlet("/AddSalaryServlet")
-public class AddSalaryServlet extends HttpServlet {
+@WebServlet("/UpdateBonusServelet")
+public class UpdateBonusServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddSalaryServlet() {
+    public UpdateBonusServelet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,27 +40,27 @@ public class AddSalaryServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 
-		Salary salary = new Salary();
+		String eId=request.getParameter("eId");
+		int brate= Integer.parseInt( request.getParameter("brate"));
+		String bType = request.getParameter("bType");
+		String id= request.getParameter("id");
 		
-		salary.setEmpName(request.getParameter("usr"));
-		salary.setMonth(request.getParameter("month"));
-		salary.setDate(request.getParameter("date"));
-		salary.setAmount(Double.parseDouble(request.getParameter("amount")));
-		salary.setEmpId("EID222");
 		
-
-		IsalaryService isalaryService = new SalaryServiceImpl();
-		isalaryService.addSalary(salary);
-
-		request.setAttribute("salary", salary);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/salaryTab.jsp");
+		Bonuse bonuse = new Bonuse();
+		bonuse.setEid(eId);
+		bonuse.setRate(brate);
+		bonuse.setType(bType);
+		bonuse.setBid(id);
+		
+		
+		bonuseService service = new bonuseServiceIMPL();
+		service.bounceUpdate(bonuse);
+		
+			
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/bonuseTable.jsp");
 		dispatcher.forward(request, response);
-		
-		
-		
 	}
 
 }

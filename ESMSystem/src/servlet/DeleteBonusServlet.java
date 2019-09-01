@@ -2,30 +2,27 @@ package servlet;
 
 import java.io.IOException;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.RequestDispatcher;
-
-import model.Salary;
-import service.IsalaryService;
-import service.SalaryServiceImpl;
+import service.bonuseService;
+import service.bonuseServiceIMPL;
 
 /**
- * Servlet implementation class AddSalaryServlet
+ * Servlet implementation class DeleteBonusServlet
  */
-@WebServlet("/AddSalaryServlet")
-public class AddSalaryServlet extends HttpServlet {
+@WebServlet("/DeleteBonusServlet")
+public class DeleteBonusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddSalaryServlet() {
+    public DeleteBonusServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,27 +39,12 @@ public class AddSalaryServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.setContentType("text/html");
-
-		Salary salary = new Salary();
 		
-		salary.setEmpName(request.getParameter("usr"));
-		salary.setMonth(request.getParameter("month"));
-		salary.setDate(request.getParameter("date"));
-		salary.setAmount(Double.parseDouble(request.getParameter("amount")));
-		salary.setEmpId("EID222");
-		
+		bonuseService service = new bonuseServiceIMPL();
+		service.bounceDelete(request.getParameter("id"));
 
-		IsalaryService isalaryService = new SalaryServiceImpl();
-		isalaryService.addSalary(salary);
-
-		request.setAttribute("salary", salary);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/salaryTab.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/bonuseTable.jsp");
 		dispatcher.forward(request, response);
-		
-		
-		
 	}
 
 }
