@@ -5,10 +5,11 @@
 if((request.getSession(false).getAttribute("Admin")== null) )
 {
 %>
-<jsp:forward page="index.jsp"></jsp:forward>
+<jsp:forward page="index.jsp"></jsp:forward> 
 <%} %>
 <html>
 <head>
+
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -18,6 +19,7 @@ if((request.getSession(false).getAttribute("Admin")== null) )
   <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
   <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
    <link rel="stylesheet" href="front.css">
+   
    
    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -31,7 +33,7 @@ if((request.getSession(false).getAttribute("Admin")== null) )
 </head>
 <body>
 	<script src="front.js"></script>
-	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+  	<jsp:include page="/WEB-INF/header.jsp"></jsp:include> 
 
 	 <div class="row" style="margin-top:40px">
 	 <div class="col-sm-2"></div>
