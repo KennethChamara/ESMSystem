@@ -151,6 +151,7 @@ public class leaveSeviceIMPL implements leaveService {
 				Leave.setEmployeeID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
 				Leave.setName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
 				Leave.setPossion(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
+				Leave.setLeaveID(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
 				Leave.setNoOfDate(resultSet.getInt(CommonConstants.COLUMN_INDEX_SIX));
 				Leave.setStartDate(resultSet.getString(CommonConstants.COLUMN_INDEX_SEVEN));
 				Leave.setEndDate(resultSet.getString(CommonConstants.COLUMN_INDEX_EIGHT));
@@ -294,10 +295,11 @@ public class leaveSeviceIMPL implements leaveService {
 		 */
 		try {
 			connection = DBConnectionUtil.getDBConnection();
-			preparedStatement = connection.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_GET_LEAVES));
+			preparedStatement = connection.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_GET_LEAVES_IDS));
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				arrayList.add(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				System.out.println(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
 			}
 		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
 			e.printStackTrace();

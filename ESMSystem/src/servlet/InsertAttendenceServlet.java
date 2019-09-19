@@ -40,8 +40,7 @@ public class InsertAttendenceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		leaveService addleave = new leaveSeviceIMPL();
-		listleave Listleave = addleave.selectLeave(request.getParameter("ID"));
+		
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceEnter.jsp");
 		dispatcher.forward(request, response);

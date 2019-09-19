@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Example</title>
+<title>Attendence</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="front.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body
+	style="background-color: #111111; color: #ffffff; font-size: 120%; font-family: Georgia, serif; line-height: 1.5;">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<div class="container mt-3">
 		<h2>Attendence</h2>

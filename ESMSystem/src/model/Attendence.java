@@ -4,11 +4,13 @@ public class Attendence {
 	private String employeeID;
 	private String intime;
 	private String outtime;
+	
 	public Attendence() {
 		employeeID = null;
 		intime = null;
 		outtime = null;
 	}
+	
 	public String getEmployeeID() {
 		return employeeID;
 	}

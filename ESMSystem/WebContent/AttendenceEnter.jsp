@@ -18,7 +18,7 @@
 </head>
 <body>
 				<h2>Insert Attendence</h2>
-				<form>
+				<formctt method="post" action="InsertAttendenceServlet">
 					<div class="form-row">
 						<div class="col-md-3 mb-3">
 							<label for="validationServer02">Employee ID</label> <select

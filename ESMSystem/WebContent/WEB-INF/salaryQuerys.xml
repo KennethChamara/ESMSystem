@@ -107,7 +107,7 @@
     
     <query id="approve_leave">
          <![CDATA[        
-            update leaves set sate ='approved' where employeeID=?;
+            update leaves set sate ='approved' where leavesID=?;
         ]]>
     </query> 
     
@@ -119,13 +119,13 @@
     
     <query id="delete_leave">
          <![CDATA[        
-            delete from leaves where employeeID=?;
+            delete from leaves where leavesID=?;
         ]]>
 	</query> 
 	        
     <query id="select_leave">
          <![CDATA[        
-            select * from employee e, leaves l where e.Eid=l.employeeID and employeeID=?;
+            select * from employee e, leaves l where e.Eid=l.employeeID and leavesID=?;
         ]]>
 	</query>
 
