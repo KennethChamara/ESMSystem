@@ -16,6 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import model.Attendance;
+import model.Attendancelist;
 import model.listleave;
 import utill.CommonConstants;
 import utill.CommonUtil;
@@ -46,7 +47,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 			connection = DBConnectionUtil.getDBConnection();
 			statement = connection.createStatement();
 
-			//statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE_ATTENDANCE));
+			// statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE_ATTENDANCE));
 
 			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_CREATE_TABLE_ATTENDANCE));
 
@@ -69,7 +70,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 			Date Date_;
 
 			Date_ = sdf.parse(attendance.getDate());
-			
+
 			java.sql.Date sqlDate = new java.sql.Date(Date_.getTime());
 
 			connection = DBConnectionUtil.getDBConnection();
@@ -79,7 +80,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, attendance.getIntime());
 			preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, attendance.getOuttime());
 			preparedStatement.setString(CommonConstants.COLUMN_INDEX_THREE, attendance.getEmployeeID());
-			//preparedStatement.setDate(CommonConstants.COLUMN_INDEX_FOUR,sqlDate);
+			// preparedStatement.setDate(CommonConstants.COLUMN_INDEX_FOUR,sqlDate);
 
 			preparedStatement.execute();
 
@@ -99,14 +100,14 @@ public class AttendenceServiceIMPL implements AttendenceService {
 		}
 
 	}
-	
+
 	public void StateChange(String id) {
 		try {
 
 			connection = DBConnectionUtil.getDBConnection();
 
-			preparedStatement = connection.prepareStatement(
-					"update attendance set state='absent',intime=null,outTime=null where A_ID=?;");
+			preparedStatement = connection
+					.prepareStatement("update attendance set state='absent',intime=null,outTime=null where A_ID=?;");
 			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, id);
 
 			preparedStatement.execute();
@@ -126,20 +127,21 @@ public class AttendenceServiceIMPL implements AttendenceService {
 			}
 		}
 	}
-	
+
 	public ArrayList<Attendance> getOneDayAllAttendance() {
 		ArrayList<Attendance> ListAttendance = new ArrayList<Attendance>();
 		try {
 
 			connection = DBConnectionUtil.getDBConnection();
 
-			preparedStatement = connection.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_GET_ATTENDANCE));
+			preparedStatement = connection
+					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_GET_ATTENDANCE));
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
 				Attendance attendance = new Attendance();
-				
+
 				attendance.setAttendanceID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
 				attendance.setEmployeeID(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
 				attendance.setState(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
@@ -153,7 +155,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 
 		} catch (SQLException | ClassNotFoundException | SAXException | IOException | ParserConfigurationException e) {
 			e.printStackTrace();
-		} finally {	
+		} finally {
 			/*
 			 * Close prepared statement and database connectivity at the end of transaction
 			 */
@@ -171,6 +173,60 @@ public class AttendenceServiceIMPL implements AttendenceService {
 
 		return ListAttendance;
 
+	}
+
+	public ArrayList<Attendancelist> getMonthlyAttendance(int month) {
+		ArrayList<String> list = getEmployeeIDs();
+		ArrayList<Attendancelist> ListAttendance = new ArrayList<Attendancelist>();
+		// System.out.println("enterAttendanc() is called");
+		for (String ID : list) {
+			String Aid = CommonUtil.generateAttendanceIDs(getAttendanceIDs());
+			try {
+				connection = DBConnectionUtil.getDBConnection();
+
+				preparedStatement = connection.prepareStatement(
+						"SELECT E_ID,name,possion,count(A_ID) as number FROM attendance a,employee e where DATE_FORMAT(_date, \"%m\")=? and E_ID=? and a.E_ID=e.Eid and state='present';");
+
+				preparedStatement.setInt(CommonConstants.COLUMN_INDEX_ONE, month);
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, ID);
+
+				ResultSet resultSet = preparedStatement.executeQuery();
+				
+				resultSet.first();
+				
+				Attendancelist attendance = new Attendancelist();
+				
+				attendance.setEmployeeID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				attendance.setEmployeeName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				attendance.setEmployeePossion(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
+				attendance.setNoOfdate(resultSet.getInt(CommonConstants.COLUMN_INDEX_FOUR));
+
+				ListAttendance.add(attendance);
+				
+				
+
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+				// System.out.println("sql error");
+			} finally {
+				/*
+				 * Close prepared statement and database connectivity at the end of transaction
+				 */
+				try {
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if (connection != null) {
+						connection.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+					// System.out.println("sql error 2");
+				}
+			}
+		}
+
+		return ListAttendance;
 	}
 
 	public ArrayList<String> getEmployeeIDs() {
@@ -244,7 +300,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 	private boolean isAttendanceEntered() {
 
 		boolean val = false;
-		//System.out.println("isAttendanceEntered() is called");
+		// System.out.println("isAttendanceEntered() is called");
 		try {
 			connection = DBConnectionUtil.getDBConnection();
 			preparedStatement = connection
@@ -252,7 +308,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.first()) {
-				//System.out.println("true");
+				// System.out.println("true");
 				val = true;
 			}
 
@@ -279,7 +335,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 
 	private void enterAttendanc() {
 		ArrayList<String> list = getEmployeeIDs();
-		//System.out.println("enterAttendanc() is called");
+		// System.out.println("enterAttendanc() is called");
 		for (String ID : list) {
 			String Aid = CommonUtil.generateAttendanceIDs(getAttendanceIDs());
 			try {
