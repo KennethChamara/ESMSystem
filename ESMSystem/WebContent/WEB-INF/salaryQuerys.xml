@@ -69,6 +69,8 @@
         ]]>
 	</query>
 	
+	<!-- ============================================================================================================================ -->
+	
 	<query id="create_leaves">
          <![CDATA[        
            	create table leaves(
@@ -115,7 +117,13 @@
          <![CDATA[        
             select leavesID from leaves;
         ]]>
-    </query> 
+    </query>  
+    
+    <query id="getAll_attendance">
+         <![CDATA[        
+            select * from attendance where _date=Date(now());
+        ]]>
+    </query>
     
     <query id="delete_leave">
          <![CDATA[        
@@ -128,5 +136,44 @@
             select * from employee e, leaves l where e.Eid=l.employeeID and leavesID=?;
         ]]>
 	</query>
+	
+	<!-- ============================================================================================================================ -->
+	<query id="create_employee">
+         <![CDATA[        
+            create table IF NOT EXISTS attendance(
+            	A_ID varchar(10),
+            	E_ID varchar(10),
+            	state varchar(10) default 'absent',
+            	intime varchar(10),
+            	outTime varchar(10),
+            	_date date,
+            	constraint primary key (A_ID)
+            );
+        ]]>
+    </query> 
+    
+    <query id="drop_employee">
+         <![CDATA[        
+           	DROP TABLE IF EXISTS attendance;
+        ]]>
+    </query>
+    
+    <query id="get_attendance_ids">
+         <![CDATA[        
+           	select A_ID from attendance;
+        ]]>
+    </query>
+    
+	<query id="employee_ids">
+         <![CDATA[        
+            select Eid from employee;
+        ]]>
+    </query> isAttendanceEntered
+    
+    <query id="isAttendanceEntered">
+         <![CDATA[        
+            select * from attendance where _date = date(now());
+        ]]>
+    </query>
 
 </Querys>

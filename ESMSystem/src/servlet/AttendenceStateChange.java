@@ -9,24 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Attendance;
-import model.listleave;
 import service.AttendenceService;
 import service.AttendenceServiceIMPL;
-import service.leaveService;
-import service.leaveSeviceIMPL;
 
 /**
- * Servlet implementation class InsertAttendenceServlet
+ * Servlet implementation class AttendenceStateChange
  */
-@WebServlet("/InsertAttendenceServlet")
-public class InsertAttendenceServlet extends HttpServlet {
+@WebServlet("/AttendenceStateChange")
+public class AttendenceStateChange extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertAttendenceServlet() {
+    public AttendenceStateChange() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,17 +39,9 @@ public class InsertAttendenceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AttendenceService attendenceservice = new AttendenceServiceIMPL();
 		
-		Attendance attendence = new Attendance();		
-		System.out.println(request.getParameter("e_id"));
-		attendence.setEmployeeID(request.getParameter("e_id"));
-		attendence.setIntime(request.getParameter("intime"));
-		attendence.setOuttime(request.getParameter("outtime"));
-		attendence.setDate("20-09-2019");
-		
-		AttendenceService service = new AttendenceServiceIMPL();
-		
-		service.insertAttendence(attendence);
+		attendenceservice.StateChange(request.getParameter("id"));
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceTab.jsp");
 		dispatcher.forward(request, response);
