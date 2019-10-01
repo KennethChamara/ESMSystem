@@ -9,24 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Attendance;
 import model.listleave;
-import service.AttendenceService;
-import service.AttendenceServiceIMPL;
 import service.leaveService;
 import service.leaveSeviceIMPL;
 
 /**
- * Servlet implementation class InsertAttendenceServlet
+ * Servlet implementation class selectLeaveRequestServlet
  */
-@WebServlet("/InsertAttendenceServlet")
-public class InsertAttendenceServlet extends HttpServlet {
+@WebServlet("/selectLeaveRequestServlet")
+public class selectLeaveRequestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertAttendenceServlet() {
+    public selectLeaveRequestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,19 +40,12 @@ public class InsertAttendenceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		leaveService addleave = new leaveSeviceIMPL();
+		listleave Listleave = addleave.selectLeave(request.getParameter("ID"));
 		
-		Attendance attendence = new Attendance();		
-		System.out.println(request.getParameter("e_id"));
-		attendence.setEmployeeID(request.getParameter("e_id"));
-		attendence.setIntime(request.getParameter("intime"));
-		attendence.setOuttime(request.getParameter("outtime"));
-		attendence.setDate("20-09-2019");
+		request.setAttribute("listleave", Listleave);
 		
-		AttendenceService service = new AttendenceServiceIMPL();
-		
-		service.insertAttendence(attendence);
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceTab.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/leaveDetails.jsp");
 		dispatcher.forward(request, response);
 	}
 

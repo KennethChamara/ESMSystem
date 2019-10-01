@@ -33,11 +33,15 @@ td {
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>More details of leave</title>
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+	<a href="requestLeaveList.jsp">
+		<button type="button" class="btn btn-success badge-pill"
+			style="position: fixed; left: 25px; top: 70px; width: 150px;">Back</button>
+	</a>
 	<div class="container mt-3">
 		<div align="center">
 			<h2 style="text-align: center;">Request leaves</h2>

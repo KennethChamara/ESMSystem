@@ -19,7 +19,38 @@
 
 
 	<div class="container">
-		<h2>Employees Salary</h2>
+
+		<div class="form-row">
+			<div class="col-lg-7 lg-7">
+				<h2>Employees Salary</h2>
+			</div>
+			<div class="col-lg-5 lg-5">
+				<form method="post" action="GetMonthlyAttendenceServlet">
+					<select class="custom-select border-primary badge-pill" id="eid"
+					style="width: 200px" name="e_id">
+						<option value="09">This month</option>
+						<option value="01">January</option>
+						<option value="02">February</option>
+						<option value="03">March</option>
+						<option value="04">April</option>
+						<option value="05">May</option>
+						<option value="06">June</option>
+						<option value="07">July</option>
+						<option value="08">August</option>
+						<option value="09">September</option>
+						<option value="10">October</option>
+						<option value="11">November</option>
+						<option value="12">December</option>
+					</select>
+
+					<button class="btn btn-outline-success badge-pill" type="submit"
+						style="width: 150px">Search</button>
+				</form>
+			</div>
+		</div>
+
+
+
 		<table class="table table-bordered">
 			<thead class="thead-dark">
 				<tr>
@@ -31,21 +62,21 @@
 				</tr>
 			</thead>
 			<tbody>
-			<%
-				for(int i =0;i<5;i++){
-			%>
+				<%
+					for (int i = 0; i < 5; i++) {
+				%>
 				<tr>
 					<td>EP180615</td>
 					<td>Mr.Weerathunga W.A.A.S.</td>
 					<td>Deverloper</td>
 					<td>26</td>
-					<td>4</button></td>
+					<td>4</td>
 				</tr>
 
-			<%} %>
+				<%} %>
 
 			</tbody>
 		</table>
-	</div>	
+	</div>
 </body>
 </html>

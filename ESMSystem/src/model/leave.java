@@ -2,6 +2,7 @@ package model;
 
 public class leave {
 	private String employeeID;
+	private String leaveID;
 	private int noOfDate;
 	private String startDate;
 	private String endDate;
@@ -16,6 +17,16 @@ public class leave {
 		this.leaveType = null;
 		this.reason = null;
 	}
+
+	public String getLeaveID() {
+		return leaveID;
+	}
+
+
+	public void setLeaveID(String leaveID) {
+		this.leaveID = leaveID;
+	}
+
 
 	public String getEmployeeID() {
 		return employeeID;

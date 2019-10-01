@@ -52,6 +52,19 @@ public class CommonUtil {
 		return id;
 	}
 	
+	public static String generateAttendanceIDs(ArrayList<String> arrayList) {
+
+		String id;
+		int next = arrayList.size();
+		next++;
+		id = CommonConstants.ATTENDANCE_ID_PREFIX + next;
+		while (arrayList.contains(id)) {
+			next++;
+			id = CommonConstants.ATTENDANCE_ID_PREFIX + next;
+		}
+		return id;
+	}
+	
 	public static String generateBounceIDs(ArrayList<String> arrayList) {
 
 		String id;
