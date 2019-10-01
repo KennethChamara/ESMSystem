@@ -44,7 +44,6 @@
     </div>
     
    
-    
     <div class="form-group">
       <label for="amount">Amount:</label>
       <input type="text" class="form-control" id="amount" value="<%=salary.getAmount() %>" name="amount">

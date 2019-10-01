@@ -5,7 +5,7 @@
 	<!-- Create table salary Query -->
 	<query id="create_salary_table">
         <![CDATA[
-            CREATE TABLE salary(
+            CREATE TABLE IF NOT EXISTS salary(
 				salaryID varchar(10) not null,
 				employeeID varchar(10) not null,
 				employeeName varchar(20),
@@ -42,7 +42,7 @@
 	<!-- Select all salary -->
 	<query id="all_salarys">
          <![CDATA[        
-            select * from salary
+            select * from salary ORDER BY date, month
         ]]>
 	</query>
 
@@ -50,6 +50,13 @@
 	<query id="remove_salary">
          <![CDATA[        
             delete from salary where salary.salaryID = ?
+        ]]>
+	</query>
+	
+	<query id="search_salary">
+         <![CDATA[        
+             select * from salary 
+			 where employeeName like ? or month like ? or salaryID like ? or employeeID like ? ESCAPE '!'
         ]]>
 	</query>
 	

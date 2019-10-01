@@ -34,13 +34,15 @@ if((request.getSession(false).getAttribute("Admin")== null) )
 <body>
 	<script src="front.js"></script>
   	<jsp:include page="/WEB-INF/header.jsp"></jsp:include> 
-
-	 <div class="row" style="margin-top:40px">
-	 <div class="col-sm-2"></div>
-	  <div class="col-sm-8">
-	<div class="container">
 	
+	 <div class="row" style="margin-top:40px">
+	 <div class="col-sm-1"></div>
+	  <div class="col-sm-10">
+	 
+	<div class="container">
+	<jsp:include page="/search_salary.jsp"></jsp:include>
   <h2>Add Salary</h2>
+  
   <form name="myForm" action="AddSalaryServlet" method="post" onsubmit="return validateForm()">
     <div class="form-group">
       <label for="usr">Employee:</label>
