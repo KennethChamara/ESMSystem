@@ -10,7 +10,7 @@
 <html lang="en">
 
 <head>
-  <title>List Salary</title>
+  <title>Salary Search</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -27,10 +27,8 @@
 	
   <div class="container">
    <jsp:include page="/search_salary.jsp"></jsp:include>
-  <h2>Employees Salary</h2> 
-    
-  <table class="table table-bordered" >
-  
+  <h2>Search Result</h2>           
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th></th>
@@ -41,15 +39,16 @@
         <th>Delete</th>
       </tr>
     </thead>
-   
-    <tbody >
-    
-   
+    <tbody>
       <%
-            	IsalaryService isalaryeService = new SalaryServiceImpl();
-                        	ArrayList<Salary> arrayList = isalaryeService.getSalarys();
-                        	
+      System.out.println("error in Search jsp1");
+                      String result = (String) request.getAttribute("result");
+      System.out.println("error in Search jsp2"); 
+      SalaryServiceImpl isalaryeService = new SalaryServiceImpl();
+  	ArrayList<Salary> arrayList = isalaryeService.searchSalary(result);
+  	 System.out.println("error in Search jsp3");      	
                         	for(Salary salary : arrayList){
+                        		System.out.println("error in Search jsp 4");  
             %>
       <tr>
       <td><input type="checkbox" name="select" value="<%=salary.getSalaryID()%>"/> </td>
@@ -65,12 +64,9 @@
     </form></td>
         
       </tr>
-      <%} %> 
-      
+      <%} %>
     </tbody>
- 	
   </table>
- 
   		<div class="row">
   		<div class="col-sm-4"></div>
   		<div class="col-sm-4">

@@ -77,7 +77,7 @@ public class SalaryServiceImpl implements IsalaryService {
 			statement = connection.createStatement();
 			// Drop table if already exists and as per SQL query available in
 			// Query.xml
-			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE));
+			//statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE));
 			// Create new salary table as per SQL query available in
 			// Query.xml
 			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_CREATE_TABLE));
@@ -104,10 +104,14 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_INSERT_SALARY));
 			connection.setAutoCommit(false);
 			
-			SimpleDateFormat sdf= new SimpleDateFormat("dd/mm/y");
+			SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
 			
-			Date date = sdf.parse(salary.getDate());
 			
+		    Date date = sdf.parse(salary.getDate());
+		    String str = sdf2.format(date);
+		    date = sdf2.parse(str);
+		  			
 			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 			
 			//Generate salary IDs
@@ -315,7 +319,76 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 	}
 	
 	
-	
+	public ArrayList<Salary> searchSalary(String search) {
+		System.out.println(" no error in Search function");
+		ArrayList<Salary> salaryList = new ArrayList<Salary>();
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+			/*
+			 * Before fetching salary it checks whether salary ID is
+			 * available
+			 */
+			if (search != null && !search.isEmpty()) {
+				System.out.println("error in sal impl"+search);
+				search = search
+					    .replace("!", "!!")
+					    .replace("%", "!%")
+					    .replace("_", "!_")
+					    .replace("[", "![");
+				
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_SEARCH_SALARY));
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, "%"+search+"%");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, "%"+search+"%");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_THREE, "%"+search+"%");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_FOUR, "%"+search+"%");
+				
+			}
+			/*
+			 * If salary ID is not provided for get salary option it display
+			 * all salarys
+			 */
+			else {
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_ALL_SALARY));
+			}
+			
+			
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			System.out.println("error in sal impl");
+			while (resultSet.next()) {
+				Salary salary = new Salary();
+				salary.setSalaryID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				salary.setEmpId(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				salary.setEmpName(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
+				salary.setMonth(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
+				salary.setDate(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
+				salary.setAmount(resultSet.getDouble(CommonConstants.COLUMN_INDEX_SIX));
+				salaryList.add(salary);
+			}
+
+		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of
+			 * transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		System.out.println("error in Search function end");
+		return salaryList;
+	}
 	
 private ArrayList<String> getSalaryIDs(){
 		
@@ -352,5 +425,7 @@ private ArrayList<String> getSalaryIDs(){
 		}
 		return arrayList;
 	}
+
+
 
 }

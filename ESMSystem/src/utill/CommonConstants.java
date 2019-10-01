@@ -46,6 +46,10 @@ public class CommonConstants {
 	/** Constant for query id of get an salary in salaryQuery.xml */
 	public static final String QUERY_ID_GET_SALARY = "salary_by_id";
 
+	/** Constant for query id of get an salary in salaryQuery.xml */
+	public static final String QUERY_ID_SEARCH_SALARY = "search_salary";
+
+	
 	/** Constant for query id of get all salary in salaryQuery.xml */
 	public static final String QUERY_ID_ALL_SALARY = "all_salarys";
 
