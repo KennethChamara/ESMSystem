@@ -3,11 +3,12 @@
 <%@page import="service.leaveSeviceIMPL"%>
 <%@page import="service.leaveService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Request leaves</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
 	<div class="table-responsive">
@@ -17,7 +18,6 @@
 					<th scope="col">Employee Name</th>
 					<th scope="col">Number of date</th>
 					<th scope="col">Possion</th>
-					<th scope="col">Approve</th>
 					<th scope="col">deny</th>
 					<th scope="col">More</th>
 
@@ -25,7 +25,7 @@
 			</thead>
 			<%
 				leaveService addleave = new leaveSeviceIMPL();
-				ArrayList<listleave> Listleave = addleave.getleves(1);
+				ArrayList<listleave> Listleave = addleave.getleves(2);
 
 				for (listleave leave : Listleave) {
 			%>
@@ -34,13 +34,7 @@
 					<th scope="row"><%=leave.getName()%></th>
 					<td><%=leave.getNoOfDate()%></td>
 					<td><%=leave.getPossion()%></td>
-
-					<td>
-						<form method="POST" action="ApproveLeaveServlet">
-							<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
-							<button type="submit" class="btn btn-primary badge-pill">Approve</button>
-						</form>
-					</td>
+					
 					<td>
 						<form method="POST" action="denyRequestLeavesServlet">
 							<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
@@ -64,5 +58,6 @@
 			%>
 		</table>
 	</div>
+
 </body>
 </html>

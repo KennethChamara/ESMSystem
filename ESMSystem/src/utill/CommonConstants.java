@@ -73,7 +73,11 @@ public class CommonConstants {
 	
 	public static final String QUERY_ID_ADD_LEAVES = "add_leaves";
 	
-	public static final String QUERY_ID_GET_LEAVES = "get_leaves";
+	public static final String QUERY_ID_GET_REQUSETED_LEAVES = "get_requested_leaves";
+	
+	public static final String QUERY_ID_GET_REQUSETED_LEAVES_OF_A_EMPLOYEE = "get_requested_leaves_ofAemp";
+	
+	public static final String QUERY_ID_GET_APPROVED_LEAVES = "get_approved_leaves";
 	
 	public static final String QUERY_ID_APPROV_LEAVE = "approve_leave";
 	
@@ -83,15 +87,15 @@ public class CommonConstants {
 	
 	//                              Attendance Constants
 	//============================================================================================================
-	public static final String QUERY_ID_CREATE_TABLE_ATTENDANCE = "create_employee";
+	public static final String QUERY_ID_CREATE_TABLE_ATTENDANCE = "create_attendance";
 	
-	public static final String QUERY_ID_DROP_TABLE_ATTENDANCE = "drop_employee";
+	public static final String QUERY_ID_DROP_TABLE_ATTENDANCE = "drop_attendance";
 	
 	public static final String QUERY_ID_GET_EMPLOYEE_IDS = "employee_ids";
 	
 	public static final String QUERY_ID_GET_ATTENDANCE_IDS = "get_attendance_ids";
 	
-	public static final String QUERY_GET_TODAY_ATTENDANCE = "isAttendanceEntered";
+	public static final String QUERY_GET_TODAY_ATTENDANCE = "getAll_attendance";
 	
 	public static final String QUERY_ID_GET_ATTENDANCE = "getAll_attendance";
 	
@@ -130,6 +134,16 @@ public class CommonConstants {
 	
 	/** Constant for Column index ten */
 	public static final int COLUMN_INDEX_TEN = 10;
+	
+	public static final int COLUMN_INDEX_ELEVEN = 11;
+	
+	public static final int COLUMN_INDEX_TWELVE = 12;
+	
+	public static final int COLUMN_INDEX_THIRTEEN = 13;
+	
+	public static final int COLUMN_INDEX_FOURTEEN = 14;
+	
+	public static final int COLUMN_INDEX_FIFTEEN = 15;
 	
 
 

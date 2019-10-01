@@ -17,9 +17,18 @@
 </head>
 <body>
 
+	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+	<div class="container mt-3">
 
-	<div class="container">
-
+		<div class="row" style="border-bottom: 2px solid #ccc;">
+			<div class="btn-group" role="group">
+				<button type="button" style="margin-left: 10px;"
+					class="btn btn-success">Monthly Attendance</button>
+				<button type="button" class="btn btn-success  active">Insert
+					Attendance</button>
+			</div>
+		</div>
+		<br>
 		<div class="form-row">
 			<div class="col-lg-7 lg-7">
 				<h2>Employees Salary</h2>
@@ -27,7 +36,7 @@
 			<div class="col-lg-5 lg-5">
 				<form method="post" action="GetMonthlyAttendenceServlet">
 					<select class="custom-select border-primary badge-pill" id="eid"
-					style="width: 200px" name="e_id">
+						style="width: 200px" name="e_id">
 						<option value="09">This month</option>
 						<option value="01">January</option>
 						<option value="02">February</option>
@@ -73,7 +82,9 @@
 					<td>4</td>
 				</tr>
 
-				<%} %>
+				<%
+					}
+				%>
 
 			</tbody>
 		</table>

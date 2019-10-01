@@ -2,12 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <head>
-<style>
-td {
-	margin: 25px;
-	padding: 15px:
-}
-</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet"
@@ -65,7 +59,7 @@ td {
 		if (select == "one") {
 			if (date == date2) {
 				return true;
-			} else {				
+			} else {
 				alert("Select Several Days\nif you request more than one day");
 				return false;
 			}
@@ -84,74 +78,65 @@ td {
 </script>
 </head>
 <body>
+	<div align="center">
+		<form method="POST" action="AddLeavesServlet" name="myForm"
+			onsubmit="return validateDate() && validatType()">
+			
+			<table>
+				<tr>
+					<td><input type="radio" name="day" value="one" checked>One
+						Day</td>
+					<td><input type="radio" name="day">Several Days</td>
+				</tr>
+				<tr>
+					<td><label>from : </label>
+						<div id="datepicker" class="input-group date badge-pill"
+							data-date-format="mm-dd-yyyy">
+							<input class="form-control" type="text" readonly name="formDate"
+								style="margin: 10px 0;" /> <span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span>
+						</div></td>
+					<td><label>To : </label>
+						<div id="datepicker2" class="input-group date badge-pill"
+							data-date-format="mm-dd-yyyy">
+							<input class="form-control" type="text" readonly name="toDate"
+								style="margin: 10px 0;" /> <span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span>
+						</div></td>
+				</tr>
+				<tr>
 
-	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	<a href="LeaveTab.jsp">
-		<button type="button" class="btn btn-success badge-pill"
-			style="position: fixed; left: 25px; top: 70px; width: 150px;">Back</button>
-	</a>
-	<div class="container mt-3">
-		<h1 style="text-align: center;">Request leaves</h1>
-		<div align="center">
-			<form method="POST" action="AddLeavesServlet" name="myForm"
-				onsubmit="return validateDate() && validatType()">
-
-				<table>
-					<tr>
-						<td><input type="radio" name="day" value="one" checked>One
-							Day</td>
-						<td><input type="radio" name="day">Several Days</td>
-					</tr>
-					<tr>
-						<td><label>from : </label>
-							<div id="datepicker" class="input-group date"
-								data-date-format="mm-dd-yyyy">
-								<input class="form-control" type="text" readonly name="formDate"
-									style="margin: 10px;" /> <span class="input-group-addon"><i
-									class="glyphicon glyphicon-calendar"></i></span>
-							</div></td>
-						<td><label>To : </label>
-							<div id="datepicker2" class="input-group date"
-								data-date-format="mm-dd-yyyy">
-								<input class="form-control" type="text" readonly name="toDate"
-									style="margin: 10px;" /> <span class="input-group-addon"><i
-									class="glyphicon glyphicon-calendar"></i></span>
-							</div></td>
-					</tr>
-					<tr>
-
-						<td colspan="2">
-							<div style="margin: 10px;">
-								<label>Leave Type : </label> <select name="type">
-									<option>--Select One--</option>
-									<option>Holy day(personal)</option>
-									<option>Sick leave</option>
-									<option>no pay leave</option>
-									<option>Other leave</option>
-								</select>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<div class="form-group shadow-textarea">
-								<label for="exampleFormControlTextarea6">Reoson for the
-									Leave</label>
-								<textarea class="form-control z-depth-1"
-									id="exampleFormControlTextarea6" cols="80" rows="11"
-									placeholder="Write something here..." name="reason" required></textarea>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><button type="submit" class="btn btn-primary"
-								style="margin: 15px; width: 100px;">Submit</button></td>
-						<td><button type="reset" class="btn btn-warning"
-								style="margin: 15px; width: 100px;">Reset</button></td>
-					</tr>
-				</table>
-			</form>
-		</div>
+					<td colspan="2">
+						<div style="margin: 10px 0;">
+							<label>Type : </label> <select name="type" class="custom-select badge-pill">
+								<option>--Select One--</option>
+								<option>Holy day(personal)</option>
+								<option>Sick leave</option>
+								<option>no pay leave</option>
+								<option>Other leave</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="form-group shadow-textarea">
+							<label for="exampleFormControlTextarea6">Reoson for the
+								Leave</label>
+							<textarea class="form-control form-rounded"
+								id="exampleFormControlTextarea6" cols="80" rows="6"
+								placeholder="Write something here..." name="reason" required></textarea>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><button type="submit" class="btn btn-primary badge-pill"
+							style="margin-top: 15px; width: 200px;">Submit</button></td>
+					<td><button type="reset" class="btn btn-warning badge-pill"
+							style="margin-top: 15px; width: 200px;">Reset</button></td>
+				</tr>
+			</table>
+		</form>
 	</div>
 	<script type="text/javascript">
 		$(function() {

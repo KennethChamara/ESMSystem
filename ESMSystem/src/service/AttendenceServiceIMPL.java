@@ -185,7 +185,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 				connection = DBConnectionUtil.getDBConnection();
 
 				preparedStatement = connection.prepareStatement(
-						"SELECT E_ID,name,possion,count(A_ID) as number FROM attendance a,employee e where DATE_FORMAT(_date, \"%m\")=? and E_ID=? and a.E_ID=e.Eid and state='present';");
+						"SELECT E_ID,empName,empDesignation,count(A_ID) as number FROM attendance a,employees e where DATE_FORMAT(_date, \"%m\")=? and E_ID=? and a.E_ID=e.empID and state='present';");
 
 				preparedStatement.setInt(CommonConstants.COLUMN_INDEX_ONE, month);
 				preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, ID);

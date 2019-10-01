@@ -73,7 +73,7 @@
 	
 	<query id="create_leaves">
          <![CDATA[        
-           	create table leaves(
+           	create table IF NOT EXISTS leaves(
            	 leavesID varchar(10),
            	 employeeID varchar(10),
            	 noOfDate int,
@@ -83,7 +83,7 @@
            	 reason varchar(300),
            	 sate varchar(8) default 'pendding',
            	 constraint primary key (leavesID),
-           	 constraint foreign key(employeeID) references employee(Eid)
+           	 constraint foreign key(employeeID) references employees(empID)
            	);
            	
         ]]>
@@ -101,9 +101,20 @@
         ]]>
     </query>
        
-    <query id="get_leaves">
+    <query id="get_requested_leaves">
          <![CDATA[        
-            select * from employee e, leaves l where sate='pendding' and e.Eid=l.employeeID;
+            select * from employees e, leaves l where sate='pendding' and e.empID=l.employeeID;
+        ]]>
+    </query>
+    <query id="get_requested_leaves_ofAemp">
+         <![CDATA[        
+            select * from leaves where sate='pendding' and employeeID=?;
+        ]]>
+    </query>
+    
+    <query id="get_approved_leaves">
+         <![CDATA[        
+            select * from employees e, leaves l where sate='approved' and e.empID=l.employeeID and startDate >= Date(now());
         ]]>
     </query>
     
@@ -119,12 +130,6 @@
         ]]>
     </query>  
     
-    <query id="getAll_attendance">
-         <![CDATA[        
-            select * from attendance where _date=Date(now());
-        ]]>
-    </query>
-    
     <query id="delete_leave">
          <![CDATA[        
             delete from leaves where leavesID=?;
@@ -133,12 +138,12 @@
 	        
     <query id="select_leave">
          <![CDATA[        
-            select * from employee e, leaves l where e.Eid=l.employeeID and leavesID=?;
+            select * from employees e, leaves l where e.empID=l.employeeID and leavesID=?;
         ]]>
 	</query>
 	
 	<!-- ============================================================================================================================ -->
-	<query id="create_employee">
+	<query id="create_attendance">
          <![CDATA[        
             create table IF NOT EXISTS attendance(
             	A_ID varchar(10),
@@ -152,11 +157,12 @@
         ]]>
     </query> 
     
-    <query id="drop_employee">
+    <query id="drop_attendance">
          <![CDATA[        
            	DROP TABLE IF EXISTS attendance;
         ]]>
     </query>
+    
     
     <query id="get_attendance_ids">
          <![CDATA[        
@@ -166,14 +172,15 @@
     
 	<query id="employee_ids">
          <![CDATA[        
-            select Eid from employee;
+            select empID from employees;
         ]]>
     </query> isAttendanceEntered
     
-    <query id="isAttendanceEntered">
+    <query id="getAll_attendance">
          <![CDATA[        
-            select * from attendance where _date = date(now());
+            select * from attendance where _date=Date(now());
         ]]>
     </query>
+    
 
 </Querys>

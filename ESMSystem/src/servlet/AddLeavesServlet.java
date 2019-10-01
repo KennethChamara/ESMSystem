@@ -44,7 +44,7 @@ public class AddLeavesServlet extends HttpServlet {
 		
 		
 		
-		leaveOne.setEmployeeID("IT23348");
+		leaveOne.setEmployeeID("002ID");
 		leaveOne.setNoOfDate(1);
 		leaveOne.setStartDate(request.getParameter("formDate"));
 		leaveOne.setEndDate(request.getParameter("toDate"));
