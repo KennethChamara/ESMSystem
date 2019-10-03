@@ -60,7 +60,7 @@
          <button class="btn btn-primary" type="submit"  name="salaryID" value="<%=salary.getSalaryID() %>">Edit</button>
          </form>
          </td>
-         <td> <form method="post" action="DeleteSalaryServlet">
+         <td> <form method="post" action="DeleteSalaryServlet" name="DeleteFrom" onsubmit="return deleteConfrometion()">
     <button type="submit" name="delete" value="<%=salary.getSalaryID()%>" class="btn btn-danger">Delete</button>
     </form></td>
         
@@ -77,8 +77,11 @@
   		
   	<div class="btnFlex">
   	
-    <button type="button" class="btn btn-primary">Back</button>
-    <button type="button" class="btn btn-primary">Next</button>
+    <form method="post" class="form-inline md-form mr-auto mb-4" action="GetMonthlySalaryServlet">
+				<input type="search" class="form-control mr-sm-2" name="year" placeholder="Year"/>	
+				<input type="search" class="form-control mr-sm-2" name="month" placeholder="month"/>
+				<button type="submit" class="btn aqua-gradient btn-rounded btn-sm my-0">search</button>
+			</form>
     </div>
   	    </div>
   	    <div class="col-sm-4">

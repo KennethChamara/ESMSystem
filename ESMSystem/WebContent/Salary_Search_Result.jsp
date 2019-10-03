@@ -59,7 +59,7 @@
          <button class="btn btn-primary" type="submit"  name="salaryID" value="<%=salary.getSalaryID() %>">Edit</button>
          </form>
          </td>
-         <td> <form method="post" action="DeleteSalaryServlet">
+         <td> <form method="post" action="DeleteSalaryServlet" name="DeleteFrom" onsubmit="return deleteConfrometion()">
     <button type="submit" name="delete" value="<%=salary.getSalaryID()%>" class="btn btn-danger">Delete</button>
     </form></td>
         

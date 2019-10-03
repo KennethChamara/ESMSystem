@@ -72,6 +72,22 @@
     color: #ff00bf;
    
   }
+  
+  #msgEmp{
+  	
+  	color:red;
+  
+  }
+   #msgSal{
+  	
+  	color:red;
+  
+  }
+   #msgDate{
+  
+  	color:red;
+  
+  }
 
   .menu-button {
 

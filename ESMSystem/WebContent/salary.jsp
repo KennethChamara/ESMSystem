@@ -47,6 +47,7 @@ if((request.getSession(false).getAttribute("Admin")== null) )
     <div class="form-group">
       <label for="usr">Employee:</label>
       <input type="text" class="form-control" id="usr" placeholder="Enter name" name="usr" >
+      <p id="msgEmp"></p>
     </div>
     
      <div class="form-group">
@@ -85,7 +86,7 @@ if((request.getSession(false).getAttribute("Admin")== null) )
      <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
        <input name="_honey" style="display:none" type="text"/>
-    
+    	<p id="msgDate" ></p>
       </div>
 
 </div>
@@ -97,6 +98,7 @@ if((request.getSession(false).getAttribute("Admin")== null) )
     <div class="form-group">
       <label for="amount">Amount:</label>
       <input type="text" class="form-control" id="amount" placeholder="Enter amount" name="amount" >
+      <p id="msgSal"></p>
     </div>
     
     
