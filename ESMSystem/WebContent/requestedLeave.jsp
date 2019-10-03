@@ -30,21 +30,19 @@
 				for (leave leave : Listleave) {
 			%>
 			<tbody>
-				
 				<tr>
-				<form method="POST" action="selectLeaveRequestServlet">
 					<td><%=leave.getLeaveID()%></td>
 					<td><%=leave.getStartDate()%></td>
 					<td><%=leave.getEndDate()%></td>
 					<td><%=leave.getLeaveType()%></td>
-					<td><input type="hidden" name="ID"
-						value="<%=leave.getReason()%>">
-						<button type="submit" class="btn btn-primary btn-sm">
-							<span class="glyphicon glyphicon-plus"></span> Edit
-						</button></td>
-				</form>
+					<td><form method="POST" action="selectLeaveRequestServlet">
+							<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
+							<input type="hidden" name="page" value="user">
+							<button type="submit" class="btn btn-primary btn-sm">
+								<span class="glyphicon glyphicon-plus"></span> Edit
+							</button>
+						</form></td>
 				</tr>
-			
 			</tbody>
 			<%
 				}

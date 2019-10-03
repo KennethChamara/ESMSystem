@@ -20,7 +20,7 @@
 <body
 	style="background-color: #111111; color: #ffffff; font-size: 120%; font-family: Georgia, serif; line-height: 1.5;">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	<div class="container mt-3">
+	<div class="container mt-4" style="min-height: 660px; ">
 		<h2>Leave</h2>
 
 		<!-- Nav tabs -->

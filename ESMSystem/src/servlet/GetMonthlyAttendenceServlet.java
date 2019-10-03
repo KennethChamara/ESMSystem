@@ -41,15 +41,18 @@ public class GetMonthlyAttendenceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int month = Integer.parseInt(request.getParameter("month"));
-		AttendenceService service = new AttendenceServiceIMPL();
+		String month = request.getParameter("month");
+		String page = request.getParameter("page");
 		
-		ArrayList<Attendancelist> list = service.getMonthlyAttendance(month);
+		request.setAttribute("month", month);
 		
-		request.setAttribute("Attendancelist", list);
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceTab.jsp");
-		dispatcher.forward(request, response);
+		if(page.equalsIgnoreCase("view")) {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendanceView.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceAllList.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }

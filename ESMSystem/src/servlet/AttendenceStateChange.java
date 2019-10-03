@@ -43,7 +43,7 @@ public class AttendenceStateChange extends HttpServlet {
 		
 		attendenceservice.StateChange(request.getParameter("id"));
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceTab.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceEnter.jsp");
 		dispatcher.forward(request, response);
 	}
 
