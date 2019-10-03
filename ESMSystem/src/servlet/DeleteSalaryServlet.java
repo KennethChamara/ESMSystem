@@ -50,7 +50,7 @@ public class DeleteSalaryServlet extends HttpServlet {
 		
 		iSalaryService.removeSalary(salaryID);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/salary.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/salaryList.jsp");
 		dispatcher.forward(request, response);
 		
 		

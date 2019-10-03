@@ -27,10 +27,11 @@
 	<div class="container">
 	
   <h2>Add Salary</h2>
-  <form action="UpdateSalaryServlet" method="post">
+  <form action="UpdateSalaryServlet" name="myForm" method="post" onsubmit="return validateForm()">
     <div class="form-group">
       <label for="usr">Employee:</label>
       <input type="text" class="form-control" id="usr" value="<%=salary.getEmpName() %>" name="usr">
+      <p id="msgEmp"></p>
     </div>
     
      <div class="form-group">
@@ -41,12 +42,14 @@
     <div class="form-group">
       <label for="date">Date:</label>
       <input type="text" class="form-control" id="date" value="<%=salary.getDate() %>" name="date">
+   p<p id="msgDate"></p>
     </div>
     
    
     <div class="form-group">
       <label for="amount">Amount:</label>
       <input type="text" class="form-control" id="amount" value="<%=salary.getAmount() %>" name="amount">
+      <p id="msgSal"></p>
     </div>
     
     

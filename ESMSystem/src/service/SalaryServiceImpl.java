@@ -390,6 +390,83 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 		return salaryList;
 	}
 	
+	public ArrayList<Salary> searchSalaryMonthly(String year,String month) {
+		System.out.println(" no error in Search function");
+		ArrayList<Salary> salaryList = new ArrayList<Salary>();
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+			/*
+			 * Before fetching salary it checks whether salary ID is
+			 * available
+			 */
+			if (year != null && !year.isEmpty()&&(month != null && !month.isEmpty())) {
+				System.out.println("error in sal impl"+year);
+				year = year
+					    .replace("!", "!!")
+					    .replace("%", "!%")
+					    .replace("_", "!_")
+					    .replace("[", "![");
+				month = month
+					    .replace("!", "!!")
+					    .replace("%", "!%")
+					    .replace("_", "!_")
+					    .replace("[", "![");
+				
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_SEARCH_SALARY_MONTHLY));
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, "%"+year+"%");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, "%"+month+"%");
+			
+				
+			}
+			/*
+			 * If salary ID is not provided for get salary option it display
+			 * all salarys
+			 */
+			else {
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_ALL_SALARY));
+			}
+			
+			
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			System.out.println("error in sal impl");
+			while (resultSet.next()) {
+				Salary salary = new Salary();
+				salary.setSalaryID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				salary.setEmpId(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				salary.setEmpName(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
+				salary.setMonth(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
+				salary.setDate(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
+				salary.setAmount(resultSet.getDouble(CommonConstants.COLUMN_INDEX_SIX));
+				salaryList.add(salary);
+			}
+
+		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of
+			 * transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		System.out.println("error in Search function end");
+		return salaryList;
+	}
+	
+	
+
 private ArrayList<String> getSalaryIDs(){
 		
 		ArrayList<String> arrayList = new ArrayList<String>();
