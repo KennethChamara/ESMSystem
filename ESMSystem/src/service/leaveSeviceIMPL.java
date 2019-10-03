@@ -90,6 +90,8 @@ public class leaveSeviceIMPL implements leaveService {
 			Date startdate= sdf.parse(leaveOne.getStartDate());
 
 			Date endDate= sdf.parse(leaveOne.getEndDate());
+			
+			int nofdays = ((int)( (endDate.getTime() - startdate.getTime()) / (1000 * 60 * 60 * 24)))+1;
 
 			java.sql.Date sqlDate = new java.sql.Date(startdate.getTime());
 	
@@ -101,7 +103,7 @@ public class leaveSeviceIMPL implements leaveService {
 
 			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, id);
 			preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, leaveOne.getEmployeeID());
-			preparedStatement.setInt(CommonConstants.COLUMN_INDEX_THREE, leaveOne.getNoOfDate());
+			preparedStatement.setInt(CommonConstants.COLUMN_INDEX_THREE, nofdays);
 			preparedStatement.setDate(CommonConstants.COLUMN_INDEX_FOUR, sqlDate);
 			preparedStatement.setDate(CommonConstants.COLUMN_INDEX_FIVE, sqlDate2);
 			preparedStatement.setString(CommonConstants.COLUMN_INDEX_SIX, leaveOne.getLeaveType());
@@ -232,6 +234,53 @@ public class leaveSeviceIMPL implements leaveService {
 
 		return Listleave;
 
+	}
+
+	public void updateLeave(leave leaveOne) {
+		try {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+
+			Date startdate= sdf.parse(leaveOne.getStartDate());
+
+			Date endDate= sdf.parse(leaveOne.getEndDate());
+			
+			int nofdays = ((int)( (endDate.getTime() - startdate.getTime()) / (1000 * 60 * 60 * 24)))+1;
+
+			java.sql.Date sqlDate = new java.sql.Date(startdate.getTime());
+	
+			java.sql.Date sqlDate2 = new java.sql.Date(endDate.getTime());
+
+			connection = DBConnectionUtil.getDBConnection();
+			
+			preparedStatement = connection.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_UPDATE_LEAVES));
+			
+			preparedStatement.setInt(CommonConstants.COLUMN_INDEX_ONE, nofdays);
+			preparedStatement.setDate(CommonConstants.COLUMN_INDEX_TWO, sqlDate);
+			preparedStatement.setDate(CommonConstants.COLUMN_INDEX_THREE, sqlDate2);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_FOUR, leaveOne.getLeaveType());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, leaveOne.getReason());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_SIX, leaveOne.getLeaveID());
+
+			preparedStatement.execute();
+
+		} catch (SQLException | ClassNotFoundException | SAXException | IOException | ParserConfigurationException | ParseException e) {
+			e.printStackTrace();
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void ApproveLeave(String id) {

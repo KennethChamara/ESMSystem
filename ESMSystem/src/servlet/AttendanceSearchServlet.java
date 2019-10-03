@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +12,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.listleave;
-import service.leaveService;
-import service.leaveSeviceIMPL;
-
 /**
- * Servlet implementation class selectLeaveRequestServlet
+ * Servlet implementation class AttendanceSearchServlet
  */
-@WebServlet("/selectLeaveRequestServlet")
-public class selectLeaveRequestServlet extends HttpServlet {
+@WebServlet("/AttendanceSearchServlet")
+public class AttendanceSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public selectLeaveRequestServlet() {
+    public AttendanceSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,18 +39,19 @@ public class selectLeaveRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		leaveService addleave = new leaveSeviceIMPL();
 		
-		listleave Listleave = addleave.selectLeave(request.getParameter("ID"));
+		String sdate = request.getParameter("date");
 		
-		request.setAttribute("listleave", Listleave);
-		if(request.getParameter("page").equalsIgnoreCase("user")) {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/leaveEdit.jsp");
-			dispatcher.forward(request, response);
-		} else {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/leaveDetails.jsp");
-			dispatcher.forward(request, response);
+		if(sdate.equalsIgnoreCase("")) {
+			DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+		    Date date = new Date();
+		    sdate = dateFormat.format(date);
 		}
+		
+		request.setAttribute("date", sdate);
+
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceEnter.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

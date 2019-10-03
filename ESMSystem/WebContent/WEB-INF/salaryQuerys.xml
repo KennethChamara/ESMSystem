@@ -107,10 +107,15 @@
             INSERT INTO leaves(leavesID,employeeID,noOfDate,startDate,endDate,type,reason) values(?,?,?,?,?,?,?);
         ]]>
     </query>
+    <query id="update_requested_leaves">
+         <![CDATA[        
+            update leaves set noOfDate=?, startDate = ?, endDate = ?,type=?,reason=?where leavesID = ?;
+        ]]>
+    </query>
        
     <query id="get_requested_leaves">
          <![CDATA[        
-            select * from employees e, leaves l where sate='pendding' and e.empID=l.employeeID;
+            select * from employees e, leaves l where sate='pendding' and e.empID=l.employeeID order by startDate desc;
         ]]>
     </query>
     <query id="get_requested_leaves_ofAemp">
@@ -121,7 +126,7 @@
     
     <query id="get_approved_leaves">
          <![CDATA[        
-            select * from employees e, leaves l where sate='approved' and e.empID=l.employeeID and startDate >= Date(now());
+            select * from employees e, leaves l where sate='approved' and e.empID=l.employeeID and startDate >= Date(now()) order by startDate desc;
         ]]>
     </query>
     
@@ -185,7 +190,7 @@
     
     <query id="getAll_attendance">
          <![CDATA[        
-            select * from attendance where _date=Date(now());
+            select * from attendance where _date=?;
         ]]>
     </query>
     

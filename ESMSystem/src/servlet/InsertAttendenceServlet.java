@@ -44,18 +44,22 @@ public class InsertAttendenceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String date = request.getParameter("date");
+		
 		Attendance attendence = new Attendance();		
 		System.out.println(request.getParameter("e_id"));
 		attendence.setEmployeeID(request.getParameter("e_id"));
 		attendence.setIntime(request.getParameter("intime"));
 		attendence.setOuttime(request.getParameter("outtime"));
-		attendence.setDate("20-09-2019");
+		attendence.setDate(date);
 		
 		AttendenceService service = new AttendenceServiceIMPL();
 		
 		service.insertAttendence(attendence);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceTab.jsp");
+		request.setAttribute("date", date);
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AttendenceEnter.jsp");
 		dispatcher.forward(request, response);
 	}
 

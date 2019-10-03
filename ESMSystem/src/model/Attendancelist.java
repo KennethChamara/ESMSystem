@@ -2,22 +2,35 @@ package model;
 
 public class Attendancelist extends Attendance {
 	
-	private int noOfdate;
+	private int noOfdate_present;
+	private int noOfdate_absent;
 	private String employeeName;
 	private String employeePossion;
 	
 	public Attendancelist() {
 		super();
-		noOfdate = 0;
+		noOfdate_present = 0;
+		noOfdate_absent=0;
 		employeeName = null;
 		employeePossion = null;
 	}
-	public int getNoOfdate() {
-		return noOfdate;
+	
+	public int getNoOfdate_present() {
+		return noOfdate_present;
 	}
-	public void setNoOfdate(int noOfdate) {
-		this.noOfdate = noOfdate;
+
+	public void setNoOfdate_present(int noOfdate_present) {
+		this.noOfdate_present = noOfdate_present;
 	}
+
+	public int getNoOfdate_absent() {
+		return noOfdate_absent;
+	}
+
+	public void setNoOfdate_absent(int noOfdate_absent) {
+		this.noOfdate_absent = noOfdate_absent;
+	}
+
 	public String getEmployeeName() {
 		return employeeName;
 	}

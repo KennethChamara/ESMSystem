@@ -77,6 +77,8 @@ public class CommonConstants {
 	
 	public static final String QUERY_ID_ADD_LEAVES = "add_leaves";
 	
+	public static final String QUERY_ID_UPDATE_LEAVES = "update_requested_leaves";
+	
 	public static final String QUERY_ID_GET_REQUSETED_LEAVES = "get_requested_leaves";
 	
 	public static final String QUERY_ID_GET_REQUSETED_LEAVES_OF_A_EMPLOYEE = "get_requested_leaves_ofAemp";

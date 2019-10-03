@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="table-responsive">
-		<table class="table" style="background-color: #ffffff;">
+		<table class="table table-bordered" style="background-color: #ffffff;">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Employee Name</th>

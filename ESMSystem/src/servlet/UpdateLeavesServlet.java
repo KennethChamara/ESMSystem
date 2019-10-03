@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.listleave;
+import model.leave;
 import service.leaveService;
 import service.leaveSeviceIMPL;
 
 /**
- * Servlet implementation class selectLeaveRequestServlet
+ * Servlet implementation class UpdateLeavesServlet
  */
-@WebServlet("/selectLeaveRequestServlet")
-public class selectLeaveRequestServlet extends HttpServlet {
+@WebServlet("/UpdateLeavesServlet")
+public class UpdateLeavesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public selectLeaveRequestServlet() {
+    public UpdateLeavesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,18 +40,18 @@ public class selectLeaveRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		leave leaveOne = new leave();
+		leaveOne.setLeaveID(request.getParameter("ID"));
+		leaveOne.setStartDate(request.getParameter("formDate"));
+		leaveOne.setEndDate(request.getParameter("toDate"));
+		leaveOne.setLeaveType(request.getParameter("type"));
+		leaveOne.setReason(request.getParameter("reason"));
+		
 		leaveService addleave = new leaveSeviceIMPL();
+		addleave.updateLeave(leaveOne);
 		
-		listleave Listleave = addleave.selectLeave(request.getParameter("ID"));
-		
-		request.setAttribute("listleave", Listleave);
-		if(request.getParameter("page").equalsIgnoreCase("user")) {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/leaveEdit.jsp");
-			dispatcher.forward(request, response);
-		} else {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/leaveDetails.jsp");
-			dispatcher.forward(request, response);
-		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/requstingLeavesTab.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
