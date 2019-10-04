@@ -105,11 +105,13 @@ public class CommonConstants {
 	
 	public static final String QUERY_ID_GET_ATTENDANCE = "getAll_attendance";
 	
+	public static final String QUERY_ID_GET_DATES = "get_dates_of_leaves";
+	
 	public static final String ATTENDANCE_ID_PREFIX = "A0";
 	
 	
 	
-	//============================================================================================================
+	// Constant ============================================================================================================
 	
 	/** Constant for Column index one */
 	public static final int COLUMN_INDEX_ONE = 1;
