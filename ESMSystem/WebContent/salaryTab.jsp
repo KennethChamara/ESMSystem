@@ -16,32 +16,20 @@
 <body>
 <jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 <div class="container mt-3">
-  <h2>Salary Tab</h2>
+  <!-- Search form -->
+	<jsp:include page="/search_salary.jsp"></jsp:include>
   <br>
   <!-- Nav tabs -->
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">Add</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu1">Tables</a>
-    </li>
-  </ul>
+
 
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="home" class="container tab-pane active"><br>
-      <h3>Details</h3>
      <jsp:include page="/salaryList.jsp"></jsp:include>
        
       
     </div>
-    <div id="menu1" class="container tab-pane fade"><br>
-      <h3>Tables</h3>
-   
-     
-      
-    </div>
+  
     
   </div>
 </div>

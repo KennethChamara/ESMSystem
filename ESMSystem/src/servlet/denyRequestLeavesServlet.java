@@ -42,7 +42,7 @@ public class denyRequestLeavesServlet extends HttpServlet {
 		leaveService addleave = new leaveSeviceIMPL();
 		addleave.DeleteLeave(request.getParameter("ID"));
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/requestLeaveList.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LeavelistTab.jsp");
 		dispatcher.forward(request, response);
 	}
 

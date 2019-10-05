@@ -51,14 +51,14 @@ public class AddSalaryServlet extends HttpServlet {
 		salary.setMonth(request.getParameter("month"));
 		salary.setDate(request.getParameter("date"));
 		salary.setAmount(Double.parseDouble(request.getParameter("amount")));
-		salary.setEmpId("EID222");
+		salary.setEmpId(request.getParameter("empId"));
 		
 
 		IsalaryService isalaryService = new SalaryServiceImpl();
 		isalaryService.addSalary(salary);
 
 		request.setAttribute("salary", salary);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/salaryTab.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/salary.jsp");
 		dispatcher.forward(request, response);
 		
 		

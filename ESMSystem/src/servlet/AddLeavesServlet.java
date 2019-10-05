@@ -42,9 +42,7 @@ public class AddLeavesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		leave leaveOne = new leave();
 		
-		
-		
-		leaveOne.setEmployeeID("IT23348");
+		leaveOne.setEmployeeID("002ID");
 		leaveOne.setNoOfDate(1);
 		leaveOne.setStartDate(request.getParameter("formDate"));
 		leaveOne.setEndDate(request.getParameter("toDate"));
@@ -54,7 +52,7 @@ public class AddLeavesServlet extends HttpServlet {
 		leaveService addleave = new leaveSeviceIMPL();
 		addleave.addLeaves(leaveOne);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/leave.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/requstingLeavesTab.jsp");
 		dispatcher.forward(request, response);
 	}
 

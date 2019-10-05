@@ -46,6 +46,12 @@ public class CommonConstants {
 	/** Constant for query id of get an salary in salaryQuery.xml */
 	public static final String QUERY_ID_GET_SALARY = "salary_by_id";
 
+	/** Constant for query id of get an salary in salaryQuery.xml */
+	public static final String QUERY_ID_SEARCH_SALARY = "search_salary";
+	
+	public static final String QUERY_ID_SEARCH_SALARY_MONTHLY = "search_salary_M";
+
+	
 	/** Constant for query id of get all salary in salaryQuery.xml */
 	public static final String QUERY_ID_ALL_SALARY = "all_salarys";
 
@@ -58,6 +64,11 @@ public class CommonConstants {
 	/** Constant for query id of get all salary ids in salaryQuery.xml */
 	public static final String QUERY_ID_GET_SALARY_IDS = "salary_ids";
 	
+	
+	//                            Leave Constants
+	//==========================================================================================================
+	
+	
 	public static final String LEAVE_ID_PREFIX = "LV00";
 	
 	public static final String QUERY_ID_GET_LEAVES_IDS = "leave_ids";
@@ -68,13 +79,41 @@ public class CommonConstants {
 	
 	public static final String QUERY_ID_ADD_LEAVES = "add_leaves";
 	
-	public static final String QUERY_ID_GET_LEAVES = "get_leaves";
+	public static final String QUERY_ID_UPDATE_LEAVES = "update_requested_leaves";
+	
+	public static final String QUERY_ID_GET_REQUSETED_LEAVES = "get_requested_leaves";
+	
+	public static final String QUERY_ID_GET_REQUSETED_LEAVES_OF_A_EMPLOYEE = "get_requested_leaves_ofAemp";
+	
+	public static final String QUERY_ID_GET_APPROVED_LEAVES = "get_approved_leaves";
 	
 	public static final String QUERY_ID_APPROV_LEAVE = "approve_leave";
 	
 	public static final String QUERY_ID_DELETE_LEAVE = "delete_leave";
 	
 	public static final String QUERY_ID_SELECT_LEAVE = "select_leave";
+	
+	//                              Attendance Constants
+	//============================================================================================================
+	public static final String QUERY_ID_CREATE_TABLE_ATTENDANCE = "create_attendance";
+	
+	public static final String QUERY_ID_DROP_TABLE_ATTENDANCE = "drop_attendance";
+	
+	public static final String QUERY_ID_GET_EMPLOYEE_IDS = "employee_ids";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE_IDS = "get_attendance_ids";
+	
+	public static final String QUERY_GET_TODAY_ATTENDANCE = "getAll_attendance";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE = "getAll_attendance";
+	
+	public static final String QUERY_ID_GET_DATES = "get_dates_of_leaves";
+	
+	public static final String ATTENDANCE_ID_PREFIX = "A0";
+	
+	
+	
+	// Constant ============================================================================================================
 	
 	/** Constant for Column index one */
 	public static final int COLUMN_INDEX_ONE = 1;
@@ -105,6 +144,16 @@ public class CommonConstants {
 	
 	/** Constant for Column index ten */
 	public static final int COLUMN_INDEX_TEN = 10;
+	
+	public static final int COLUMN_INDEX_ELEVEN = 11;
+	
+	public static final int COLUMN_INDEX_TWELVE = 12;
+	
+	public static final int COLUMN_INDEX_THIRTEEN = 13;
+	
+	public static final int COLUMN_INDEX_FOURTEEN = 14;
+	
+	public static final int COLUMN_INDEX_FIFTEEN = 15;
 	
 
 

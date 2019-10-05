@@ -33,11 +33,15 @@ td {
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>More details of leave</title>
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+	<a href="LeavelistTab.jsp">
+		<button type="button" class="btn btn-success badge-pill"
+			style="position: fixed; left: 25px; top: 70px; width: 150px;">Back</button>
+	</a>
 	<div class="container mt-3">
 		<div align="center">
 			<h2 style="text-align: center;">Request leaves</h2>
@@ -50,7 +54,7 @@ td {
 						class="form-control" type="text" readonly name="Name"
 						value="<%=leave.getName()%>" /></td>
 
-					<td><label>Posssion : </label> <input class="form-control"
+					<td><label>Posion : </label> <input class="form-control"
 						type="text" readonly name="Posssion"
 						value="<%=leave.getPossion()%>" /></td>
 				</tr>
@@ -80,12 +84,12 @@ td {
 				</tr>
 				<tr>
 					<td style="text-align: center;"><form method="POST" action="ApproveLeaveServlet">
-							<input type="hidden" name="ID" value="<%=leave.getEmployeeID() %>">
+							<input type="hidden" name="ID" value="<%=leave.getLeaveID() %>">
 							<button type="submit" class="btn btn-primary badge-pill"
 								style="width: 200px;">Approve</button>
 						</form></td>
 					<td style="text-align: center;"><form method="POST" action="denyRequestLeavesServlet">
-							<input type="hidden" name="ID" value="<%=leave.getEmployeeID() %>">
+							<input type="hidden" name="ID" value="<%=leave.getLeaveID() %>">
 							<button type="submit" class="btn btn-danger badge-pill"
 								style="width: 200px;">deny</button>
 						</form></td>

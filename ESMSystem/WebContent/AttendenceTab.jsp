@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Example</title>
+<title>Attendance</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="front.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,11 +15,21 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css"
+	rel="stylesheet" type="text/css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+
 </head>
-<body>
+<body
+	style="background-color: #111111; color: #ffffff; font-size: 120%; font-family: Georgia, serif; line-height: 1.5;">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<div class="container mt-3">
-		<h2>Attendence</h2>
+		<h2>Attendance</h2>
 		<br>
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs">
@@ -43,6 +53,5 @@
 
 		</div>
 	</div>
-
 </body>
 </html>
