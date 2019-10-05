@@ -61,6 +61,12 @@ public class AttendenceServiceIMPL implements AttendenceService {
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see service.AttendenceService#insertAttendence(model.Attendance) this method is used to insert attendance actualy this method will not add instance to the database 
+	 * it will update the record previsoly added when on inserting in time and out time this will execute and will insert in time,out time, and update state according to 
+	 * given date and 
+	 */
 	@Override
 	public void insertAttendence(Attendance attendance) {
 		// String id = CommonUtil.generateAttendanceIDs(getAttendanceIDs());
@@ -452,7 +458,7 @@ public class AttendenceServiceIMPL implements AttendenceService {
 
 	private void enterAttendanc(String date) {
 		ArrayList<String> list = getEmployeeIDs();
-		System.out.println("enterAttendanc() is called");
+		
 		String quary;
 		for (String ID : list) {
 			String Aid = CommonUtil.generateAttendanceIDs(getAttendanceIDs());

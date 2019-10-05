@@ -14,5 +14,6 @@ public interface AttendenceService {
 	public void StateChange(String id);
 	public ArrayList<Attendancelist> getMonthlyAttendance(int month);
 	public double getSingleMonthlyAttendancePrnt(String ID,int month);
+	public int getPresentDatesOFaMonth(String ID,int month,String state);
 
 }

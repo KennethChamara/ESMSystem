@@ -154,6 +154,12 @@
             delete from leaves where leavesID=?;
         ]]>
 	</query> 
+	
+	<query id="get_dates_of_leaves">
+         <![CDATA[        
+            select startDate,endDate,empEmail  from employees e, leaves l where leavesID=? and e.empID=l.employeeID ;
+        ]]>
+	</query>
 	        
     <query id="select_leave">
          <![CDATA[        
