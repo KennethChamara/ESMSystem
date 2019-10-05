@@ -3,6 +3,14 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="model.Salary"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%
+	//In case, if User session is not set, redirect to Login page.
+	if ((request.getSession(false).getAttribute("Admin") == null)) {
+%>
+<jsp:forward page="index.jsp"></jsp:forward>
+<%
+	}
+%>
 
 <html>
 <head>
@@ -53,8 +61,9 @@
     </div>
     
     
-    <button type="submit" class="btn btn-primary" value="<%=salary.getSalaryID() %>" name="btn">Submit</button>
+    <button type="submit" class="btn btn-primary" value="<%=salary.getSalaryID() %>" name="btn">UPDATE</button>
     <button type="reset" class="btn btn-primary">Reset</button>
+   <a href="salaryList.jsp"> <button type="button" class="btn btn-primary">Back</button></a>
   </form>
   </div>
   

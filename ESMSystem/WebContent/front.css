@@ -88,6 +88,12 @@
   	color:red;
   
   }
+  
+    #msgEmpId{
+  
+  	color:red;
+  
+  }
 
   .menu-button {
 
@@ -143,12 +149,48 @@
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-   
+  max-height: 1000px;
+  float: right;
           
 }
 
+.ritghtCon{
+	width: 80%;
+	display:inline;
+	 padding: 20px;
+	 color:#111111;
+	 max-hight:700px;
+  border-radius: 5px;
+}
+.largeCon{
+	display:flex;
+	
+}
+.vertical-menu {
+  width: 20%;
+  flaot:left;
+  padding-top:20px;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
 .scrollDev{
-	height: 12px;
+	height: 500px;
      overflow-y: scroll;
 	
 }
@@ -191,6 +233,16 @@ table {
    
 }
 
+.itembtn {
+  background-color: #8080ff;
+  color: white;
+  pading:none;
+  font-size: 16px;
+  border: none;
+  width:100px; 
+  hight:50px;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -210,6 +262,7 @@ table {
   
 }
 
+#date{}
 
 
 .dropdown-content a {

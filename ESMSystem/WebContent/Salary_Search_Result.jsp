@@ -6,7 +6,14 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%
+	//In case, if User session is not set, redirect to Login page.
+	if ((request.getSession(false).getAttribute("Admin") == null)) {
+%>
+<jsp:forward page="index.jsp"></jsp:forward>
+<%
+	}
+%>
 <html lang="en">
 
 <head>
@@ -27,9 +34,10 @@
 	
   <div class="container">
    <jsp:include page="/search_salary.jsp"></jsp:include>
-  <h2>Search Result</h2>           
-  <table class="table table-bordered">
-    <thead>
+   <div class="col-lg-7 lg-7">
+  <h2>Search Result</h2>  </div>         
+  <table class="table table-bordered" style="background-color: #ffffff;">
+    <thead class="thead-dark">
       <tr>
         <th></th>
         <th>Name</th>
@@ -60,7 +68,7 @@
          </form>
          </td>
          <td> <form method="post" action="DeleteSalaryServlet" name="DeleteFrom" onsubmit="return deleteConfrometion()">
-    <button type="submit" name="delete" value="<%=salary.getSalaryID()%>" class="btn btn-danger">Delete</button>
+    <button type="submit" name="delete" value="<%=salary.getSalaryID()%>" class="btn btn-danger badge-pill">Delete</button>
     </form></td>
         
       </tr>
@@ -73,7 +81,7 @@
   		
   	<div class="btnFlex">
   	
-    <button type="button" class="btn btn-primary">Back</button>
+   <a href="salaryList.jsp"> <button type="button" class="btn btn-primary">Back</button></a>
     <button type="button" class="btn btn-primary">Next</button>
     </div>
   	    </div>
@@ -83,6 +91,10 @@
 	</div>
 	</div>
 	</div>
+	<script type="text/javascript">
+	document.getElementById("nvTwo").classList.remove('active');
+	document.getElementById("nvThree").classList.add('active');
+	document.getElementById("nvOne").classList.remove('active');</script>
 	
 
 </body>

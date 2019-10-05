@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import utill.*;
-
-
+import model.EmpOb;
 import model.Salary;
 
 public class SalaryServiceImpl implements IsalaryService {
@@ -156,11 +156,20 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 		// TODO Auto-generated method stub
 		return actionOnSalary(salaryID).get(0);
 	}
+	public EmpOb getEmplloyeeById(String empId) {
+		// TODO Auto-generated method stub
+		return actionOnEmployees(empId).get(0);
+	}
 
 	@Override
 	public ArrayList<Salary> getSalarys() {
 		// TODO Auto-generated method stub
 		return actionOnSalary(null);
+	}
+	
+	public ArrayList<EmpOb> getEmplloyees() {
+		// TODO Auto-generated method stub
+		return actionOnEmployees(null);
 	}
 
 	@Override
@@ -256,6 +265,65 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 			}
 		}
 		
+	}
+	
+	private ArrayList<EmpOb> actionOnEmployees(String empId) {
+
+		ArrayList<EmpOb> salaryList = new ArrayList<EmpOb>();
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+			/*
+			 * Before fetching salary it checks whether salary ID is
+			 * available
+			 */
+			if (empId != null && !empId.isEmpty()) {
+				/*
+				 * Get salary by ID query will be retrieved from
+				 * salaryQuery.xml
+				 */
+				preparedStatement = connection
+						.prepareStatement("select * from employees where empID=?");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, empId);
+			}
+			/*
+			 * If salary ID is not provided for get salary option it display
+			 * all salarys
+			 */
+			else {
+				preparedStatement = connection
+						.prepareStatement("select * from employees");
+			}
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				EmpOb emp = new EmpOb();
+				emp.seteId(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				emp.setEmpName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				emp.setDesignation(resultSet.getString(CommonConstants.COLUMN_INDEX_SIX));
+			
+				
+				salaryList.add(emp);
+			}
+
+		} catch (SQLException | ClassNotFoundException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of
+			 * transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		return salaryList;
 	}
 	
 	private ArrayList<Salary> actionOnSalary(String salaryID) {
@@ -502,7 +570,39 @@ private ArrayList<String> getSalaryIDs(){
 		}
 		return arrayList;
 	}
+	
+	public double calulateSalary(String eid , String designation) {
+		
+		double sal;
+		Calendar cal = Calendar.getInstance();
+		System.out.println(new SimpleDateFormat("MMM").format(cal.getTime()));
 
+		int month = Calendar.getInstance().get(Calendar.MONTH)+1;
+		int attendence;
+		
+		AttendenceServiceIMPL aServiceIMPL = new AttendenceServiceIMPL();
+		attendence =aServiceIMPL.getPresentDatesOFaMonth(eid, month,"present");
+		System.out.println("atandaceeee      "+designation);
+		designation=designation.toLowerCase();
+		
+		
+		switch(designation) {
+		case "manager": 
+		 return	2000*attendence;
+		case "developer": 
+			 return	1200*attendence;
+		case "markating manager": 
+			 return	2000*attendence;
+		 default:
+			 break;
+		}
+		
+		
+		
+		return 0;
+		
+		
+	}
 
 
 }
