@@ -51,6 +51,11 @@
 						
 						 <div class="dropdown">
  						 <button class="dropbtn">Profiles</button>
+ 						 <div class="dropdown-content">
+						 <a href="employees.jsp">Add Employees</a>
+  						  <a href="Listemployers.jsp">List Employees</a>
+  						
+						  </div>
   						
 						</div>
 						
