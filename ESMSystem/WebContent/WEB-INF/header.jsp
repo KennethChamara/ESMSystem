@@ -41,7 +41,7 @@
   						  <a href="salaryTab.jsp">Salary Details</a>
   						 <a href="AttendenceTab.jsp">Attendance</a>
   						 <a href="leave.jsp">Leave</a>
-  						 <a href="addBonuse.jsp">Benefits</a>
+  						 <a href="benefits.jsp">Benefits</a>
 						  </div>
 						</div>
                          

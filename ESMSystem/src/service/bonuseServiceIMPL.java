@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +27,54 @@ public class bonuseServiceIMPL implements bonuseService {
 	private static Connection connection;
 
 	private PreparedStatement preparedStatement;
+
+	private static Statement statement;
+
+	static {
+		// create table or drop if exist
+		if (createSalaryTable()) {
+
+			System.out.println("bo table is created");
+		} else {
+
+			System.out.println("bo table exists");
+		}
+	}
+
+	/**
+	 * This method initially drop existing Salary table in the database and recreate
+	 * table structure to insert salary entries
+	 * 
+	 * @throws SQLException                 - Thrown when database access error
+	 *                                      occurs or this method is called on a
+	 *                                      closed connection
+	 * @throws ClassNotFoundException       - Thrown when an application tries to
+	 *                                      load in a class through its string name
+	 *                                      using
+	 * @throws SAXException                 - Encapsulate a general SAX error or
+	 *                                      warning
+	 * @throws IOException                  - Exception produced by failed or
+	 *                                      interrupted I/O operations.
+	 * @throws ParserConfigurationException - Indicates a serious configuration
+	 *                                      error
+	 * @throws NullPointerException         - Service is not available
+	 * 
+	 */
+	public static boolean createSalaryTable() {
+
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+			statement = connection.createStatement();
+			
+			statement.executeUpdate("create table if not exists bounce(bid varchar(10),eid varchar(10),type varchar(10),"
+					+ "rate int,amount double, primary key(bid));");
+
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return true;
+	}
 
 	@Override
 	public void addBounce(Bonuse bouns) {
@@ -77,7 +126,8 @@ public class bonuseServiceIMPL implements bonuseService {
 
 		try {
 			connection = DBConnectionUtil.getDBConnection();
-			preparedStatement = connection.prepareStatement(" select * from bounce b, salary s where s.salaryID=b.eid;");
+			preparedStatement = connection
+					.prepareStatement(" select * from bounce b, salary s where s.salaryID=b.eid;");
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -90,7 +140,7 @@ public class bonuseServiceIMPL implements bonuseService {
 				bonuse.setAmount(resultSet.getDouble(CommonConstants.COLUMN_INDEX_FIVE));
 				bonuse.setEname(resultSet.getString(8));
 				bonuse.setSalary(resultSet.getDouble(11));
-				bonuse.setNetsalary(bonuse.getAmount()+bonuse.getSalary());
+				bonuse.setNetsalary(bonuse.getAmount() + bonuse.getSalary());
 
 				BonuseList.add(bonuse);
 			}
