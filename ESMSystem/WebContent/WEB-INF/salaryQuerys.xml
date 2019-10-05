@@ -69,6 +69,13 @@
         ]]>
 	</query>
 	
+	<query id="search_salary_M">
+         <![CDATA[        
+             select * from salary 
+			 where date like ? and month like ? ESCAPE '!'
+        ]]>
+	</query>
+	
 		<!-- Get salary IDs Query -->
 	<query id="salary_ids">
          <![CDATA[        

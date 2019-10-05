@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 
+
 <title>Salary_Search</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,9 +25,9 @@
 
 
 	<div class="topnav">
-		<a class="active" href="salary.jsp">ADD Salary</a> <a
+		<a id="nvOne" class="active" href="salary.jsp">ADD Salary</a> <a id="nvTwo" 
 			href="salaryList.jsp">Salary Details</a> 
-			<a href="Salary_Search_Result.jsp">Search
+			<a id="nvThree" href="Salary_Search_Result.jsp">Search
 			Details</a>
 		<div class="Search">
 			<form class="form-inline md-form mr-auto mb-4" method="post" action="SearchSalServlet">

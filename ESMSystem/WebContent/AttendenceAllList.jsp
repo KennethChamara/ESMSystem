@@ -124,8 +124,7 @@
 							action="AttendanceView_PDF.jsp">
 							<input type="hidden" name="month" value="<%=month%>"> <input
 								type="hidden" name="ID" value="003ID">
-							<button type="submit" class="btn btn-primary badge-pill"
-								style="width: 100px; margin-bottom: 10px;">
+							<button type="submit" class="btn btn-primary badge-pill" style="width: 100px; margin-bottom: 10px;">
 								<i class="fa fa-download"> </i>Report
 							</button>
 						</form></td>

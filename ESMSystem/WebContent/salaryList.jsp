@@ -7,6 +7,15 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%
+	//In case, if User session is not set, redirect to Login page.
+	if ((request.getSession(false).getAttribute("Admin") == null)) {
+%>
+<jsp:forward page="index.jsp"></jsp:forward>
+<%
+	}
+%>
+
 <html lang="en">
 
 <head>
@@ -27,11 +36,12 @@
 	
   <div class="container">
    <jsp:include page="/search_salary.jsp"></jsp:include>
-  <h2>Employees Salary</h2> 
+   <div class="col-lg-7 lg-7">
+  <h2>Employees Salary</h2> </div>
     
-  <table class="table table-bordered" >
+  <table class="table table-bordered" style="background-color: #ffffff;" >
   
-    <thead>
+    <thead class="thead-dark">
       <tr>
         <th></th>
         <th>Name</th>
@@ -60,8 +70,8 @@
          <button class="btn btn-primary" type="submit"  name="salaryID" value="<%=salary.getSalaryID() %>">Edit</button>
          </form>
          </td>
-         <td> <form method="post" action="DeleteSalaryServlet">
-    <button type="submit" name="delete" value="<%=salary.getSalaryID()%>" class="btn btn-danger">Delete</button>
+         <td> <form method="post" action="DeleteSalaryServlet" name="DeleteFrom" onsubmit="return deleteConfrometion()">
+    <button type="submit" name="delete" value="<%=salary.getSalaryID()%>" class="btn btn-danger badge-pill">Delete</button>
     </form></td>
         
       </tr>
@@ -77,8 +87,30 @@
   		
   	<div class="btnFlex">
   	
-    <button type="button" class="btn btn-primary">Back</button>
-    <button type="button" class="btn btn-primary">Next</button>
+    <div style="float: right; margin-bottom: 10px;">
+					<form method="post" class="form-inline md-form mr-auto mb-4" action="GetMonthlySalaryServlet">
+						<input type="search" class="form-control mr-sm-2" name="year" placeholder="Year"/>	
+						<select class="custom-select border-primary badge-pill" name="month"
+							style="width: 200px" name="month">
+							<option value="">This month</option>
+							<option value="January">January</option>
+							<option value="February">February</option>
+							<option value="March">March</option>
+							<option value="April">April</option>
+							<option value="May">May</option>
+							<option value="June">June</option>
+							<option value="July">July</option>
+							<option value="August">August</option>
+							<option value="September">September</option>
+							<option value="October">October</option>
+							<option value="November">November</option>
+							<option value="December">December</option>
+						</select>
+
+						<button class="btn btn-outline-success badge-pill" type="submit"
+							style="width: 150px">Search</button>
+					</form>
+				</div>
     </div>
   	    </div>
   	    <div class="col-sm-4">
@@ -87,7 +119,12 @@
 	</div>
 	</div>
 	</div>
-	
+	<script type="text/javascript">
+	document.getElementById("nvTwo").classList.add('active');
+
+	document.getElementById("nvThree").classList.remove('active');
+	document.getElementById("nvOne").classList.remove('active');
+	</script>
 
 </body>
 </html>
