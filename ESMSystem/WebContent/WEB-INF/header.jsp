@@ -39,11 +39,17 @@
   								<div class="dropdown-content">
 						 <a href="salary.jsp">Add Salary</a>
   						  <a href="salaryTab.jsp">Salary Details</a>
+
+  						 <a href="AttendenceTab.jsp">Attendance</a>
+  						 <a href="leave.jsp">Leave</a>
+  						 <a href="benefits.jsp">Benefits</a>
+
   						 <a href="AttendenceEnter.jsp">Attendance</a>
   						 <a href="AttendanceView.jsp">View Attendance</a>
   						 <a href="requstingLeavesTab.jsp">Requesting Leave</a>
   						 <a href="LeavelistTab.jsp">Requested Leave</a>
   						 <a href="addBonuse.jsp">Benefits</a>
+
 						  </div>
 						</div>
                          
