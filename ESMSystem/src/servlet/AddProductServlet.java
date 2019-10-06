@@ -80,7 +80,7 @@ public class AddProductServlet extends HttpServlet {
 	
 		
 		
-		SupplierAnalyseService AnalyseService  = new SupplierAnalyseServiceIMPL();//create marksAnalyserviceImpl object to communicate with database
+		SupplierAnalyseService AnalyseService  = new SupplierAnalyseServiceIMPL();
 		AnalyseService.addproductdetails(prodDet);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/supplier.jsp");

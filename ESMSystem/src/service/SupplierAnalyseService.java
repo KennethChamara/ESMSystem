@@ -41,5 +41,8 @@ public interface SupplierAnalyseService {
 	
 	public void deletecommontableproductById(String ID);
 	
+	
+	//public void generatesupplierdetailsforpdf();
+	
 
 }
