@@ -3,6 +3,14 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="model.Salary"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%
+	//In case, if User session is not set, redirect to Login page.
+	if ((request.getSession(false).getAttribute("Admin") == null)) {
+%>
+<jsp:forward page="index.jsp"></jsp:forward>
+<%
+	}
+%>
 
 <html>
 <head>
@@ -27,10 +35,11 @@
 	<div class="container">
 	
   <h2>Add Salary</h2>
-  <form action="UpdateSalaryServlet" method="post">
+  <form action="UpdateSalaryServlet" name="myForm" method="post" onsubmit="return validateForm()">
     <div class="form-group">
       <label for="usr">Employee:</label>
       <input type="text" class="form-control" id="usr" value="<%=salary.getEmpName() %>" name="usr">
+      <p id="msgEmp"></p>
     </div>
     
      <div class="form-group">
@@ -41,17 +50,20 @@
     <div class="form-group">
       <label for="date">Date:</label>
       <input type="text" class="form-control" id="date" value="<%=salary.getDate() %>" name="date">
+   p<p id="msgDate"></p>
     </div>
     
    
     <div class="form-group">
       <label for="amount">Amount:</label>
       <input type="text" class="form-control" id="amount" value="<%=salary.getAmount() %>" name="amount">
+      <p id="msgSal"></p>
     </div>
     
     
-    <button type="submit" class="btn btn-primary" value="<%=salary.getSalaryID() %>" name="btn">Submit</button>
+    <button type="submit" class="btn btn-primary" value="<%=salary.getSalaryID() %>" name="btn">UPDATE</button>
     <button type="reset" class="btn btn-primary">Reset</button>
+   <a href="salaryList.jsp"> <button type="button" class="btn btn-primary">Back</button></a>
   </form>
   </div>
   

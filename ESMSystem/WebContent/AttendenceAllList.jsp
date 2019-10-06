@@ -111,7 +111,6 @@
 					<%
 						AttendenceService sevice = new AttendenceServiceIMPL();
 						ArrayList<Attendancelist> attendancelist = sevice.getMonthlyAttendance(month);
-
 						for (Attendancelist attendance : attendancelist) {
 					%>
 					<tr>
@@ -130,7 +129,6 @@
 								</button>
 							</form></td>
 					</tr>
-
 					<%
 						}
 					%>
