@@ -32,13 +32,7 @@ public class leaveSeviceIMPL implements leaveService {
 
 	static {
 		// create table or drop if exist
-		if (createSalaryTable()) {
-
-			// System.out.println("Leave table is created");
-		} else {
-
-			// System.out.println("Leave table exists");
-		}
+		createSalaryTable();
 	}
 
 	/**
@@ -319,8 +313,6 @@ public class leaveSeviceIMPL implements leaveService {
 	}
 
 	public void DeleteLeave(String id) {
-		SendEmail(id, "Denyed");
-
 		try {
 
 			connection = DBConnectionUtil.getDBConnection();
@@ -349,12 +341,11 @@ public class leaveSeviceIMPL implements leaveService {
 		}
 	}
 
-	private void SendEmail(String id, String state) {
+	public void SendEmail(String id, String state) {
 		MailUtill test = new MailUtill();
 		String message, email, subject;
-
 		try {
-
+			
 			connection = DBConnectionUtil.getDBConnection();
 
 			preparedStatement = connection.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_GET_DATES));
@@ -364,11 +355,10 @@ public class leaveSeviceIMPL implements leaveService {
 
 			resultSet.first();
 
-			message = "Leave request on " + resultSet.getString(CommonConstants.COLUMN_INDEX_ONE) + " is " + state
-					+ "ed";
+			message = "Leave request on " + resultSet.getString(CommonConstants.COLUMN_INDEX_ONE) + " is " + state;
 			subject = "Leave request on " + resultSet.getString(CommonConstants.COLUMN_INDEX_ONE) + " to "
 					+ resultSet.getString(CommonConstants.COLUMN_INDEX_TWO) + " is " + state
-					+ " contact youer manager for futher details.. thank you";
+					+ " contact your manager for futher details.. thank you";
 			email = resultSet.getString(CommonConstants.COLUMN_INDEX_THREE);
 
 			test.SendEmail("avishkashyaman@gmail.com", message, subject);

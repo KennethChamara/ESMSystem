@@ -1,13 +1,17 @@
 package utill;
-
+/*
+ * IT18061512
+ * Weerathunga W.A.A.S
+ * 
+ */
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
 
 public class MailUtill {
 
-	final String senderEmailID = "avishkashyaman@gmail.com";
-	final String senderPassword = "akvisihathara";
+	final String senderEmailID = "avishkatesting@gmail.com";
+	final String senderPassword = "shyam@test1";
 	final String emailSMTPserver = "smtp.gmail.com";
 	final String emailServerPort = "465";
 	String receiverEmailID = null;

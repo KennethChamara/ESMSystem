@@ -44,7 +44,7 @@
 		</div>
 		<form method="POST" action="UpdateLeavesServlet" name="myForm"
 			onsubmit="return validateDate() && validatType() && validatReason()">
-			<div class="form-row" style="margin: 40px 0;">
+			<div class="form-row" style="margin: 30px 0;">
 				<div class="col-lg-2 lg-2"></div>
 				<div class="col-lg-4 lg-4">
 					<div class="form-row">
@@ -55,8 +55,7 @@
 							<div id="datepicker" class="input-group date badge-pill"
 								data-date-format="mm-dd-yyyy">
 								<input class="form-control" type="text" id="fdate" readonly
-									name="formDate" value="<%=leave.getStartDate()%>" /> <span
-									class="input-group-addon"><i
+									name="formDate" /> <span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
 							</div>
 							<div id="formDate_error_message"
@@ -75,8 +74,7 @@
 							<div id="datepicker2" class="input-group date badge-pill"
 								data-date-format="mm-dd-yyyy">
 								<input class="form-control" type="text" id="tdate" readonly
-									name="toDate" value="<%=leave.getEndDate()%>" /> <span
-									class="input-group-addon"><i
+									name="toDate" /> <span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
 							</div>
 							<div id="toDate_error_message"
@@ -96,7 +94,7 @@
 						</div>
 						<div class="col-lg-11 lg-11">
 							<select name="type" id="select" class="custom-select badge-pill">
-								<option><%=leave.getLeaveType()%></option>
+								<option>--Select One--</option>
 								<option>Holy day(personal)</option>
 								<option>Sick leave</option>
 								<option>no pay leave</option>
@@ -117,7 +115,7 @@
 							Leave</label>
 						<div id="Reason_error_message" style="color: red;"></div>
 						<textarea class="form-control form-rounded" id="reason" cols="80"
-							rows="6" placeholder="Write something here..." name="reason"><%=leave.getReason()%></textarea>
+							rows="6" placeholder="Write something here..." name="reason"></textarea>
 					</div>
 				</div>
 				<div class="col-lg-2 lg-2"></div>
@@ -132,24 +130,24 @@
 				</div>
 
 				<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
-				
+
 				<div class="col-lg-2 lg-2"></div>
 			</div>
 		</form>
 		<form method="POST" action="denyRequestLeavesServlet"
-				onsubmit="return confirmf()">
+			onsubmit="return confirmf()">
 			<div class="form-row" style="text-align: center;">
-			
+
 				<div class="col-lg-2 lg-2"></div>
-			<div class="col-lg-8 lg-8">
+				<div class="col-lg-8 lg-8">
 					<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
 					<input type="hidden" name="page" value="user">
 					<button type="submit" class="btn btn-danger badge-pill"
 						style="margin-top: 25px; width: 100%;">Delete</button>
 				</div>
-			<div class="col-lg-2 lg-2"></div>
-	</div>
-	</form>
+				<div class="col-lg-2 lg-2"></div>
+			</div>
+		</form>
 
 	</div>
 	<script type="text/javascript">
@@ -161,7 +159,6 @@
 				.getElementById("toDate_error_message");
 		var formDate_error_message = document
 				.getElementById("formDate_error_message");
-		var day_error_message = document.getElementById("day_error_message");
 
 		function validateDate() {
 			var select = document.forms["myForm"]["day"].value;
@@ -173,31 +170,27 @@
 			today.setHours(0, 0, 0, 0);
 
 			if (varDate < today) {
+				document.getElementById("reason").style.border = "0px";
+				document.getElementById("select").style.border = "0px";
+				toDate_error_message.innerHTML = "";
 				formDate_error_message.innerHTML = "Select upcoming Date or today";
 				document.getElementById("fdate").style.border = "solid 1px red";
 				return false;
 			} else {
+				formDate_error_message.innerHTML = "";
 				document.getElementById("fdate").style.border = "0px";
-				if (select == "one") {
-					if (date == date2) {
-						day_error_message.innerHTML = "";
-						document.getElementById("sday").style.border = "0px";
-						return true;
-					} else {
-						day_error_message.innerHTML = "Select This";
-						document.getElementById("sday").style.border = "solid 2px red";
-						return false;
-					}
+				document.getElementById("select").style.border = "0px";
+				document.getElementById("reason").style.border = "0px";
+
+				if (varDate2 >= varDate) {
+					toDate_error_message.innerHTML = "";
+					document.getElementById("tdate").style.border = "0px";
+					return true;
 				} else {
-					if (varDate2 >= varDate) {
-						toDate_error_message.innerHTML = "";
-						document.getElementById("tdate").style.border = "0px";
-						return true;
-					} else {
-						toDate_error_message.innerHTML = "This should Grater than From Date";
-						document.getElementById("tdate").style.border = "solid 1px red";
-						return false;
-					}
+
+					toDate_error_message.innerHTML = "This should Grater than From Date";
+					document.getElementById("tdate").style.border = "solid 1px red";
+					return false;
 				}
 
 			}
@@ -206,6 +199,9 @@
 		function validatReason() {
 			var type = document.forms["myForm"]["type"].value;
 			if (type == "--Select One--") {
+				toDate_error_message.innerHTML = "";
+				formDate_error_message.innerHTML = "";
+				document.getElementById("reason").style.border = "0px";
 				document.getElementById("select").style.border = "solid 2px red";
 				return false;
 			} else {
@@ -217,6 +213,8 @@
 		function validatType() {
 			var type = document.forms["myForm"]["reason"].value;
 			if (type == "") {
+				formDate_error_message.innerHTML = "";
+				toDate_error_message.innerHTML = "";
 				document.getElementById("reason").style.border = "solid 2px red";
 				return false;
 			} else {
@@ -229,22 +227,14 @@
 			$("#datepicker").datepicker({
 				autoclose : true,
 				todayHighlight : true
-			});
+			}).datepicker('update', new Date());
 		});
 		$(function() {
 			$("#datepicker2").datepicker({
 				autoclose : true,
 				todayHighlight : true
-			});
+			}).datepicker('update', new Date());
 		});
-
-		function confirmf() {
-			if (confirm('Are you sure you want to deny this Requst')) {
-				return true;
-			} else {
-				return false;
-			}
-		}
 	</script>
 </body>
 </html>
