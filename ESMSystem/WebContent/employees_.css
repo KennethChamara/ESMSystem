@@ -1,0 +1,123 @@
+@charset "ISO-8859-1";
+
+ *{
+    margin : 0px;
+    padding : 0px;
+  }
+  body {
+    background-color:#111111;
+    color: #ffffff;
+    font-size: 120%;
+    font-family: Georgia, serif;
+    line-height: 1.5;
+   
+  }
+
+  header {
+    background-color:  #004d1a;
+    padding: 0.5em 1em;
+    font-family: Lato, sans-serif;
+    position: relative;
+  }
+  header a {
+    color: #ff00bf;
+    text-decoration: none;
+  }
+  .logo {
+    font-size: 1.0em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: lighter;
+    color:#ffffff;
+  }
+  .logo:hover,
+  .logo:active {
+    color:#ff00bf;
+  }
+  nav {
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+    margin: -1em -1em 1em -1em;
+  }
+  nav .main-nav {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+  nav .main-nav li {
+    visibility: visible;
+  }
+  nav .main-nav.active {
+    height: auto;
+  }
+  nav .main-nav a {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.5em 1em;
+  }
+  .main-nav li:nth-of-type(1) a {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding-top: 1em;
+  }
+  .main-nav li:nth-of-type(2) a {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .main-nav li:nth-of-type(3) a {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  nav .main-nav a:hover,
+  nav .main-nav a:active {
+    color: #ff00bf;
+   
+  }
+
+  .menu-button {
+
+    display: inline-block;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1em 1em 0.5em 1em;
+  }
+  .menu-button .text {
+    display: none;
+  }
+  .menu-button a,
+  .menu-button a:hover,
+  .menu-button a:active {
+    color: #33331a;
+    font-weight: lighter;
+  }
+  @media all and (min-width: 18em) {
+    .menu-button .text {
+      display: inline;
+    }
+  }
+  @media all and (min-width: 48em) {
+    .menu-button {
+      display: none;
+    }
+    nav .main-nav {
+      height: auto !important;
+      float: right;
+      margin-right: 1em;
+    }
+    .main-nav li {
+      display: inline-block;
+    }
+    .main-nav a {
+      background: transparent !important;
+    }
+  }
+  
+    .main-nav li a {
+      text-align: center;
+    }
+
+    .firstC {
+      margin-left: 300px;
+
+    }
+    
+    
