@@ -35,7 +35,7 @@
 	<div class="container mt-3">
   <br>
    <div class="btn-group">
-			<a href="bonuse.jsp"><button type="button">Bonus</button></a>
+			<a href="bonuse.jsp"><button type="button" >Bonus</button></a>
 			<button>Loan</button>
 			<button>Insurance</button>
 			<button>Promotion</button>

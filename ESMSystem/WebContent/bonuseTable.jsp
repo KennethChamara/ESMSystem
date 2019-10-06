@@ -29,18 +29,34 @@
 <title>Bonus Table</title>
 </head>
 <body>
-
-
+	
+	<script type="text/javascript">
+	function confirmf() {
+    	if (confirm('Do you sure you want to "Delete" this Requst?')) {
+    		return true;
+		} else {
+   			return false;
+		}
+    }
+	
+	function confirmfUpdate() {
+    	if (confirm('Do you sure you want to "Update" this?')) {
+    		return true;
+		} else {
+   			return false;
+		}
+    }
+	</script>
+	
+	
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-
-
 
 	<div class="container mt-3">
 
 
 
-		<div class="col-sm-12" style="background-color: #ffffff; color: #111111;">
-		<!div class="col-md-9 col-sm-9 col-xs9" >
+		<div style="background-color: #ffffff; color: #111111;">
+		
 		
 			<h1 style="text-align: center;">Bonus Table</h1>
 			<div>
@@ -52,6 +68,8 @@
 					</button>
 				</form>
 			</div>
+			<br><br>
+			<div style= "height:440px; overflow-y:scroll;"> 
 			<table class="table" style="background-color: #ffffff;">
 				<thead class="thead-dark">
 					<tr>
@@ -83,12 +101,12 @@
 						<td><%=bonuse.getRate()%>%</td>
 						<td><%=bonuse.getAmount()%></td>
 						<td><%=bonuse.getNetsalary()%></td>
-						<td><form method="post" action="SelectBonusServelet">
+						<td><form method="post" action="SelectBonusServelet" onsubmit="return confirmfUpdate()">
 								<input type="hidden" name="id" value="<%=bonuse.getBid()%>">
 								<button type="submit" class="btn btn-primary">Update</button>
 							</form></td>
 						<td>
-							<form method="post" action="DeleteBonusServlet">
+							<form method="post"  action="DeleteBonusServlet" onsubmit="return confirmf()">
 								<input type="hidden" name="id" value="<%=bonuse.getBid()%>">
 								<button type="submit" class="btn btn-danger">Delete</button>
 							</form>
@@ -99,6 +117,7 @@
 					%>
 				
 			</table>
+			</div>
 
 			<a href="bonuse.jsp">
 				<button type="button" class="btn btn-primary"

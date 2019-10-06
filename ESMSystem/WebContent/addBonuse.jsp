@@ -18,17 +18,30 @@
 <script type="text/javascript">
   	function validate(){
   		var num=document.myform.brate.value;
+  		var empID=document.myform.eId.value;
+  		var type=document.myform.bType.value;
   		
-  		if(num==""||num==null){
-  			document.getElementById("numloc").innerHTML="Plese enter the bonus rate";
-  			return false;
-  		}
-  		else{
-  			if(isNaN(num)){
-  	  			document.getElementById("numloc").innerHTML="Enter numeric value only";
+  		if(empID==""||empID==null){
+  			document.getElementById("empId").innerHTML="Plese enter the employee ID";
+	  			return false;
+  		}else{
+  			if(num==""||num==null){
+  	  			document.getElementById("numloc").innerHTML="Plese enter the bonus rate";
   	  			return false;
-  	  		}else{
-  	  			return true;
+  	  		}
+  	  		else{
+  	  			if(isNaN(num)){
+  	  	  			document.getElementById("numloc").innerHTML="Enter numeric value only";
+  	  	  			return false;
+  	  	  		}else{
+  	  	  		if(type==""||type==null){
+  	    			document.getElementById("type").innerHTML="Plese enter the bonus type";
+  	  	  			return false;
+  	    		}else{
+  	    			return true;
+  	    		}
+  	  	  			
+  	  	  		}
   	  		}
   		}
   		
@@ -69,7 +82,8 @@
 
 				<label for="usr">Employee ID:</label> <input type="text"
 					class="form-control" id="eId" placeholder="Enter Employee ID"
-					name="eId" required>
+					name="eId" >
+					<span id="empId" style="color:red"></span>
 
 			</div>
 
@@ -83,8 +97,8 @@
 			<div class="form-group">
 				<label for="usr">Bonus Type :</label> <input type="text	"
 					class="form-control" id="bType" placeholder="Enter Bonuse Type"
-					name="bType" required>
-					
+					name="bType" >
+					<span id="type" style="color:red"></span>
 					
 			</div>
 			
