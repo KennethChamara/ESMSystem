@@ -119,9 +119,9 @@
 	</div>
 	</div>
 	</div>
+	
 	<script type="text/javascript">
 	document.getElementById("nvTwo").classList.add('active');
-
 	document.getElementById("nvThree").classList.remove('active');
 	document.getElementById("nvOne").classList.remove('active');
 	</script>
