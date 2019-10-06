@@ -29,13 +29,19 @@ function Validate(){
 	}else if(qnt==""||qnt==null){
 		document.getElementById("qntt").innerHTML="*Plese enter the Quentitye";
 		return false;
-	}else if(manufacture==""||manufacture==null){
+	}else if(isNaN(qnt)){
+  			document.getElementById("qntt").innerHTML="Enter numeric value only";
+  			return false;
+  	}else if(manufacture==""||manufacture==null){
 		document.getElementById("manu").innerHTML="*Plese enter the Manufacture";
 		return false;
 	}else if(price==""||price==null){
 		document.getElementById("pri").innerHTML="*Plese enter the Price";
 		return false;
-	}else{
+	}else if(isNaN(price)){
+  			document.getElementById("pri").innerHTML="Enter numeric value only";
+  			return false;
+  	}else{
 		return true;
 	}	
 }
