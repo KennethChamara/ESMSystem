@@ -3,6 +3,8 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,17 +48,21 @@ response.setContentType("text/html");
 		String iName = request.getParameter("incName");
 		String iType = request.getParameter("type");
 		double iAmount = Double.parseDouble(request.getParameter("amount"));
+		String iDate = request.getParameter("date");
+		String iMonth = request.getParameter("date");
 		
 		Income i = new Income();
 		
 		i.setIname(iName);
 		i.setItype(iType);
 		i.setIamount(iAmount);
+		i.setIdate(iDate);
+		i.setImonth(iMonth);
 		
 		int status = IncomeService.save(i);
 		
 		if(status>0) {
-			request.getRequestDispatcher("NewFile.jsp").include(request, response);
+			request.getRequestDispatcher("income.jsp").include(request, response);
 		}else {
 			out.println("Sorry! unable to save record");
 		}

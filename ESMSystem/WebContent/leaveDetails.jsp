@@ -33,7 +33,7 @@ td {
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>More details of leave</title>
 </head>
 <body>
 
@@ -50,7 +50,7 @@ td {
 						class="form-control" type="text" readonly name="Name"
 						value="<%=leave.getName()%>" /></td>
 
-					<td><label>Posssion : </label> <input class="form-control"
+					<td><label>Posion : </label> <input class="form-control"
 						type="text" readonly name="Posssion"
 						value="<%=leave.getPossion()%>" /></td>
 				</tr>
@@ -59,8 +59,7 @@ td {
 						type="text" readonly name="formDate"
 						value="<%=leave.getStartDate()%>" /></td>
 					<td><label>To : </label> <input class="form-control"
-						type="text" readonly name="toDate"
-						value="<%=leave.getEndDate()%>" /></td>
+						type="text" readonly name="toDate" value="<%=leave.getEndDate()%>" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><label>Leave Type : </label> <input
@@ -79,13 +78,16 @@ td {
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: center;"><form method="POST" action="ApproveLeaveServlet">
-							<input type="hidden" name="ID" value="<%=leave.getEmployeeID() %>">
+					<td style="text-align: center;"><form method="POST"
+							action="ApproveLeaveServlet">
+							<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
 							<button type="submit" class="btn btn-primary badge-pill"
 								style="width: 200px;">Approve</button>
 						</form></td>
-					<td style="text-align: center;"><form method="POST" action="denyRequestLeavesServlet">
-							<input type="hidden" name="ID" value="<%=leave.getEmployeeID() %>">
+					<td style="text-align: center;"><form method="POST"
+							onsubmit="return confirmf()" action="denyRequestLeavesServlet">
+							<input type="hidden" name="page" value="admin"> <input
+								type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
 							<button type="submit" class="btn btn-danger badge-pill"
 								style="width: 200px;">deny</button>
 						</form></td>
@@ -93,5 +95,14 @@ td {
 			</table>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function confirmf() {
+			if (confirm('Are you sure you want to deny this Requst')) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

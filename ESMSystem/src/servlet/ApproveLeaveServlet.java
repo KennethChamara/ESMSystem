@@ -42,7 +42,7 @@ public class ApproveLeaveServlet extends HttpServlet {
 		leaveService addleave = new leaveSeviceIMPL();
 		addleave.ApproveLeave(request.getParameter("ID"));
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/requestLeaveList.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LeavelistTab.jsp");
 		dispatcher.forward(request, response);
 	}
 

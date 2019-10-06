@@ -62,7 +62,8 @@ public class UpdateSupplierServlet extends HttpServlet {
 		service.updateSupplierdetails(dls);//calling  in  class
 
 		request.setAttribute("mks", dls);//setattribute to send Listmarks.jsp 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/Listsupplier.jsp");
+		//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/Listsupplier.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Listsupplier.jsp");
 		dispatcher.forward(request, response);
 	}
 

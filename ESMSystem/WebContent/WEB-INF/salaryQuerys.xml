@@ -5,7 +5,7 @@
 	<!-- Create table salary Query -->
 	<query id="create_salary_table">
         <![CDATA[
-            CREATE TABLE salary(
+            CREATE TABLE IF NOT EXISTS salary(
 				salaryID varchar(10) not null,
 				employeeID varchar(10) not null,
 				employeeName varchar(20),
@@ -42,7 +42,7 @@
 	<!-- Select all salary -->
 	<query id="all_salarys">
          <![CDATA[        
-            select * from salary
+            select * from salary ORDER BY date, month
         ]]>
 	</query>
 
@@ -50,6 +50,13 @@
 	<query id="remove_salary">
          <![CDATA[        
             delete from salary where salary.salaryID = ?
+        ]]>
+	</query>
+	
+	<query id="search_salary">
+         <![CDATA[        
+             select * from salary 
+			 where employeeName like ? or month like ? or salaryID like ? or employeeID like ? ESCAPE '!'
         ]]>
 	</query>
 	
@@ -62,6 +69,13 @@
         ]]>
 	</query>
 	
+	<query id="search_salary_M">
+         <![CDATA[        
+             select * from salary 
+			 where date like ? and month like ? ESCAPE '!'
+        ]]>
+	</query>
+	
 		<!-- Get salary IDs Query -->
 	<query id="salary_ids">
          <![CDATA[        
@@ -69,9 +83,11 @@
         ]]>
 	</query>
 	
+	<!-- ============================================================================================================================ -->
+	
 	<query id="create_leaves">
          <![CDATA[        
-           	create table leaves(
+           	create table IF NOT EXISTS leaves(
            	 leavesID varchar(10),
            	 employeeID varchar(10),
            	 noOfDate int,
@@ -81,7 +97,7 @@
            	 reason varchar(300),
            	 sate varchar(8) default 'pendding',
            	 constraint primary key (leavesID),
-           	 constraint foreign key(employeeID) references employee(Eid)
+           	 constraint foreign key(employeeID) references employees(empID)
            	);
            	
         ]]>
@@ -98,16 +114,32 @@
             INSERT INTO leaves(leavesID,employeeID,noOfDate,startDate,endDate,type,reason) values(?,?,?,?,?,?,?);
         ]]>
     </query>
-       
-    <query id="get_leaves">
+    <query id="update_requested_leaves">
          <![CDATA[        
-            select * from employee e, leaves l where sate='pendding' and e.Eid=l.employeeID;
+            update leaves set noOfDate=?, startDate = ?, endDate = ?,type=?,reason=?where leavesID = ?;
+        ]]>
+    </query>
+       
+    <query id="get_requested_leaves">
+         <![CDATA[        
+            select * from employees e, leaves l where sate='pendding' and e.empID=l.employeeID order by startDate desc;
+        ]]>
+    </query>
+    <query id="get_requested_leaves_ofAemp">
+         <![CDATA[        
+            select * from leaves where sate='pendding' and employeeID=?;
+        ]]>
+    </query>
+    
+    <query id="get_approved_leaves">
+         <![CDATA[        
+            select * from employees e, leaves l where sate='approved' and e.empID=l.employeeID and startDate >= Date(now()) order by startDate desc;
         ]]>
     </query>
     
     <query id="approve_leave">
          <![CDATA[        
-            update leaves set sate ='approved' where employeeID=?;
+            update leaves set sate ='approved' where leavesID=?;
         ]]>
     </query> 
     
@@ -115,18 +147,111 @@
          <![CDATA[        
             select leavesID from leaves;
         ]]>
-    </query> 
+    </query>  
     
     <query id="delete_leave">
          <![CDATA[        
-            delete from leaves where employeeID=?;
+            delete from leaves where leavesID=?;
         ]]>
 	</query> 
+	
+	<query id="get_dates_of_leaves">
+         <![CDATA[        
+            select startDate,endDate,empEmail  from employees e, leaves l where leavesID=? and e.empID=l.employeeID ;
+        ]]>
+	</query>
 	        
     <query id="select_leave">
          <![CDATA[        
-            select * from employee e, leaves l where e.Eid=l.employeeID and employeeID=?;
+            select * from employees e, leaves l where e.empID=l.employeeID and leavesID=?;
         ]]>
 	</query>
-
+	
+	<!-- ============================================================================================================================ -->
+	<query id="create_attendance">
+         <![CDATA[        
+            create table IF NOT EXISTS attendance(
+            	A_ID varchar(10),
+            	E_ID varchar(10),
+            	state varchar(10) default 'absent',
+            	intime varchar(10),
+            	outTime varchar(10),
+            	_date date,
+            	constraint primary key (A_ID)
+            );
+        ]]>
+    </query> 
+    
+    <query id="drop_attendance">
+         <![CDATA[        
+           	DROP TABLE IF EXISTS attendance;
+        ]]>
+    </query>
+    
+    
+    <query id="get_attendance_ids">
+         <![CDATA[        
+           	select A_ID from attendance;
+        ]]>
+    </query>
+    
+	<query id="employee_ids">
+         <![CDATA[        
+            select empID from employees;
+        ]]>
+    </query> isAttendanceEntered
+    
+    <query id="getAll_attendance">
+         <![CDATA[        
+            select * from attendance where _date=?;
+        ]]>
+    </query>
+    
+    <query id="insert_attendance">
+         <![CDATA[        
+            update attendance set state='present',intime=?,outTime=? where E_ID=? and _date=?;
+        ]]>
+    </query>
+    
+	<query id="state_change">
+         <![CDATA[        
+            update attendance set state='absent',intime=null,outTime=null where A_ID=?;
+        ]]>
+    </query>
+    
+    <query id="getSingleMonthlyAttendance">
+         <![CDATA[        
+            select _date,intime,outTime,state from attendance where DATE_FORMAT(_date, \"%m\")=? and E_ID=? order by _date;
+        ]]>
+    </query>
+    
+    <query id="getMonthlyAttendance">
+         <![CDATA[        
+            select E_ID,empName,empDesignation,A_ID FROM attendance a,employees e where E_ID=? and a.E_ID=e.empID;
+        ]]>
+    </query>
+    
+    <query id="getPresentDatesOFaMonth">
+         <![CDATA[        
+            select count(A_ID) as number FROM attendance a,employees e where DATE_FORMAT(_date, \"%m\")=? and E_ID=? and a.E_ID=e.empID and state=?;
+        ]]>
+    </query>
+    
+    <query id="enterAttendancOne">
+         <![CDATA[        
+            insert into attendance(A_ID,E_ID,state,_date) values(?,?,'leave',?);
+        ]]>
+    </query>
+    
+    <query id="enterAttendancTwo">
+         <![CDATA[        
+            insert into attendance(A_ID,E_ID,_date) values(?,?,?);
+        ]]>
+    </query>
+    
+    <query id="onleave">
+         <![CDATA[        
+            select leavesID from leaves where startDate  >= ? and endDate <= ? and employeeID =?;
+        ]]>
+    </query>
 </Querys>

@@ -72,6 +72,28 @@
     color: #ff00bf;
    
   }
+  
+  #msgEmp{
+  	
+  	color:red;
+  
+  }
+   #msgSal{
+  	
+  	color:red;
+  
+  }
+   #msgDate{
+  
+  	color:red;
+  
+  }
+  
+    #msgEmpId{
+  
+  	color:red;
+  
+  }
 
   .menu-button {
 
@@ -127,6 +149,70 @@
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  max-height: 1000px;
+  float: right;
+          
+}
+
+.ritghtCon{
+	width: 80%;
+	display:inline;
+	 padding: 20px;
+	 color:#111111;
+	 max-hight:700px;
+  border-radius: 5px;
+}
+.largeCon{
+	display:flex;
+	
+}
+.vertical-menu {
+  width: 20%;
+  flaot:left;
+  padding-top:20px;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.scrollDev{
+	height: 500px;
+     overflow-y: scroll;
+	
+}
+
+table ,tr td{
+    border:1px solid red
+}
+tbody {
+    display:block;
+    height:300px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+thead {
+    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+}
+table {
+    width:400px;
 }
 
 .btnFlex{
@@ -138,8 +224,6 @@
 
 
 
-
-
 .dropbtn {
   background-color: #004d1a;
   color: white;
@@ -147,6 +231,16 @@
   font-size: 16px;
   border: none;
    
+}
+
+.itembtn {
+  background-color: #8080ff;
+  color: white;
+  pading:none;
+  font-size: 16px;
+  border: none;
+  width:100px; 
+  hight:50px;
 }
 
 .dropdown {
@@ -167,6 +261,9 @@
    
   
 }
+
+#date{}
+
 
 .dropdown-content a {
   color: black;

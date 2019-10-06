@@ -35,7 +35,7 @@ public class IncomeDeleteServlet extends HttpServlet {
 		IncomeService.delete(id);
 		
 		
-		request.getRequestDispatcher("NewFile.jsp").include(request, response);
+		request.getRequestDispatcher("income.jsp").include(request, response);
 	}
 
 	/**

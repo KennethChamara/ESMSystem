@@ -1,0 +1,31 @@
+@charset "ISO-8859-1";
+
+.tableFixHead{
+	overflow-y: scroll;
+	width: 800px;
+	height: 350px;
+}
+
+.tableFixHead thead th {
+	position: sticky;
+	top: 0;
+}
+
+table{
+	border-collapse: collapse;
+	width: 100%;
+	overflow-x: scroll;
+}
+
+.th, .td {
+	padding: 8px 16px;
+}
+
+.th{
+	background:#eee;
+}
+
+.tb{
+	overflow-y:scroll;
+	overflow-x:hidden;
+}

@@ -1,4 +1,5 @@
 <%@page import="model.Income" %>
+<%@page import="model.IncomeCalc" %>
 <%@page import="service.IncomeService" %>
 <%@page import="java.util.*" %>
 
@@ -7,76 +8,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="front.css">
-  
-  <link rel="stylesheet" href="/ITP_Final_Project/income.css" type="text/css">
-  
-<title>Calculate Income</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+	
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">	
+	
+	<!-- Isolated Version of Bootstrap -->
+		<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+	
+	<!--  jQuery -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	
+
+	<!-- Bootstrap Date-Picker Plugin -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+	<link rel="stylesheet" href="front.css">		
+	<link rel="stylesheet" href="income.css">
+
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<br/>
-	<div class="container">
+	<div class="container" style="height:525px">
 		<div class="row">
-			<form action="NewFile.jsp" align="center">
-				<h2 align="center">Total Incomes</h2><br/>
+			<div class="col-md-7 col-sm-7 col-xs-7">
+			
+				<h4 align="center">Incomes Calculated Monthly by Category</h4><hr/>
+				
+				<div class="table-responsive">
+				<div class="tableFixHead" style="width:600px">
+					
+					<table  class="table" id="table1">
+					<thead class="th">	
+						<tr>
+							<th>Income Categories</th>
+							<th>Month</th>
+							<th>Year</th>
+							<th>Total Incomes</th>
+						</tr>
+					</thead>
+					<tbody class="tb">
 						<%
-							double total=0;
-							double ptotal=0;
-							double etotal=0;
-							double stotal=0;
-							String p = "Project Income";
-							String e = "e-Shop Income";
-							String s = "Social Media Income";
-							List<Income> list=IncomeService.getAllIncomes();
-							
-										for(Income inc : list){
-											total=total+inc.getIamount();
-										}
-										for(Income i:list){
-											String type = i.getItype();
-											if(type.equalsIgnoreCase(p)){
-												double val=i.getIamount();
-												ptotal=ptotal+val;
-											}
-											else if(type.equalsIgnoreCase(e)){
-												double val=i.getIamount();
-												etotal=etotal+val;
-											}else if(type.equalsIgnoreCase(s)){
-												double val=i.getIamount();
-												stotal=stotal+val;
-											}else{
-												return;
-											}
-										}
-						%> 
-						
-					<div>
-						<table class="table">
-							<tr>
-								<th><h3>Project Income</h3></th>
-								<th><h3>Social Media Income</h3></th>
-								<th><h3>e-Shop Income</h3></th>
-								<th><h3>Total Income</h3></th>
-							</tr>
-							<tr>
-								<th><h4><%= ptotal%></h4></th>
-								<th><h4><%= stotal%></h4></th>
-								<th><h4><%= etotal%></h4></th>
-								<th><h4><%= total%></h4></th>
-							</tr>
-						</table>
+							List<IncomeCalc> list=IncomeService.getOrderdIncomes();
+							for(IncomeCalc i : list){
+								String value = i.getMonth();
+								String found = i.findMonth(value);
+						%>
+						<tr>
+					         <td class="td"><%= i.getType() %></td>
+					         <td class="td"><%= found %></td>
+					         <td class="td"><%= i.getYear() %></td>
+					         <td class="td"><%= i.getTotal() %></td>
+					     </tr>
+					       <% } %>	
+					</tbody>
+			</table>
+					
+				</div>
+			</div><br/>
+
+				<form action="totalIncomePDF.jsp">
+						<button type="submit" class="btn btn-primary">Download PDF</button>
+				</form>
+			
+			</div>
+			<div class="col-md-5 col-sm-5 col-xs-5">
+				<h4 align="center">Incomes Calculated Monthly</h4><hr/>
+				
+				<div class="table-responsive">
+					<div class="tableFixHead" style="width:400px">
+						<table  class="table" id="table1">
+					<thead>	
+						<tr>
+							<th>Month</th>
+							<th>Year</th>
+							<th>Total Income</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							List<IncomeCalc> list2=IncomeService.getTotalIncomes();
+							for(IncomeCalc i : list2){
+								String value = i.getMonth();
+								String found = i.findMonth(value);
+						%>
+						<tr>
+					         <td class="td"><%= found %></td>
+					         <td class="td"><%= i.getYear() %></td>
+					         <td class="td"><%= i.getTotal() %></td>
+					     </tr>
+					       <% } %>
+					</tbody>
+				</table>
 					</div>
-					<button type="submit" class="btn btn-primary">View Income Summary</button>
-			</form>
+				</div><br/>
+				
+					<form action="totalIncomePDF2.jsp">
+						<button type="submit" class="btn btn-primary">Download PDF</button>
+					</form>
+				
+			</div>
 		</div>
 	</div>
-
 </body>
 </html>

@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import utill.*;
-
-
+import model.EmpOb;
 import model.Salary;
 
 public class SalaryServiceImpl implements IsalaryService {
@@ -77,7 +77,7 @@ public class SalaryServiceImpl implements IsalaryService {
 			statement = connection.createStatement();
 			// Drop table if already exists and as per SQL query available in
 			// Query.xml
-			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE));
+			//statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_DROP_TABLE));
 			// Create new salary table as per SQL query available in
 			// Query.xml
 			statement.executeUpdate(QueryUtil.queryByID(CommonConstants.QUERY_ID_CREATE_TABLE));
@@ -104,10 +104,14 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 					.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_INSERT_SALARY));
 			connection.setAutoCommit(false);
 			
-			SimpleDateFormat sdf= new SimpleDateFormat("dd/mm/y");
+			SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
 			
-			Date date = sdf.parse(salary.getDate());
 			
+		    Date date = sdf.parse(salary.getDate());
+		    String str = sdf2.format(date);
+		    date = sdf2.parse(str);
+		  			
 			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 			
 			//Generate salary IDs
@@ -152,11 +156,20 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 		// TODO Auto-generated method stub
 		return actionOnSalary(salaryID).get(0);
 	}
+	public EmpOb getEmplloyeeById(String empId) {
+		// TODO Auto-generated method stub
+		return actionOnEmployees(empId).get(0);
+	}
 
 	@Override
 	public ArrayList<Salary> getSalarys() {
 		// TODO Auto-generated method stub
 		return actionOnSalary(null);
+	}
+	
+	public ArrayList<EmpOb> getEmplloyees() {
+		// TODO Auto-generated method stub
+		return actionOnEmployees(null);
 	}
 
 	@Override
@@ -254,6 +267,65 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 		
 	}
 	
+	private ArrayList<EmpOb> actionOnEmployees(String empId) {
+
+		ArrayList<EmpOb> salaryList = new ArrayList<EmpOb>();
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+			/*
+			 * Before fetching salary it checks whether salary ID is
+			 * available
+			 */
+			if (empId != null && !empId.isEmpty()) {
+				/*
+				 * Get salary by ID query will be retrieved from
+				 * salaryQuery.xml
+				 */
+				preparedStatement = connection
+						.prepareStatement("select * from employees where empID=?");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, empId);
+			}
+			/*
+			 * If salary ID is not provided for get salary option it display
+			 * all salarys
+			 */
+			else {
+				preparedStatement = connection
+						.prepareStatement("select * from employees");
+			}
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				EmpOb emp = new EmpOb();
+				emp.seteId(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				emp.setEmpName(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				emp.setDesignation(resultSet.getString(CommonConstants.COLUMN_INDEX_SIX));
+			
+				
+				salaryList.add(emp);
+			}
+
+		} catch (SQLException | ClassNotFoundException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of
+			 * transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		return salaryList;
+	}
+	
 	private ArrayList<Salary> actionOnSalary(String salaryID) {
 
 		ArrayList<Salary> salaryList = new ArrayList<Salary>();
@@ -315,8 +387,154 @@ String salaryID = CommonUtil.generateIDs(getSalaryIDs());
 	}
 	
 	
+	public ArrayList<Salary> searchSalary(String search) {
+		System.out.println(" no error in Search function");
+		ArrayList<Salary> salaryList = new ArrayList<Salary>();
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+			/*
+			 * Before fetching salary it checks whether salary ID is
+			 * available
+			 */
+			if (search != null && !search.isEmpty()) {
+				System.out.println("error in sal impl"+search);
+				search = search
+					    .replace("!", "!!")
+					    .replace("%", "!%")
+					    .replace("_", "!_")
+					    .replace("[", "![");
+				
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_SEARCH_SALARY));
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, "%"+search+"%");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, "%"+search+"%");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_THREE, "%"+search+"%");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_FOUR, "%"+search+"%");
+				
+			}
+			/*
+			 * If salary ID is not provided for get salary option it display
+			 * all salarys
+			 */
+			else {
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_ALL_SALARY));
+			}
+			
+			
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			System.out.println("error in sal impl");
+			while (resultSet.next()) {
+				Salary salary = new Salary();
+				salary.setSalaryID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				salary.setEmpId(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				salary.setEmpName(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
+				salary.setMonth(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
+				salary.setDate(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
+				salary.setAmount(resultSet.getDouble(CommonConstants.COLUMN_INDEX_SIX));
+				salaryList.add(salary);
+			}
+
+		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of
+			 * transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		System.out.println("error in Search function end");
+		return salaryList;
+	}
+	
+	public ArrayList<Salary> searchSalaryMonthly(String year,String month) {
+		System.out.println(" no error in Search function");
+		ArrayList<Salary> salaryList = new ArrayList<Salary>();
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+			/*
+			 * Before fetching salary it checks whether salary ID is
+			 * available
+			 */
+			if (year != null && !year.isEmpty()&&(month != null && !month.isEmpty())) {
+				System.out.println("error in sal impl"+year);
+				year = year
+					    .replace("!", "!!")
+					    .replace("%", "!%")
+					    .replace("_", "!_")
+					    .replace("[", "![");
+				month = month
+					    .replace("!", "!!")
+					    .replace("%", "!%")
+					    .replace("_", "!_")
+					    .replace("[", "![");
+				
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_SEARCH_SALARY_MONTHLY));
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, "%"+year+"%");
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, "%"+month+"%");
+			
+				
+			}
+			/*
+			 * If salary ID is not provided for get salary option it display
+			 * all salarys
+			 */
+			else {
+				preparedStatement = connection
+						.prepareStatement(QueryUtil.queryByID(CommonConstants.QUERY_ID_ALL_SALARY));
+			}
+			
+			
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			System.out.println("error in sal impl");
+			while (resultSet.next()) {
+				Salary salary = new Salary();
+				salary.setSalaryID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				salary.setEmpId(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				salary.setEmpName(resultSet.getString(CommonConstants.COLUMN_INDEX_THREE));
+				salary.setMonth(resultSet.getString(CommonConstants.COLUMN_INDEX_FOUR));
+				salary.setDate(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
+				salary.setAmount(resultSet.getDouble(CommonConstants.COLUMN_INDEX_SIX));
+				salaryList.add(salary);
+			}
+
+		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of
+			 * transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		System.out.println("error in Search function end");
+		return salaryList;
+	}
 	
 	
+
 private ArrayList<String> getSalaryIDs(){
 		
 		ArrayList<String> arrayList = new ArrayList<String>();
@@ -352,5 +570,39 @@ private ArrayList<String> getSalaryIDs(){
 		}
 		return arrayList;
 	}
+	
+	public double calulateSalary(String eid , String designation) {
+		
+		double sal;
+		Calendar cal = Calendar.getInstance();
+		System.out.println(new SimpleDateFormat("MMM").format(cal.getTime()));
+
+		int month = Calendar.getInstance().get(Calendar.MONTH)+1;
+		int attendence;
+		
+		AttendenceServiceIMPL aServiceIMPL = new AttendenceServiceIMPL();
+		attendence =aServiceIMPL.getPresentDatesOFaMonth(eid, month,"present");
+		System.out.println("atandaceeee      "+designation);
+		designation=designation.toLowerCase();
+		
+		
+		switch(designation) {
+		case "manager": 
+		 return	2000*attendence;
+		case "developer": 
+			 return	1200*attendence;
+		case "markating manager": 
+			 return	2000*attendence;
+		 default:
+			 break;
+		}
+		
+		
+		
+		return 0;
+		
+		
+	}
+
 
 }
