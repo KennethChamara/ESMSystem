@@ -207,5 +207,51 @@
         ]]>
     </query>
     
-
+    <query id="insert_attendance">
+         <![CDATA[        
+            update attendance set state='present',intime=?,outTime=? where E_ID=? and _date=?;
+        ]]>
+    </query>
+    
+	<query id="state_change">
+         <![CDATA[        
+            update attendance set state='absent',intime=null,outTime=null where A_ID=?;
+        ]]>
+    </query>
+    
+    <query id="getSingleMonthlyAttendance">
+         <![CDATA[        
+            select _date,intime,outTime,state from attendance where DATE_FORMAT(_date, \"%m\")=? and E_ID=? order by _date;
+        ]]>
+    </query>
+    
+    <query id="getMonthlyAttendance">
+         <![CDATA[        
+            select E_ID,empName,empDesignation,A_ID FROM attendance a,employees e where E_ID=? and a.E_ID=e.empID;
+        ]]>
+    </query>
+    
+    <query id="getPresentDatesOFaMonth">
+         <![CDATA[        
+            select count(A_ID) as number FROM attendance a,employees e where DATE_FORMAT(_date, \"%m\")=? and E_ID=? and a.E_ID=e.empID and state=?;
+        ]]>
+    </query>
+    
+    <query id="enterAttendancOne">
+         <![CDATA[        
+            insert into attendance(A_ID,E_ID,state,_date) values(?,?,'leave',?);
+        ]]>
+    </query>
+    
+    <query id="enterAttendancTwo">
+         <![CDATA[        
+            insert into attendance(A_ID,E_ID,_date) values(?,?,?);
+        ]]>
+    </query>
+    
+    <query id="onleave">
+         <![CDATA[        
+            select leavesID from leaves where startDate  >= ? and endDate <= ? and employeeID =?;
+        ]]>
+    </query>
 </Querys>

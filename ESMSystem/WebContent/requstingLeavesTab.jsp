@@ -35,11 +35,12 @@
 		<div class="tab-content">
 			<div id="home" class="container tab-pane active">
 				<br>
-				<jsp:include page="/leave.jsp"></jsp:include>
+				<jsp:include page="/requestedLeave.jsp"></jsp:include>
+				
 			</div>
 			<div id="menu1" class="container tab-pane fade">
 				<br>
-				<jsp:include page="/requestedLeave.jsp"></jsp:include>
+				<jsp:include page="/leave.jsp"></jsp:include>
 
 			</div>
 

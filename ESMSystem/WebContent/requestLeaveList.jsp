@@ -14,6 +14,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 </head>
 <body>
+<div style="height: 430px; overflow-y: scroll;">
 	<table class="table table-bordered" style="background-color: #ffffff;">
 		<thead class="thead-dark">
 			<tr>
@@ -48,6 +49,7 @@
 				<td>
 					<form method="POST" action="denyRequestLeavesServlet" onsubmit="return confirmf()">
                         <input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
+                        <input type="hidden" name="page" value="admin">
                         <button type="submit" class="btn btn-danger badge-pill">deny</button>
                     </form>
 				</td>
@@ -68,6 +70,7 @@
 		</tbody>
 
 	</table>
+</div>
 <script type="text/javascript">
 	function confirmf() {
     	if (confirm('Are you sure you want to deny this Requst')) {

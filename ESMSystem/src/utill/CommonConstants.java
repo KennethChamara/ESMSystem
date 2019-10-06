@@ -109,6 +109,22 @@ public class CommonConstants {
 	
 	public static final String QUERY_ID_GET_DATES = "get_dates_of_leaves";
 	
+	public static final String QUERY_ID_GET_ATTENDANCE_INSERT = "insert_attendance";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE_STATE_CHANGE = "state_change";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE_SINGLE = "getSingleMonthlyAttendance";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE_MONTHLY_ATTENDANCE = "getMonthlyAttendance";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE_MONTHLY_PRESENT = "getPresentDatesOFaMonth";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE_ENTER_ONE = "enterAttendancOne";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE_ENTER_TWO = "enterAttendancTwo";
+	
+	public static final String QUERY_ID_GET_ATTENDANCE_ON_LEAVE = "onleave";
+	
 	public static final String ATTENDANCE_ID_PREFIX = "A0";
 	
 	

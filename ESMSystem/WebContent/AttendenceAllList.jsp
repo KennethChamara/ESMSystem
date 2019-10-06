@@ -22,7 +22,7 @@
 <body>
 
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	<div class="container mt-3" style="min-height: 660px; ">
+	<div class="container mt-3" style="min-height: 660px;">
 		<%
 			String smonth = (String) request.getAttribute("month");
 
@@ -85,8 +85,7 @@
 							<option value="10">October</option>
 							<option value="11">November</option>
 							<option value="12">December</option>
-						</select>
-
+						</select> <input type="hidden" name="page" value="admin" />
 						<button class="btn btn-outline-success badge-pill" type="submit"
 							style="width: 150px">Search</button>
 					</form>
@@ -95,47 +94,48 @@
 		</div>
 
 
+		<div style="height: 500px; overflow-y: scroll;">
+			<table class="table table-bordered"
+				style="background-color: #ffffff;">
+				<thead class="thead-dark">
+					<tr>
+						<th>Employee ID</th>
+						<th>Employee Name</th>
+						<th>Designation</th>
+						<th>Present</th>
+						<th>Absent</th>
+						<th>Report</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						AttendenceService sevice = new AttendenceServiceIMPL();
+						ArrayList<Attendancelist> attendancelist = sevice.getMonthlyAttendance(month);
+						for (Attendancelist attendance : attendancelist) {
+					%>
+					<tr>
+						<td><%=attendance.getEmployeeID()%></td>
+						<td>Mr.<%=attendance.getEmployeeName()%></td>
+						<td><%=attendance.getEmployeePossion()%></td>
+						<td><%=attendance.getNoOfdate_present()%></td>
+						<td><%=attendance.getNoOfdate_absent()%></td>
+						<td><form target="_blank" method="post"
+								action="AttendanceView_PDF.jsp">
+								<input type="hidden" name="month" value="<%=month%>"> <input
+									type="hidden" name="ID" value="003ID">
+								<button type="submit" class="btn btn-primary badge-pill"
+									style="width: 100px; margin-bottom: 10px;">
+									<i class="fa fa-download"> </i>Report
+								</button>
+							</form></td>
+					</tr>
+					<%
+						}
+					%>
 
-		<table class="table table-bordered" style="background-color: #ffffff;">
-			<thead class="thead-dark">
-				<tr>
-					<th>Employee ID</th>
-					<th>Employee Name</th>
-					<th>Designation</th>
-					<th>Present</th>
-					<th>Absent</th>
-					<th>Report</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%
-					AttendenceService sevice = new AttendenceServiceIMPL();
-					ArrayList<Attendancelist> attendancelist = sevice.getMonthlyAttendance(month);
-
-					for (Attendancelist attendance : attendancelist) {
-				%>
-				<tr>
-					<td><%=attendance.getEmployeeID()%></td>
-					<td>Mr.<%=attendance.getEmployeeName()%></td>
-					<td><%=attendance.getEmployeePossion()%></td>
-					<td><%=attendance.getNoOfdate_present()%></td>
-					<td><%=attendance.getNoOfdate_absent()%></td>
-					<td><form target="_blank" method="post"
-							action="AttendanceView_PDF.jsp">
-							<input type="hidden" name="month" value="<%=month%>"> <input
-								type="hidden" name="ID" value="003ID">
-							<button type="submit" class="btn btn-primary badge-pill" style="width: 100px; margin-bottom: 10px;">
-								<i class="fa fa-download"> </i>Report
-							</button>
-						</form></td>
-				</tr>
-
-				<%
-					}
-				%>
-
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

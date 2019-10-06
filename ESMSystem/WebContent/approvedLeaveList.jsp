@@ -3,7 +3,7 @@
 <%@page import="service.leaveSeviceIMPL"%>
 <%@page import="service.leaveService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div style="height: 430px; overflow-y: scroll;">
 	<div class="table-responsive">
 		<table class="table table-bordered" style="background-color: #ffffff;">
 			<thead class="thead-dark">
@@ -34,7 +35,7 @@
 					<th scope="row"><%=leave.getName()%></th>
 					<td><%=leave.getNoOfDate()%></td>
 					<td><%=leave.getPossion()%></td>
-					
+
 					<td>
 						<form method="POST" action="denyRequestLeavesServlet">
 							<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
@@ -45,6 +46,7 @@
 					<td>
 						<form method="POST" action="selectLeaveRequestServlet">
 							<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
+							<input type="hidden" name="page" value="admin">
 							<button type="submit" class="btn btn-primary btn-sm">
 								<span class="glyphicon glyphicon-plus"></span> More
 							</button>
@@ -58,6 +60,6 @@
 			%>
 		</table>
 	</div>
-
+	</div>
 </body>
 </html>

@@ -148,27 +148,38 @@
 			today.setHours(0, 0, 0, 0);
 
 			if (varDate < today) {
+				document.getElementById("reason").style.border = "0px";
+				document.getElementById("select").style.border = "0px";
+				toDate_error_message.innerHTML = "";
+				day_error_message.innerHTML = "";
 				formDate_error_message.innerHTML = "Select upcoming Date or today";
 				document.getElementById("fdate").style.border = "solid 1px red";
 				return false;
 			} else {
+				formDate_error_message.innerHTML = "";
 				document.getElementById("fdate").style.border = "0px";
+				document.getElementById("select").style.border = "0px";
+				document.getElementById("reason").style.border = "0px";
 				if (select == "one") {
 					if (date == date2) {
 						day_error_message.innerHTML = "";
 						document.getElementById("sday").style.border = "0px";
+						day_error_message.innerHTML = "";
 						return true;
 					} else {
 						day_error_message.innerHTML = "Select This";
-						document.getElementById("sday").style.border = "solid 2px red";
 						return false;
 					}
 				} else {
+					document.getElementById("reason").style.border = "0px";
+					document.getElementById("select").style.border = "0px";
 					if (varDate2 >= varDate) {
 						toDate_error_message.innerHTML = "";
 						document.getElementById("tdate").style.border = "0px";
 						return true;
 					} else {
+						
+						day_error_message.innerHTML = "";
 						toDate_error_message.innerHTML = "This should Grater than From Date";
 						document.getElementById("tdate").style.border = "solid 1px red";
 						return false;
@@ -181,6 +192,10 @@
 		function validatReason() {
 			var type = document.forms["myForm"]["type"].value;
 			if (type == "--Select One--") {
+				day_error_message.innerHTML = "";
+				toDate_error_message.innerHTML = "";
+				formDate_error_message.innerHTML = "";
+				document.getElementById("reason").style.border = "0px";
 				document.getElementById("select").style.border = "solid 2px red";
 				return false;
 			} else {
@@ -192,6 +207,9 @@
 		function validatType() {
 			var type = document.forms["myForm"]["reason"].value;
 			if (type == "") {
+				formDate_error_message.innerHTML = "";
+				toDate_error_message.innerHTML = "";
+				day_error_message.innerHTML = "";
 				document.getElementById("reason").style.border = "solid 2px red";
 				return false;
 			} else {

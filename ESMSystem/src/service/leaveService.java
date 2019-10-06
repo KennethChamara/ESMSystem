@@ -12,5 +12,6 @@ public interface leaveService {
 	public void ApproveLeave(String id);	
 	public void updateLeave(leave leaveOne);
 	public void DeleteLeave(String id);
+	public void SendEmail(String id, String state);
 	public listleave selectLeave(String id);
 }

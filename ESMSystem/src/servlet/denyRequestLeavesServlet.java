@@ -18,19 +18,21 @@ import service.leaveSeviceIMPL;
 @WebServlet("/denyRequestLeavesServlet")
 public class denyRequestLeavesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public denyRequestLeavesServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public denyRequestLeavesServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -39,11 +41,20 @@ public class denyRequestLeavesServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		leaveService addleave = new leaveSeviceIMPL();
-		addleave.DeleteLeave(request.getParameter("ID"));
+		leaveService leave = new leaveSeviceIMPL();
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LeavelistTab.jsp");
-		dispatcher.forward(request, response);
+		if(!request.getParameter("page").equalsIgnoreCase("user"))
+			leave.SendEmail(request.getParameter("ID"), "Denyed");
+		
+		leave.DeleteLeave(request.getParameter("ID"));
+		
+		if(request.getParameter("page").equalsIgnoreCase("user")) {		
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/requstingLeavesTab.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LeavelistTab.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }

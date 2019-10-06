@@ -139,7 +139,7 @@ function validateDate() {
 
 		</form>
 
-		<div style="margin: 15px 0;">
+		<div style="margin: 15px 0; height: 370px; overflow-y: scroll;"> 
 			<table class="table table-bordered" style="background-color: #ffffff;">
 				<thead class="thead-dark">
 					<tr>

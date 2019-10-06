@@ -38,10 +38,6 @@ td {
 <body>
 
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	<a href="LeavelistTab.jsp">
-		<button type="button" class="btn btn-success badge-pill"
-			style="position: fixed; left: 25px; top: 70px; width: 150px;">Back</button>
-	</a>
 	<div class="container mt-3">
 		<div align="center">
 			<h2 style="text-align: center;">Request leaves</h2>
@@ -63,8 +59,7 @@ td {
 						type="text" readonly name="formDate"
 						value="<%=leave.getStartDate()%>" /></td>
 					<td><label>To : </label> <input class="form-control"
-						type="text" readonly name="toDate"
-						value="<%=leave.getEndDate()%>" /></td>
+						type="text" readonly name="toDate" value="<%=leave.getEndDate()%>" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><label>Leave Type : </label> <input
@@ -83,13 +78,16 @@ td {
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: center;"><form method="POST" action="ApproveLeaveServlet">
-							<input type="hidden" name="ID" value="<%=leave.getLeaveID() %>">
+					<td style="text-align: center;"><form method="POST"
+							action="ApproveLeaveServlet">
+							<input type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
 							<button type="submit" class="btn btn-primary badge-pill"
 								style="width: 200px;">Approve</button>
 						</form></td>
-					<td style="text-align: center;"><form method="POST" action="denyRequestLeavesServlet">
-							<input type="hidden" name="ID" value="<%=leave.getLeaveID() %>">
+					<td style="text-align: center;"><form method="POST"
+							onsubmit="return confirmf()" action="denyRequestLeavesServlet">
+							<input type="hidden" name="page" value="admin"> <input
+								type="hidden" name="ID" value="<%=leave.getLeaveID()%>">
 							<button type="submit" class="btn btn-danger badge-pill"
 								style="width: 200px;">deny</button>
 						</form></td>
@@ -97,5 +95,14 @@ td {
 			</table>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function confirmf() {
+			if (confirm('Are you sure you want to deny this Requst')) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>
