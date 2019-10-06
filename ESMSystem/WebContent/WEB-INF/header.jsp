@@ -21,7 +21,8 @@
  						 <button class="dropbtn">Payments</button>
   								<div class="dropdown-content">
 						         <a href="salary.jsp">Salary</a>
-						    <a href="NewFile.jsp">Income</a>
+						    	<a href="NewFile.jsp">Income</a>
+						    	<a href="OtherExpenses.jsp">Other Expenses</a>
 						  </div>
 						</div>
                         

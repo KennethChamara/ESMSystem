@@ -62,14 +62,20 @@
     	table.addCell(c1);
     	table.setHeaderRows(1);
     	
-    	/*
+
+    
+
     	while(it_list.hasNext()) {
     		User_Bean obj_User_bean = new User_Bean();
     		obj_User_bean = it_list.next();
     		
     		table.addCell(obj_User_bean.getBill_type());
     		table.addCell(obj_User_bean.getMonth());
+
+    		table.addCell(obj_User_bean.getDate());
+
     		table.addCell(obj_User_bean.getMonth());
+
     		table.addCell(obj_User_bean.getAmount());
     		tot = tot + Double.parseDouble(obj_User_bean.getAmount());
     		table.addCell(obj_User_bean.getPaidBy());
@@ -91,7 +97,8 @@
     		}
     		
     	}
-    	*/
+
+    	
     	document.add(table);
     	Paragraph p8 = new Paragraph(" ");
     	document.add(p8);
@@ -145,8 +152,9 @@
     	document.add(p7);
     	
     	
-    	//document.add(Image.getInstance("C:\\Users\\RV\\Pictures\\Andro img\\png\\pnnng\\123.png"));
-    	
+
+    	document.add(Image.getInstance("C:\\Users\\RV\\Pictures\\Andro img\\png\\pnnng\\123.png"));
+s
     	document.close();
 	
 %>
