@@ -1,40 +1,16 @@
+<%@page import="common.User_Bean"%>
+<%@page import="CRUD.Edit_values"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Insert Record</title>
+	<title>Edit Record</title>
 	<link rel="stylesheet" type="text/css" href="insert_tab.css">
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-  <script>
-  function IncomeValidate(){
-		var name = document.myForm.paidBy.value;
-		var num = document.myForm.amount.value;
-		
-		if(name==""||name==null){
-			document.getElementById("paidby").innerHTML="*Plese enter the income name";
-			return false;
-		}else{
-			if(num==""||num==null){
-  	  			document.getElementById("amount").innerHTML="*Plese enter the income amount";
-  	  			return false;
-  	  		}
-  	  		else{
-  	  			if(isNaN(num)){
-	  	  			document.getElementById("amount").innerHTML="*Enter numeric value only";
-	  	  			return false;
-	  	  		}else{
-	  	  			return true;
-	  	  		}
-  	  		}
-		}	
-	}
-
-  </script>
   <style>
 body {
   font-family: "Lato", sans-serif;
@@ -81,6 +57,15 @@ body {
 </style>
 </head>
 <body>
+
+	<%
+		String bill_ID = (String)request.getParameter("bill_ID");
+		
+		Edit_values obj_Edit_values = new Edit_values();
+		User_Bean obj_User_Bean = obj_Edit_values.get_values_of_user(bill_ID);
+	
+	
+	%>
 		<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
 		<span style="float: left; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;  Other Expenses</span>
@@ -103,7 +88,11 @@ body {
 		</script>
 		<div id="Paris" class="tabcontent">
 		<div>
-			<form name ="myForm" method="post" onsubmit="return IncomeValidate()"  action="Controller/insert_controller.jsp" >
+			<form method="post" action="Controller/edit_controller.jsp" >
+				<div class="input-group">
+					<label>ID</label>
+					<input type="text" name="bill_ID" value="<%=obj_User_Bean.getBill_ID() %>" required>
+				</div>
 				<div class="input-group">
 					<label for="sel1">Select Bill Type</label>
 					    <select style="border-radius: 5px; border: 1px solid gray; height: 45px; width: 97%; padding: 5px 10px; font-size: 16px;" class="form-control" id="sel1" name="bill_type">
@@ -134,20 +123,18 @@ body {
 				</div>
 				<div class="input-group">
 					<label>Date</label>
-					<input type="date" name="date" value="">
+					<input type="date" name="date" value="<%=obj_User_Bean.getDate()%>">
 				</div>
 				<div class="input-group">
 					<label>Amount</label>
-					<input type="text" name="amount" value="">
-					<span id="amount"></span>
+					<input type="text" name="amount" value="<%=obj_User_Bean.getAmount() %>" required>
 				</div>
 				<div class="input-group">
 					<label>Paid By</label>
-					<input type="text" name="paidBy" value="">
-					<span id="paidby"></span>
+					<input type="text" name="paidBy" value="<%=obj_User_Bean.getPaidBy() %>" required>
 				</div>
 				<div class="input-group">
-					<button class="btn" type="submit" name="save" >Save</button>
+					<button class="btn" type="submit" name="save" >Edit</button>
 				</div>
 			</form>
 		</div>		

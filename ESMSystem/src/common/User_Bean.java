@@ -2,13 +2,25 @@ package common;
 
 public class User_Bean {
 	
+	private String bill_ID;
 	private String bill_type;
 	private String month;
 	private String date;
 	private String amount;
 	private String paidBy;
+	public String electricity = "Electricity"; 
+	public String rental = "Rental";
+	public String water = "Water";
+	public String internet = "Internet";
+	public String other = "Other";
 	
 	
+	public String getBill_ID() {
+		return bill_ID;
+	}
+	public void setBill_ID(String bill_ID) {
+		this.bill_ID = bill_ID;
+	}
 	public String getBill_type() {
 		return bill_type;
 	}
@@ -39,6 +51,7 @@ public class User_Bean {
 	public void setPaidBy(String paidBy) {
 		this.paidBy = paidBy;
 	}
+
 	
 	
 

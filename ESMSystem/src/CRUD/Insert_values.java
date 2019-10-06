@@ -28,7 +28,10 @@ public class Insert_values {
 		ps.executeUpdate();
 		
 		} catch (Exception e) {
+			System.out.println("some error in insert values");
 			System.err.println(e);
+			
+			
 		}
 	}
 

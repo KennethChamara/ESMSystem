@@ -18,11 +18,14 @@ public class DB_Connection {
 		try {
 			
 		
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/expenses","root","ravinduc3303");
 		
 	} catch (Exception e) {
+		System.out.println("some erro in DB connection");
 		System.out.println(e);
+		
+	
 	}
 		return connection;
 		

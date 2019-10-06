@@ -1,3 +1,6 @@
+<%@page import="CRUD.Delete_values"%>
+<%@page import="CRUD.Edit_values"%>
+<%@page import="common.User_Bean"%>
 <%@page import="CRUD.Insert_values"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -10,15 +13,10 @@
 <body>
 
 <%
-	String bill_type = request.getParameter("bill_type");
-	String month = request.getParameter("month");
-	String date = request.getParameter("date");
-	String amount = request.getParameter("amount");
-	String paidBy = request.getParameter("paidBy");
+	String bill_ID = request.getParameter("bill_ID");
 	
-	Insert_values obj_insert = new Insert_values();
-	obj_insert.insert_values(bill_type,month,date,amount,paidBy);
-
+	Delete_values obj_Delete_values = new Delete_values();
+	obj_Delete_values.delete_value(bill_ID);
 
 %>
 <script type="text/javascript">

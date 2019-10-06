@@ -13,6 +13,23 @@
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   		<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<script>
+	function confirmf() {
+    	if (confirm('Do you want to Delete this record?')) {
+    		return true;
+		} else {
+   			return false;
+		}
+    }
+	
+	function editConfirm() {
+    	if (confirm('Do you want to Update this record?')) {
+    		return true;
+		} else {
+   			return false;
+		}
+    }
+</script>
   <style>
 body {
   font-family: "Lato", sans-serif;
@@ -106,20 +123,20 @@ body {
 					User_Bean obj_User_Bean = new User_Bean();
 					obj_User_Bean = it_list.next();
 					
-					if(obj_User_Bean.getBill_type()=="Rental"){
+					if(obj_User_Bean.getBill_type().equals(obj_User_Bean.rental)){
 						
 				
 				%>
 			
 				<tr>
-						<td><%obj_User_Bean.getBill_type(); %></td>
-						<td><%obj_User_Bean.getMonth(); %></td>
-						<td><%obj_User_Bean.getDate(); %></td>
-						<td><%obj_User_Bean.getAmount(); %></td>
-						<td><%obj_User_Bean.getPaidBy(); %></td>
+						<td><%=obj_User_Bean.getBill_type() %></td>
+						<td><%=obj_User_Bean.getMonth() %></td>
+						<td><%=obj_User_Bean.getDate() %></td>
+						<td><%=obj_User_Bean.getAmount() %></td>
+						<td><%=obj_User_Bean.getPaidBy() %></td>
 				<td>
-						<a href="" class="del_btn">Edit</a>
-						<a href="" class="edit_btn">Delete</a>
+						<a onclick="return editConfirm()" href="EditPayment.jsp?bill_ID=<%=obj_User_Bean.getBill_ID() %>" class="edit_btn">Edit</a>
+						<a onclick="return confirmf()" href="Controller/delete_controller.jsp?bill_ID=<%=obj_User_Bean.getBill_ID() %>" class="del_btn">Delete</a>
 					</td>
 				</tr>
 				<%}} %>

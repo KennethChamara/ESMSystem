@@ -1,3 +1,5 @@
+<%@page import="CRUD.Edit_values"%>
+<%@page import="common.User_Bean"%>
 <%@page import="CRUD.Insert_values"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -10,14 +12,23 @@
 <body>
 
 <%
+	String bill_ID = request.getParameter("bill_ID");
 	String bill_type = request.getParameter("bill_type");
 	String month = request.getParameter("month");
 	String date = request.getParameter("date");
 	String amount = request.getParameter("amount");
 	String paidBy = request.getParameter("paidBy");
 	
-	Insert_values obj_insert = new Insert_values();
-	obj_insert.insert_values(bill_type,month,date,amount,paidBy);
+	User_Bean obj_User_Bean = new User_Bean();
+	obj_User_Bean.setBill_ID(bill_ID);
+	obj_User_Bean.setBill_type(bill_type);
+	obj_User_Bean.setMonth(month);
+	obj_User_Bean.setDate(date);
+	obj_User_Bean.setAmount(amount);
+	obj_User_Bean.setPaidBy(paidBy);
+	
+	Edit_values obj_Edit_values = new Edit_values();
+	obj_Edit_values.edit_user(obj_User_Bean);
 
 
 %>

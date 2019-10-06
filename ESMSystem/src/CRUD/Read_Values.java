@@ -34,6 +34,7 @@ public class Read_Values {
 			while(rs.next()) {
 				
 				User_Bean obj_User_Bean = new User_Bean();
+				System.out.println(rs.getString("bill_ID"));
 				System.out.println(rs.getString("bill_type"));
 				System.out.println(rs.getString("month"));
 				System.out.println(rs.getString("date"));
@@ -41,17 +42,20 @@ public class Read_Values {
 				System.out.println(rs.getString("paidBy"));
 				System.out.println("");
 				
-				obj_User_Bean.setBill_type("bill_type");
-				obj_User_Bean.setMonth("month");
-				obj_User_Bean.setDate("date");
-				obj_User_Bean.setAmount("amount");
-				obj_User_Bean.setPaidBy("paidBy");
+				obj_User_Bean.setBill_ID(rs.getString("bill_ID"));
+				obj_User_Bean.setBill_type(rs.getString("bill_type"));
+				obj_User_Bean.setMonth(rs.getString("month"));
+				obj_User_Bean.setDate(rs.getString("date"));
+				obj_User_Bean.setAmount(rs.getString("amount"));
+				obj_User_Bean.setPaidBy(rs.getString("paidBy"));
 				
 				list.add(obj_User_Bean);
 			}
 			
 		} catch (Exception e) {
 			System.out.println(e);
+			
+			System.out.println("some erro in Read page");
 		}
 		return list;
 		
