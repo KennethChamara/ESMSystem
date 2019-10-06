@@ -2,7 +2,7 @@ package model;
 
 public class Income {
 	private int incID;
-	private String iName,iType;
+	private String iName,iType,iMonth,iDate;
 	private double iAmount;
 	
 	public int getId() {
@@ -22,6 +22,18 @@ public class Income {
 	}
 	public void setItype(String iType) {
 		this.iType=iType;
+	}
+	public String getImonth() {
+		return iMonth;
+	}
+	public void setImonth(String iMonth) {
+		this.iMonth=iMonth;
+	}
+	public String getIdate() {
+		return iDate;
+	}
+	public void setIdate(String iDate) {
+		this.iDate=iDate;
 	}
 	public double getIamount() {
 		return iAmount;

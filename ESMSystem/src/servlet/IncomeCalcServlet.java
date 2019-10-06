@@ -1,10 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-import java.text.SimpleDateFormat;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +13,16 @@ import model.Income;
 import service.IncomeService;
 
 /**
- * Servlet implementation class IncomeSaveServlet
+ * Servlet implementation class IncomeCalcServlet
  */
-@WebServlet("/IncomeSaveServlet")
-public class IncomeSaveServlet extends HttpServlet {
+@WebServlet("/IncomeCalcServlet")
+public class IncomeCalcServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IncomeSaveServlet() {
+    public IncomeCalcServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,32 +39,14 @@ public class IncomeSaveServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-response.setContentType("text/html");
+		response.setContentType("text/html");
 		
-		PrintWriter out = response.getWriter();
+		Income i = (Income) IncomeService.getOrderdIncomes();
 		
-		String iName = request.getParameter("incName");
-		String iType = request.getParameter("type");
-		double iAmount = Double.parseDouble(request.getParameter("amount"));
-		String iDate = request.getParameter("date");
-		String iMonth = request.getParameter("date");
+		request.setAttribute("i", i);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/incomeCalc.jsp");
 		
-		Income i = new Income();
-		
-		i.setIname(iName);
-		i.setItype(iType);
-		i.setIamount(iAmount);
-		i.setIdate(iDate);
-		i.setImonth(iMonth);
-		
-		int status = IncomeService.save(i);
-		
-		if(status>0) {
-			request.getRequestDispatcher("income.jsp").include(request, response);
-		}else {
-			out.println("Sorry! unable to save record");
-		}
-		out.close();
+		dispatcher.forward(request, response);
 	}
 
 }

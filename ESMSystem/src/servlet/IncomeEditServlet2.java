@@ -40,16 +40,21 @@ public class IncomeEditServlet2 extends HttpServlet {
 		String iName = request.getParameter("name");
 		String iType = request.getParameter("type");
 		double iAmount = Double.parseDouble(request.getParameter("amount"));
+		String iDate = request.getParameter("date");
+		String iMonth = request.getParameter("date");
 		
 		Income i = new Income();
+		
 		i.setID(id);
 		i.setIname(iName);
 		i.setItype(iType);
 		i.setIamount(iAmount);
+		i.setIdate(iDate);
+		i.setImonth(iMonth);
 		
 		int status=IncomeService.update(i);
 		if(status>0) {
-			request.getRequestDispatcher("NewFile.jsp").include(request, response);
+			request.getRequestDispatcher("income.jsp").include(request, response);
 		}else {
 			out.println("Sorry! unable to update record");
 		}

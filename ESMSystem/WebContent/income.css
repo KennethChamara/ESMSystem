@@ -1,37 +1,30 @@
 @charset "ISO-8859-1";
 
-.vl {
- 	border-left: 6px solid green;
-  	height: 500px;
+.tableFixHead{
+	overflow-y: scroll; 
+	width: 800px;
+	height: 350px;
 }
-table {
-  border-collapse: collapse;
-  width: 200px;
-  overflow-x: scroll;
-  display: block;
+.tableFixHead thead th {
+	position: sticky; 
+	top: 0; 
 }
-
-thead {
-  background-color: #EFEFEF;
+table{
+	border-collapse: collapse; 
+	width: 100%; 
+	overflow-x: scroll;
+	
 }
-
-thead,
-tbody {
-  display: block;
+.th, .td{
+	padding: 8px 16px; 
 }
-
-tbody {
+.th{
+	background:#eee; 
+}
+.tb {
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 350px;
 }
-
-td,
-th {
-  min-width: 120px;
-  height: 25px;
-  border: dashed 1px lightblue;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
+h2,h4{
+	color:#004d1a;
 }
