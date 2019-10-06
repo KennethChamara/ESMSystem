@@ -50,7 +50,8 @@ public class Supplierdeleteservlet extends HttpServlet {
 		SupplierAnalyseService service =new SupplierAnalyseServiceIMPL();
 		service.deleteallrelatedsupplierById(spd);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/Listsupplier.jsp");	//directed in to Listmarks.jsp
+		//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/Listsupplier.jsp");	
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Listsupplier.jsp");	//directed in to Listmarks.jsp
 		dispatcher.forward(request, response);
 	}
 
